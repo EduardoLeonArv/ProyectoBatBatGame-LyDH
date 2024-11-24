@@ -20,7 +20,9 @@ public class Piece extends MapObject {
 	public Piece(TileMap tm, int[] mapCoords) {
 		super(tm);
 		try {
-			BufferedImage spritesheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Other/ballBatBoss.gif"));
+			BufferedImage spritesheet = ImageIO.read(
+			getClass().getResourceAsStream("/Sprites/Other/ballBatBoss.gif")
+			);
 			sprites = new BufferedImage[1];
 			width = height = 4;
 			sprites[0] = spritesheet.getSubimage(mapCoords[0], mapCoords[1], mapCoords[2], mapCoords[3]);
