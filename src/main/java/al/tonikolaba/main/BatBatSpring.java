@@ -15,8 +15,9 @@ public class BatBatSpring {
 
 	public static void main(String[] args) {
 
-		ConfigurableApplicationContext context = new SpringApplicationBuilder(BatBatSpring.class).headless(false)
-				.run(args);
+		ConfigurableApplicationContext context = new SpringApplicationBuilder(BatBatSpring.class)
+                .headless(false)
+                .run(args);
 
 		EventQueue.invokeLater(() -> {
 			@SuppressWarnings("unused")

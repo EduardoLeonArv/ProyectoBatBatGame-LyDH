@@ -35,15 +35,22 @@ public class Level3State extends GameState {
 		setupTitle(new int[] { 0, 0, 178, 20 }, new int[] { 0, 33, 91, 13 });
 		setupMusic("level2", "/Music/level1v2.mp3", true);
 
-		enemyTypesInLevel = new EnemyType[] { EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT,
-				EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT,
-				EnemyType.ZOGU, EnemyType.ZOGU, EnemyType.ZOGU, EnemyType.ZOGU, EnemyType.UFO, EnemyType.UFO,
-				EnemyType.UFO, EnemyType.UFO };
-		coords = new int[][] { new int[] { 750, 100 }, new int[] { 900, 150 }, new int[] { 1320, 250 },
-				new int[] { 1570, 160 }, new int[] { 1590, 160 }, new int[] { 2600, 370 }, new int[] { 2620, 370 },
-				new int[] { 2640, 370 }, new int[] { 904, 130 }, new int[] { 1080, 270 }, new int[] { 1200, 270 },
-				new int[] { 1704, 300 }, new int[] { 1900, 580 }, new int[] { 2330, 550 }, new int[] { 2400, 490 },
-				new int[] { 2457, 430 } };
+		enemyTypesInLevel = new EnemyType[] {
+			EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT,
+			EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT, EnemyType.XHELBAT,
+			EnemyType.ZOGU, EnemyType.ZOGU, EnemyType.ZOGU, EnemyType.ZOGU,
+			EnemyType.UFO, EnemyType.UFO, EnemyType.UFO, EnemyType.UFO
+		};
+		
+		coords = new int[][] {
+			new int[] { 750, 100 }, new int[] { 900, 150 }, new int[] { 1320, 250 },
+			new int[] { 1570, 160 }, new int[] { 1590, 160 }, new int[] { 2600, 370 },
+			new int[] { 2620, 370 }, new int[] { 2640, 370 }, new int[] { 904, 130 },
+			new int[] { 1080, 270 }, new int[] { 1200, 270 }, new int[] { 1704, 300 },
+			new int[] { 1900, 580 }, new int[] { 2330, 550 }, new int[] { 2400, 490 },
+			new int[] { 2457, 430 }
+		};
+		
 
 		populateEnemies(enemyTypesInLevel, coords);
 	}

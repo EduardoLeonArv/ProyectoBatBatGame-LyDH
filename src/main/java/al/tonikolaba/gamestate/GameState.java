@@ -210,9 +210,11 @@ public abstract class GameState extends BasicState {
 		try {
 			batBatStart = ImageIO.read(getClass().getResourceAsStream("/HUD/batbat.gif"));
 			this.title = new Title(
-					batBatStart.getSubimage(titleCoords[0], titleCoords[1], titleCoords[2], titleCoords[3]));
+					batBatStart.getSubimage(titleCoords[0], 
+					titleCoords[1], titleCoords[2], titleCoords[3]));
 			this.title.sety(60);
-			this.subtitle = new Title(batBatStart.getSubimage(subtitleCoords[0], subtitleCoords[1], subtitleCoords[2],
+			this.subtitle = new Title(batBatStart.getSubimage(subtitleCoords[0], 
+			subtitleCoords[1], subtitleCoords[2],
 					subtitleCoords[3]));
 			this.subtitle.sety(85);
 		} catch (Exception e) {
@@ -235,7 +237,8 @@ public abstract class GameState extends BasicState {
 				e = new XhelBat(this.tileMap, this.player);
 				break;
 			case SPIRIT:
-				e = new Spirit(this.tileMap, this.player, this.enemies, this.explosions);
+				e = new Spirit(this.tileMap, this.player, 
+				this.enemies, this.explosions);
 				break;
 			default:
 				e = new Zogu(this.tileMap);
@@ -294,7 +297,8 @@ public abstract class GameState extends BasicState {
 		player.update();
 
 		// update tilemap
-		tileMap.setPosition(GamePanel.WIDTH / 2.0 - player.getx(), GamePanel.HEIGHT / 2.0 - player.gety());
+		tileMap.setPosition(GamePanel.WIDTH / 2.0 - player.getx(), 
+		GamePanel.HEIGHT / 2.0 - player.gety());
 		tileMap.update();
 		tileMap.fixBounds();
 
@@ -383,10 +387,14 @@ public abstract class GameState extends BasicState {
 		eventCount++;
 		if (eventCount == 1) {
 			tb.clear();
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, GamePanel.HEIGHT));
-			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, GamePanel.WIDTH / 2, GamePanel.HEIGHT));
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, 
+			GamePanel.HEIGHT / 2));
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT));
+			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, 
+			GamePanel.WIDTH, GamePanel.HEIGHT / 2));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, 
+			GamePanel.WIDTH / 2, GamePanel.HEIGHT));
 		}
 		if (eventCount > 1 && eventCount < 60) {
 			tb.get(0).height -= 4;
@@ -416,7 +424,8 @@ public abstract class GameState extends BasicState {
 		}
 		if (eventCount == 60) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0, 0));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 60) {
 			tb.get(0).x -= 6;
 			tb.get(0).y -= 4;
@@ -444,7 +453,8 @@ public abstract class GameState extends BasicState {
 			player.stop();
 		} else if (eventCount == 120) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0, 0));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 120) {
 			tb.get(0).x -= 6;
 			tb.get(0).y -= 4;

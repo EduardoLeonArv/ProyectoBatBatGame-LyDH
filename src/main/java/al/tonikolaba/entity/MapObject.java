@@ -105,7 +105,8 @@ public class MapObject {
 		int rightTile = (int) (x + cwidth / 2.0 - 1) / tileSize;
 		int topTile = (int) (y - cheight / 2.0) / tileSize;
 		int bottomTile = (int) (y + cheight / 2.0 - 1) / tileSize;
-		if (topTile < 0 || bottomTile >= tileMap.getNumRows() || leftTile < 0 || rightTile >= tileMap.getNumCols()) {
+		if (topTile < 0 || bottomTile >= tileMap.getNumRows() 
+		|| leftTile < 0 || rightTile >= tileMap.getNumCols()) {
 			topLeft = topRight = bottomLeft = bottomRight = false;
 			return;
 		}
@@ -255,9 +256,11 @@ public class MapObject {
 	public void draw(java.awt.Graphics2D g) {
 		setMapPosition();
 		if (facingRight) {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2.0), (int) (y + ymap - height / 2.0), null);
+			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2.0), 
+			(int) (y + ymap - height / 2.0), null);
 		} else {
-			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2.0 + width), (int) (y + ymap - height / 2.0),
+			g.drawImage(animation.getImage(), (int) (x + xmap - width / 2.0 + width), 
+			(int) (y + ymap - height / 2.0),
 					-width, height, null);
 		}
 	}

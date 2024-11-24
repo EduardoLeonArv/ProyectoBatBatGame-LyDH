@@ -119,7 +119,8 @@ public class Player extends MapObject {
 			for (int i = 0; i < NUMFRAMES.length; i++) {
 				BufferedImage[] bi = new BufferedImage[NUMFRAMES[i]];
 				for (int j = 0; j < NUMFRAMES[i]; j++) {
-					bi[j] = spritesheet.getSubimage(j * FRAMEWIDTHS[i], count, FRAMEWIDTHS[i], FRAMEHEIGHTS[i]);
+					bi[j] = spritesheet.getSubimage(j * FRAMEWIDTHS[i], 
+					count, FRAMEWIDTHS[i], FRAMEHEIGHTS[i]);
 				}
 				sprites.add(bi);
 				count += FRAMEHEIGHTS[i];
@@ -317,7 +318,8 @@ public class Player extends MapObject {
 			doubleJump = false;
 			JukeBox.play(PLAYERJUMP_MUSIC_NAME);
 			for (int i = 0; i < 6; i++) {
-				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4.0, EnergyParticle.ENERGY_DOWN));
+				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4.0, 
+				EnergyParticle.ENERGY_DOWN));
 			}
 		}
 
@@ -383,7 +385,8 @@ public class Player extends MapObject {
 
 		// check teleporting
 		if (teleporting) {
-			energyParticles.add(new EnergyParticle(tileMap, x, y, EnergyParticle.ENERGY_UP));
+			energyParticles.add(new EnergyParticle(tileMap, x, y, 
+			EnergyParticle.ENERGY_UP));
 		}
 
 		// update position
@@ -436,7 +439,8 @@ public class Player extends MapObject {
 		}
 
 		// check attack finished
-		if ((currentAction == ATTACKING_ANIM || currentAction == UPATTACKING_ANIM) && animation.hasPlayedOnce()) {
+		if ((currentAction == ATTACKING_ANIM || currentAction == UPATTACKING_ANIM) 
+		&& animation.hasPlayedOnce()) {
 			attacking = false;
 			upattacking = false;
 		}
@@ -447,10 +451,12 @@ public class Player extends MapObject {
 			cr.y = (int) y - 20;
 			if (facingRight) {
 				cr.x = (int) x - 15;
-				energyParticles.add(new EnergyParticle(tileMap, x + 30, y, EnergyParticle.ENERGY_RIGHT));
+				energyParticles.add(new EnergyParticle(tileMap, x + 30, y, 
+				EnergyParticle.ENERGY_RIGHT));
 			} else {
 				cr.x = (int) x - 35;
-				energyParticles.add(new EnergyParticle(tileMap, x - 30, y, EnergyParticle.ENERGY_LEFT));
+				energyParticles.add(new EnergyParticle(tileMap, x - 30, y, 
+				EnergyParticle.ENERGY_LEFT));
 			}
 
 		}
@@ -528,10 +534,12 @@ public class Player extends MapObject {
 			if (animation.getFrame() == 4 && animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					if (facingRight)
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, ar.y + ar.height / 2,
+						energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, 
+						ar.y + ar.height / 2,
 								EnergyParticle.ENERGY_RIGHT));
 					else
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, ar.y + ar.height / 2,
+						energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, 
+						ar.y + ar.height / 2,
 								EnergyParticle.ENERGY_LEFT));
 				}
 			}
@@ -548,7 +556,8 @@ public class Player extends MapObject {
 			if (animation.getFrame() == 4 && animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					energyParticles.add(
-							new EnergyParticle(tileMap, aur.x + aur.width / 2, aur.y + 5, EnergyParticle.ENERGY_UP));
+							new EnergyParticle(tileMap, aur.x + aur.width / 2, 
+							aur.y + 5, EnergyParticle.ENERGY_UP));
 				}
 			}
 		}
@@ -559,9 +568,11 @@ public class Player extends MapObject {
 
 		// draw emote
 		if (emote == CONFUSED_EMOTE) {
-			g.drawImage(confused, (int) (x + xmap - cwidth / 2.0), (int) (y + ymap - 40), null);
+			g.drawImage(confused, (int) (x + xmap - cwidth / 2.0), 
+			(int) (y + ymap - 40), null);
 		} else if (emote == SURPRISED_EMOTE) {
-			g.drawImage(surprised, (int) (x + xmap - cwidth / 2.0), (int) (y + ymap - 40), null);
+			g.drawImage(surprised, (int) (x + xmap - cwidth / 2.0), 
+			(int) (y + ymap - 40), null);
 		}
 
 		// draw energy particles
