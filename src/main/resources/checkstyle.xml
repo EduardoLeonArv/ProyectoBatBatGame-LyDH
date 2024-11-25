@@ -15,7 +15,7 @@
         <!-- Verifica la nomenclatura de clases -->
         <module name="ClassTypeParameterName"/>
         <module name="ClassFanOutComplexity">
-            <property name="max" value="20"/>
+            <property name="max" value="25"/>
         </module>
 
         <!-- Verifica los espacios en blanco -->

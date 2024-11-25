@@ -74,13 +74,6 @@ public class Level4State extends GameState {
 		player.setLives(PlayerSave.getLives());
 		player.setTime(PlayerSave.getTime());
 
-		// player
-		player = new Player(tileMap);
-		player.setPosition(50, 190);
-		player.setHealth(PlayerSave.getHealth());
-		player.setLives(PlayerSave.getLives());
-		player.setTime(PlayerSave.getTime());
-
 		// explosions
 		explosions = new ArrayList<Explosion>();
 
@@ -102,13 +95,12 @@ public class Level4State extends GameState {
 		portal.setPosition(270, 395);
 		teleport = new Teleport(tileMap);
 		teleport.setPosition(480, 40);
-		// teleport.setPosition(260, 395);
-
-		// vendi ku duhet te dal Spirit
+		
 		tlp = new Piece(tileMap, new int[] { 0, 0, 10, 10 });
 		trp = new Piece(tileMap, new int[] { 10, 0, 10, 10 });
 		blp = new Piece(tileMap, new int[] { 0, 10, 10, 10 });
 		brp = new Piece(tileMap, new int[] { 10, 10, 10, 10 });
+		
 		tlp.setPosition(260, 345);
 		trp.setPosition(270, 345);
 		blp.setPosition(260, 355);
@@ -279,10 +271,14 @@ public class Level4State extends GameState {
 		eventCount++;
 		if (eventCount == 1) {
 			tb.clear();
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, GamePanel.HEIGHT));
-			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, GamePanel.WIDTH / 2, GamePanel.HEIGHT));
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, 
+			GamePanel.HEIGHT / 2));
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT));
+			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, 
+			GamePanel.WIDTH, GamePanel.HEIGHT / 2));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, 
+			GamePanel.WIDTH / 2, GamePanel.HEIGHT));
 			if (!portal.isOpened())
 				tileMap.setShaking(true, 10);
 			JukeBox.stop("level1");
@@ -311,7 +307,8 @@ public class Level4State extends GameState {
 		}
 		if (eventCount == 60) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0, 0));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 60) {
 			tb.get(0).x -= 6;
 			tb.get(0).y -= 4;
@@ -335,7 +332,8 @@ public class Level4State extends GameState {
 		eventCount++;
 		if (eventCount == 1) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, GamePanel.HEIGHT / 2, 0, 0));
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 1) {
 			tb.get(0).x -= 6;
 			tb.get(0).y -= 4;
@@ -359,9 +357,8 @@ public class Level4State extends GameState {
 			}
 		}
 		if (eventCount > 60 && eventCount < 180) {
-			energyParticles.add(new EnergyParticle(tileMap, 270, 353, (int) (SECURE_RANDOM.nextDouble() * 4)));
-			// vendi ku fillon te
-																									// dalin drita
+			energyParticles.add(new EnergyParticle(tileMap, 270, 353, 
+			(int) (SECURE_RANDOM.nextDouble() * 4)));
 		}
 		if (eventCount >= 160 && eventCount <= 180) {
 			if (eventCount % 4 == 0 || eventCount % 4 == 1)
@@ -395,14 +392,16 @@ public class Level4State extends GameState {
 			for (int i = 0; i < 20; i++) {
 				de = new RedEnergy(tileMap);
 				de.setPosition(270, 395);
-				de.setVector(SECURE_RANDOM.nextDouble() * 10 - 5, SECURE_RANDOM.nextDouble() * -2 - 3);
+				de.setVector(SECURE_RANDOM.nextDouble() * 10 - 5, 
+				SECURE_RANDOM.nextDouble() * -2 - 3);
 
 				enemies.add(de);
 			}
 		}
 		if (eventCount == 362) {
 			flash = false;
-			JukeBox.loop("level1boss", 0, 60000, JukeBox.getFrames("level1boss") - 4000);
+			JukeBox.loop("level1boss", 0, 60000, 
+			JukeBox.getFrames("level1boss") - 4000);
 		}
 		if (eventCount == 420) {
 			eventPortal = blockInput = false;
@@ -421,7 +420,7 @@ public class Level4State extends GameState {
 		}
 		if (eventCount <= 120 && eventCount % 15 == 0) {
 			explosions.add(new Explosion(tileMap, spirit.getx(), spirit.gety()));
-			JukeBox.play("explode");
+			JukeBox.play("explode");	
 		}
 		if (eventCount == 180) {
 			JukeBox.play("fanfare");
