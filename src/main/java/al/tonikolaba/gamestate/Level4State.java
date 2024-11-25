@@ -420,7 +420,7 @@ public class Level4State extends GameState {
 		}
 		if (eventCount <= 120 && eventCount % 15 == 0) {
 			explosions.add(new Explosion(tileMap, spirit.getx(), spirit.gety()));
-			JukeBox.play("explode");
+			JukeBox.play("explode");	
 		}
 		if (eventCount == 180) {
 			JukeBox.play("fanfare");

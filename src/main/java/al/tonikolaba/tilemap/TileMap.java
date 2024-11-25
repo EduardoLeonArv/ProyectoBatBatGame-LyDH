@@ -83,37 +83,55 @@ public class TileMap {
     }
 
     public void loadMap(String s) {
-
         try {
-
             InputStream in = getClass().getResourceAsStream(s);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-            numCols = Integer.parseInt(br.readLine());
-            numRows = Integer.parseInt(br.readLine());
+    
+            // Leer número de columnas y filas
+            String line = br.readLine();
+            if (line == null || line.isEmpty()) {
+                throw new IllegalArgumentException("El archivo del mapa está vacío o mal formateado.");
+            }
+            numCols = Integer.parseInt(line);
+    
+            line = br.readLine();
+            if (line == null || line.isEmpty()) {
+                throw new IllegalArgumentException("El archivo del mapa está incompleto.");
+            }
+            numRows = Integer.parseInt(line);
+    
             map = new int[numRows][numCols];
             width = numCols * tileSize;
             height = numRows * tileSize;
-
+    
             xmin = GamePanel.WIDTH - width;
             xmax = 0;
             ymin = GamePanel.HEIGHT - height;
             ymax = 0;
-
+    
             String delims = "\\s+";
             for (int row = 0; row < numRows; row++) {
-                String line = br.readLine();
+                line = br.readLine();
+                if (line == null || line.trim().isEmpty()) {
+                    throw new IllegalArgumentException(
+                        "El archivo del mapa tiene menos filas de las especificadas."
+                    );
+                }
                 String[] tokens = line.split(delims);
+                if (tokens.length != numCols) {
+                    throw new IllegalArgumentException(
+                        "La fila " + row + " del mapa no coincide con el número de columnas especificado."
+                    );
+                }
                 for (int col = 0; col < numCols; col++) {
                     map[row][col] = Integer.parseInt(tokens[col]);
                 }
             }
-
         } catch (Exception e) {
-            LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
+            LoggingHelper.LOGGER.log(Level.SEVERE, "Error al cargar el mapa: " + e.getMessage());
         }
-
     }
+    
 
     public int getTileSize() {
         return tileSize;
