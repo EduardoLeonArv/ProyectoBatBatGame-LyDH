@@ -15,18 +15,17 @@ import al.tonikolaba.gamestate.GameStateManager;
 import al.tonikolaba.handlers.Keys;
 import al.tonikolaba.handlers.LoggingHelper;
 
+import al.tonikolaba.entity.Player; // Importar la clase Player
+
+
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	// dimensions
-	// Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int WIDTH = 640;
 	public static final int HEIGHT = 480;
 	public static final int SCALE = 1;
-	// public final int SCALE = (int) screenSize.getHeight() / HEIGHT;
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1275876853084636658L;
+
 	// game thread
 	private transient Thread thread;
 	private boolean running;
@@ -40,13 +39,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	// game state manager
 	private transient GameStateManager gsm;
 
+	// player reference
+	private Player player; // Referencia al jugador
+
 	// other
 	private boolean recording = false;
 	private int recordingCount = 0;
 	private boolean screenshot;
+	private boolean scoreSaved = false; // Nueva bandera para evitar guardar múltiples veces
 
-	public GamePanel() {
+	// Constructor modificado para aceptar el jugador
+	public GamePanel(Player player) {
 		super();
+		this.player = player; // Asignar el jugador
 		setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		setFocusable(true);
 		requestFocus();
@@ -63,14 +68,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	}
 
 	private void init() {
-
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 
 		running = true;
 
-		gsm = new GameStateManager();
-
+		gsm = new GameStateManager(player); // Asegúrate de que GameStateManager reciba el mismo jugador
 	}
 
 	@Override
@@ -101,18 +104,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			} catch (Exception e) {
 				LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
 			}
-
 		}
 
+		// Guardar la puntuación solo si el juego termina
+		saveScore();
 	}
 
 	private void update() {
-		gsm.update();
+		gsm.update(); // Se asegura de actualizar el estado del juego
 		Keys.update();
 	}
 
 	private void draw() {
-		gsm.draw(g);
+		gsm.draw(g); // Dibuja el estado actual del juego
 	}
 
 	private void drawToScreen() {
@@ -139,6 +143,19 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	private void saveScore() {
+		if (scoreSaved) return; // Evita guardar más de una vez
+		scoreSaved = true; // Marca que la puntuación ya se guardó
+
+		try (java.io.FileWriter writer = new java.io.FileWriter("scores.txt", true)) {
+			writer.write("Player: " + player.getName() + " - Score: " + player.getScore() + "\n");
+			writer.flush();
+			System.out.println("Player score saved to scores.txt");
+		} catch (java.io.IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void keyPressed(KeyEvent key) {
 		if (key.isControlDown()) {
@@ -162,7 +179,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Not necessary
-
 	}
-
 }

@@ -5,24 +5,44 @@ import java.util.logging.Level;
 
 import javax.swing.JFrame;
 
+import al.tonikolaba.entity.Player;
 import al.tonikolaba.handlers.LoggingHelper;
+import al.tonikolaba.tilemap.TileMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.io.FileWriter; //AGRAGAR PUNTUACIONES
+import java.io.IOException;
+import java.util.Scanner;
 
 @Component
 public class BatBatGame extends JFrame implements CommandLineRunner {
 
 	private static final long serialVersionUID = -437004379167511593L;
 
+	private Player player; // Instancia del jugador
+
 	@Override
 	public void run(String... arg0) throws Exception {
+		// Prompt for player name
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter your player name: ");
+		String playerName = scanner.nextLine();
+		System.out.println("Welcome, " + playerName + "!");
+
+		// Inicializa el mapa y el jugador
+		TileMap tileMap = new TileMap(30); // Configura según tu juego
+		player = new Player(tileMap); // Crea el jugador
+		player.setName(playerName); // Si tienes un método para guardar el nombre
+
+		// Initialize game window
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					JFrame window = new JFrame("BatBat Game \u2122");
-					window.add(new GamePanel());
-					window.setContentPane(new GamePanel());
+					window.add(new GamePanel(player)); // Pasa el jugador al panel del juego
+					window.setContentPane(new GamePanel(player));
 					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					window.setResizable(true);
 					window.pack();
@@ -33,6 +53,16 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 				}
 			}
 		});
-	}
 
+		// Save player name and score to scores.txt (después del juego)
+		try (FileWriter writer = new FileWriter("scores.txt", true)) {
+			writer.write("Player: " + playerName + " - Score: " + player.getScore() + "\n");
+			writer.flush();
+			System.out.println("Player name and score saved to scores.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			scanner.close();
+		}
+	}
 }

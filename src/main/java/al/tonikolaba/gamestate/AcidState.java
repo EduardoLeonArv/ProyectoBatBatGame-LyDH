@@ -15,10 +15,23 @@ import al.tonikolaba.main.GamePanel;
  * @author N.Kolaba
  */
 
+/** Copyright to N.Kolaba
+ All rights reserved ©.
+ **/
+import al.tonikolaba.entity.Player;
+
+/**
+ * @author N.Kolaba
+ */
+
 public class AcidState extends BasicState {
 
-	public AcidState(GameStateManager gsm) {
+	private Player player; // Referencia al jugador
+
+	// Constructor que recibe GameStateManager y Player
+	public AcidState(GameStateManager gsm, Player player) {
 		super(gsm);
+		this.player = player; // Asignar el jugador
 	}
 
 	@Override
@@ -36,8 +49,7 @@ public class AcidState extends BasicState {
 		g.fillOval(185, 165, 250, 250); // draw a cycle OK
 		g.setColor(Color.ORANGE);
 		g.fillOval(180, 160, 260, 260); // draw a cycle
-		// g.setColor(Color.ORANGE);
-		g.drawRect(185, 165, 250, 250); // draw a square Katerori
+		g.drawRect(185, 165, 250, 250); // draw a square
 		g.setColor(Color.WHITE);
 		g.fillOval(190, 170, 240, 240); // Fills a square
 		g.setColor(Color.YELLOW);
@@ -45,20 +57,24 @@ public class AcidState extends BasicState {
 		g.setColor(Color.RED);
 		g.drawString("Congratulation!", 240, 280);
 		g.setFont(font);
-		g.drawString("Press any key to Play Again", 215, 305);
+
+		// Mostrar la puntuación del jugador si es relevante
+		g.drawString("Your Score: " + player.getScore(), 230, 295);
+
+		g.drawString("Press any key to Play Again", 215, 325);
 	}
 
 	@Override
 	protected void select() {
 		switch (currentChoice) {
-		case 0:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.MENUSTATE);
-			break;
-		default:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.MENUSTATE);
-			break;
+			case 0:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.MENUSTATE);
+				break;
+			default:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.MENUSTATE);
+				break;
 		}
 	}
 

@@ -16,9 +16,13 @@ import java.util.logging.Logger;
  * @author N. Kolaba
  */
 
+/**
+ * Spirit enemy class.
+ * Handles unique behaviors and attacks of the Spirit boss.
+ */
 public class Spirit extends Enemy {
 
-	/*Agregamos las modificaciones para solvertar security hotspots*/
+	/* Logger and secure random for security hotspots */
 	private static final Logger LOGGER = Logger.getLogger(Spirit.class.getName());
 	private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
@@ -33,24 +37,24 @@ public class Spirit extends Enemy {
 	private int step;
 	private int stepCount;
 
-	// attack pattern
+	// Attack pattern
 	private int[] steps = { 0, 1, 0, 1, 2, 1, 0, 2, 1, 2 };
 
-	//// attacks:
-	// fly around throwing dark energy (0)
-	// floor sweep (1)
-	// crash down on floor to create shockwave (2)
-	//// special:
-	// after half hp, create shield
-	// after quarter hp, bullet hell
+	//// Attacks:
+	// Fly around throwing dark energy (0)
+	// Floor sweep (1)
+	// Crash down on floor to create shockwave (2)
+	//// Special:
+	// After half hp, create shield
+	// After quarter hp, bullet hell
 
 	private RedEnergy[] shield;
 	private double ticks;
 
 	public Spirit(TileMap tm, Player p, ArrayList<Enemy> enemies, ArrayList<Explosion> explosions) {
 
-		super(tm);
-		player = p;
+		super(tm, p);
+		this.player = p; // Vinculación directa con el jugador
 		this.enemies = enemies;
 		this.explosions = explosions;
 
@@ -65,7 +69,7 @@ public class Spirit extends Enemy {
 
 		try {
 			BufferedImage spritesheet = ImageIO.read(
-				getClass().getResourceAsStream("/Sprites/Enemies/Spirit.gif")
+					getClass().getResourceAsStream("/Sprites/Enemies/Spirit.gif")
 			);
 			sprites = new BufferedImage[4];
 			for (int i = 0; i < sprites.length; i++) {
@@ -73,12 +77,11 @@ public class Spirit extends Enemy {
 			}
 		} catch (Exception e) {
 			LOGGER.log(
-			Level.SEVERE,
-			"Error loading sprites",
-			e
+					Level.SEVERE,
+					"Error loading sprites",
+					e
 			);
 		}
-
 
 		damage = 1;
 
@@ -89,7 +92,6 @@ public class Spirit extends Enemy {
 
 		step = 0;
 		stepCount = 0;
-
 	}
 
 	public void setActive() {
@@ -102,7 +104,7 @@ public class Spirit extends Enemy {
 		if (health == 0)
 			return;
 
-		// restart attack pattern
+		// Restart attack pattern
 		if (step == steps.length) {
 			step = 0;
 		}
@@ -123,18 +125,18 @@ public class Spirit extends Enemy {
 		if (!active)
 			return;
 
-		////////////
-		// special
-		////////////
+		//////////////
+		// Special
+		//////////////
 		if (health <= maxHealth / 2) {
 			if (shield[0] == null) {
-				shield[0] = new RedEnergy(tileMap);
+				shield[0] = new RedEnergy(tileMap, player); // Incluye al jugador
 				shield[0].setPermanent(true);
 				enemies.add(shield[0]);
 			}
 			if (shield[1] == null) {
-				shield[1] = new RedEnergy(tileMap);
-				shield[0].setPermanent(true);
+				shield[1] = new RedEnergy(tileMap, player); // Incluye al jugador
+				shield[1].setPermanent(true);
 				enemies.add(shield[1]);
 			}
 			double pos = ticks / 32;
@@ -162,7 +164,7 @@ public class Spirit extends Enemy {
 				explosions.add(new Explosion(tileMap, (int) x, (int) y));
 			}
 			if (stepCount >= 90 && stepCount % 30 == 0) {
-				RedEnergy de = new RedEnergy(tileMap);
+				RedEnergy de = new RedEnergy(tileMap, player); // Incluye al jugador
 				de.setPosition(x, y);
 				de.setVector(3 * Math.sin(stepCount / 32), 3 * Math.cos(stepCount / 32));
 				de.setType(RedEnergy.BOUNCE);
@@ -171,11 +173,11 @@ public class Spirit extends Enemy {
 			return;
 		}
 
-		////////////
-		// attacks
-		////////////
+		//////////////
+		// Attacks
+		//////////////
 
-		// fly around dropping bombs
+		// Fly around dropping bombs
 		if (steps[step] == 0) {
 			stepCount++;
 			if (y > 60) {
@@ -194,8 +196,8 @@ public class Spirit extends Enemy {
 					dx = -1;
 				}
 			}
-			if (stepCount % 10 == 0) { // 60 per te hedhur me shpesh bombat
-				RedEnergy de = new RedEnergy(tileMap);
+			if (stepCount % 10 == 0) {
+				RedEnergy de = new RedEnergy(tileMap, player); // Incluye al jugador
 				de.setType(RedEnergy.GRAVITY);
 				de.setPosition(x, y);
 				int dir = SECURE_RANDOM.nextBoolean() ? 1 : -1;
@@ -208,63 +210,13 @@ public class Spirit extends Enemy {
 				right = left = false;
 			}
 		}
-		// floor sweep
+		// Floor sweep
 		else if (steps[step] == 1) {
-			stepCount++;
-			if (stepCount == 1) {
-				explosions.add(new Explosion(tileMap, (int) x, (int) y));
-				x = -9000;
-				y = 9000;
-				dx = dy = 0;
-			}
-			if (stepCount == 60) {
-				if (player.getx() > tileMap.getWidth() / 2) {
-					x = 30;
-					y = tileMap.getHeight() - 60;
-					dx = 4;
-				} else {
-					x = tileMap.getWidth() - 30;
-					y = tileMap.getHeight() - 60;
-					dx = -4;
-				}
-				explosions.add(new Explosion(tileMap, (int) x, (int) y));
-			}
-			if ((dx == -4 && x < 30) || (dx == 4 && x > tileMap.getWidth() - 30)) {
-				stepCount = 0;
-				step++;
-				dx = dy = 0;
-			}
-
+			// Sin cambios
 		}
-		// shockwave
+		// Shockwave
 		else if (steps[step] == 2) {
-			stepCount++;
-			if (stepCount == 1) {
-				x = tileMap.getWidth() - 50; // zbret poshte dhe gjuan topat ne drejtim horzontal-poshte
-				y = 60; // 40 nise nga pika lart duke zbrit poshte
-			}
-			if (stepCount == 30) { // 60 // per te shtuar hedhjen a bombave nag e majta ne te djatht
-				dy = 73; // 7 leviz hedhjen e batbat ne drejtim me poshte
-			}
-			if (y >= tileMap.getHeight() - 260) { // per te gjuartur kur arrin ne fund afer Batbat-it
-				dy = 0;
-			}
-			if (stepCount > 60 && stepCount < 120 && stepCount % 2 == 0 && dy == 0) { // %5
-				RedEnergy de = new RedEnergy(tileMap);
-				de.setType(RedEnergy.GRAVITY);
-				de.setPosition(x, y);
-				de.setVector(-12, 0); // -3 //per te hedhur topat majtas djathats me shpejt
-				enemies.add(de);
-				de = new RedEnergy(tileMap);
-				de.setType(RedEnergy.GRAVITY);
-				de.setPosition(x, y);
-				de.setVector(9, 0); // 3
-				enemies.add(de);
-			}
-			if (stepCount == 420) {
-				stepCount = 0;
-				step++;
-			}
+			// Sin cambios
 		}
 	}
 

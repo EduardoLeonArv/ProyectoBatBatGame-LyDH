@@ -14,12 +14,15 @@ import java.util.List;
  * @author ArtOfSoul
  */
 
+/**
+ * @author ArtOfSoul
+ */
 public class Ufo extends Flyer {
 
     private static final int IDLE = 0;
     private static final int JUMPING = 1;
     private static final int ATTACKING = 2;
-    private Player player;
+    private Player player; // Referencia al jugador
     private ArrayList<Enemy> enemies;
     private BufferedImage[] idleSprites;
     private BufferedImage[] jumpSprites;
@@ -28,11 +31,10 @@ public class Ufo extends Flyer {
     private int attackDelay = 30;
     private int step;
 
-    public Ufo(TileMap tm, Player p, List<Enemy> en) {
-
-        super(tm, FlyerType.UFO);
-        player = p;
-        enemies = (ArrayList<Enemy>) en;
+    public Ufo(TileMap tm, Player player, List<Enemy> enemies) {
+        super(tm, FlyerType.UFO, player); // Incluye el jugador
+        this.player = player;
+        this.enemies = (ArrayList<Enemy>) enemies;
 
         idleSprites = Content.getUfo()[0];
         jumpSprites = Content.getUfo()[1];
@@ -42,7 +44,6 @@ public class Ufo extends Flyer {
         animation.setDelay(-1);
 
         attackTick = 0;
-
     }
 
     @Override
@@ -82,7 +83,6 @@ public class Ufo extends Flyer {
                 step = 0;
                 left = right = jumping = false;
                 break;
-
         }
     }
 
@@ -91,7 +91,8 @@ public class Ufo extends Flyer {
             currentAction = ATTACKING;
             animation.setFrames(attackSprites);
             animation.setDelay(3);
-            RedEnergy de = new RedEnergy(tileMap);
+            // RedEnergy ahora incluye al jugador
+            RedEnergy de = new RedEnergy(tileMap, player); // Pasa el jugador al constructor
             de.setPosition(x, y);
             if (facingRight)
                 de.setVector(3, 3);
@@ -144,7 +145,6 @@ public class Ufo extends Flyer {
         }
 
         super.draw(g);
-
     }
-
 }
+

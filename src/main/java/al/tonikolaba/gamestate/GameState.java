@@ -67,8 +67,13 @@ public abstract class GameState extends BasicState {
 	protected int nextLevelState;
 	protected String levelMusicName;
 
-	public GameState(GameStateManager gsm) {
-		super(gsm);
+	protected Player player; // Referencia al jugador
+	protected TileMap tileMap;
+
+	public GameState(GameStateManager gsm, Player player) {
+		super(gsm); // Llama al constructor de BasicState con los parámetros necesarios
+		this.gsm = gsm;
+		this.player = player;
 	}
 
 	public void init(int nextLevel) {
@@ -222,31 +227,33 @@ public abstract class GameState extends BasicState {
 		}
 	}
 
-	protected void populateEnemies(EnemyType[] enemies, int[][] coords) {
-		this.enemies.clear();
-		for (int i = 0; i < enemies.length; i++) {
+	protected void populateEnemies(EnemyType[] enemyTypes, int[][] coords) {
+		this.enemies.clear(); // Limpia cualquier enemigo previo
+
+		for (int i = 0; i < enemyTypes.length; i++) {
 			Enemy e = null;
-			switch (enemies[i]) {
-			case RED_ENERGY:
-				e = new RedEnergy(this.tileMap);
-				break;
-			case UFO:
-				e = new Ufo(this.tileMap, this.player, this.enemies);
-				break;
-			case XHELBAT:
-				e = new XhelBat(this.tileMap, this.player);
-				break;
-			case SPIRIT:
-				e = new Spirit(this.tileMap, this.player, 
-				this.enemies, this.explosions);
-				break;
-			default:
-				e = new Zogu(this.tileMap);
-				break;
+			switch (enemyTypes[i]) {
+				case RED_ENERGY:
+					e = new RedEnergy(tileMap, player); // Incluye el jugador
+					break;
+				case UFO:
+					e = new Ufo(tileMap, player, enemies); // Incluye el jugador y lista de enemigos
+					break;
+				case XHELBAT:
+					e = new XhelBat(tileMap, player); // Incluye el jugador
+					break;
+				case SPIRIT:
+					e = new Spirit(tileMap, player, enemies, explosions); // Incluye el jugador y explosiones
+					break;
+				case ZOGU:
+					e = new Zogu(tileMap, player); // Incluye el jugador
+					break;
 			}
 
-			e.setPosition(coords[i][0], coords[i][1]);
-			this.enemies.add(e);
+			if (e != null) {
+				e.setPosition(coords[i][0], coords[i][1]); // Configura la posición del enemigo
+				this.enemies.add(e); // Agrega el enemigo a la lista
+			}
 		}
 	}
 

@@ -12,16 +12,19 @@ import java.awt.image.BufferedImage;
  * @author ArtOfSoul
  */
 
+/**
+ * @author ArtOfSoul
+ */
 public class XhelBat extends Flyer {
 
     private BufferedImage[] sprites;
-    private Player player;
+    private Player player; // Referencia al jugador
     private boolean active;
 
     public XhelBat(TileMap tm, Player p) {
-
-        super(tm, FlyerType.XHEL_BAT);
-        player = p;
+        // Constructor modificado para usar el nuevo constructor de Flyer
+        super(tm, FlyerType.XHEL_BAT, p);
+        this.player = p; // Asigna el jugador a la referencia local
 
         sprites = Content.getXhelbat()[0];
 
@@ -30,19 +33,19 @@ public class XhelBat extends Flyer {
 
         left = true;
         facingRight = false;
-
     }
 
     @Override
     public void update() {
 
         if (!active) {
+            // Activa el enemigo si el jugador está cerca
             if (Math.abs(player.getx() - x) < GamePanel.WIDTH)
                 active = true;
             return;
         }
 
-        // check if done flinching
+        // Check if done flinching
         if (flinching) {
             flinchCount++;
             if (flinchCount == 6)
@@ -52,6 +55,8 @@ public class XhelBat extends Flyer {
         getNextPosition();
         checkTileMapCollision();
         calculateCorners(x, ydest + 1);
+
+        // Cambia de dirección si no hay suelo en los bordes
         if (!bottomLeft) {
             left = false;
             right = facingRight = true;
@@ -62,15 +67,15 @@ public class XhelBat extends Flyer {
         }
         setPosition(xtemp, ytemp);
 
+        // Cambia de dirección si el movimiento en X se detiene
         if (dx == 0) {
             left = !left;
             right = !right;
             facingRight = !facingRight;
         }
 
-        // update animation
+        // Actualiza la animación
         animation.update();
-
     }
 
     @Override
@@ -81,7 +86,5 @@ public class XhelBat extends Flyer {
         }
 
         super.draw(g);
-
     }
-
 }
