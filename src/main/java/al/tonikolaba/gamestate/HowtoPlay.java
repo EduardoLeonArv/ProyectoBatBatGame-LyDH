@@ -13,10 +13,22 @@ import al.tonikolaba.handlers.Keys;
  * @author N.Kolaba
  */
 
+/** Copyright to N.Kolaba
+ All rights reserved ©.
+ **/
+
+import al.tonikolaba.entity.Player;
+
+/**
+ * @author N.Kolaba
+ */
 public class HowtoPlay extends BasicState {
 
-	public HowtoPlay(GameStateManager gsm) {
+	private Player player; // Referencia al jugador
+
+	public HowtoPlay(GameStateManager gsm, Player player) {
 		super(gsm);
+		this.player = player; // Asignar el jugador
 	}
 
 	@Override
@@ -40,26 +52,26 @@ public class HowtoPlay extends BasicState {
 	@Override
 	protected void select() {
 		switch (currentChoice) {
-		case 0:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.OPTIONSSTATE);
-			break;
-		default:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.OPTIONSSTATE);
-			break;
+			case 0:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.OPTIONSSTATE); // Pasar el jugador
+				break;
+			default:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.OPTIONSSTATE); // Pasar el jugador
+				break;
 		}
 	}
 
 	@Override
 	public void handleInput() {
-		if (Keys.isPressed(Keys.ENTER))
+		if (Keys.isPressed(Keys.ENTER)) {
 			select();
+		}
 		if (Keys.isPressed(Keys.UP) && currentChoice > 0) {
 			JukeBox.play("menuoption", 0);
-			gsm.setState(GameStateManager.MENUSTATE);
+			gsm.setState(GameStateManager.MENUSTATE); // Regresar al menú principal con el jugador
 			currentChoice--;
 		}
-
 	}
 }

@@ -12,6 +12,10 @@ import java.awt.image.BufferedImage;
  * @author ArtOfSoul
  */
 
+import al.tonikolaba.entity.Player;
+/**
+ * @author ArtOfSoul
+ */
 public class Zogu extends Enemy {
 
     private static final SecureRandom SECURE_RANDOM = new SecureRandom();
@@ -21,9 +25,12 @@ public class Zogu extends Enemy {
     private double a;
     private double b;
 
-    public Zogu(TileMap tm) {
+    private Player player; // Referencia al jugador
 
-        super(tm);
+    // Constructor modificado para incluir al jugador
+    public Zogu(TileMap tm, Player player) {
+        super(tm, player); // Pasa el jugador al constructor de Enemy
+        this.player = player;
 
         health = maxHealth = 2;
 
@@ -43,13 +50,12 @@ public class Zogu extends Enemy {
         tick = 0;
         a = SECURE_RANDOM.nextDouble() * 0.06 + 0.07;
         b = SECURE_RANDOM.nextDouble() * 0.06 + 0.07;
-
     }
 
     @Override
     public void update() {
 
-        // check if done flinching
+        // Check if done flinching
         if (flinching) {
             flinchCount++;
             if (flinchCount == 6)
@@ -60,9 +66,8 @@ public class Zogu extends Enemy {
         x = Math.sin(a * tick) + x;
         y = Math.sin(b * tick) + y;
 
-        // update animation
+        // Update animation
         animation.update();
-
     }
 
     @Override
@@ -73,7 +78,5 @@ public class Zogu extends Enemy {
         }
 
         super.draw(g);
-
     }
-
 }

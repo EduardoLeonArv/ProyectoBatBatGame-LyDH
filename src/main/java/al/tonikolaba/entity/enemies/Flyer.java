@@ -7,14 +7,22 @@ import al.tonikolaba.tilemap.TileMap;
  * Created by NdueKolaba on 03-Apr-18.
  */
 
+import al.tonikolaba.entity.Player;
+
+
+/**
+ * Created by NdueKolaba on 03-Apr-18.
+ */
 public class Flyer extends Enemy {
 
+    private double[][] initValues = new double[][] {
+            new double[] { 4, 30, 30, 20, 26, 1, 1.5, 0.15, 4.0, -5 },
+            new double[] { 1, 25, 25, 20, 18, 1, 0.8, 0.15, 4.0, -5 }
+    };
 
-    private double[][] initValues = new double[][]{new double[]{4, 30, 30, 20, 26, 1, 1.5, 0.15, 4.0, -5},
-            new double[]{1, 25, 25, 20, 18, 1, 0.8, 0.15, 4.0, -5}};
-
-    public Flyer(TileMap tm, FlyerType type) {
-        super(tm);
+    // Constructor modificado para incluir el jugador
+    public Flyer(TileMap tm, FlyerType type, Player player) {
+        super(tm, player); // Pasa el jugador al constructor de Enemy
         health = maxHealth = (int) initValues[type.value][0];
 
         width = (int) initValues[type.value][1];

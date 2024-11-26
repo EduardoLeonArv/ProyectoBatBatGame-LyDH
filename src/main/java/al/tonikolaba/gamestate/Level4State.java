@@ -49,8 +49,8 @@ public class Level4State extends GameState {
 	private boolean eventBossDead;
 	protected Portal portal;
 
-	public Level4State(GameStateManager gsm) {
-		super(gsm);
+	public Level4State(GameStateManager gsm, Player player) {
+		super(gsm, player); // Pasar el jugador al constructor padre
 		init(GameStateManager.ACIDSTATE);
 	}
 
@@ -58,6 +58,7 @@ public class Level4State extends GameState {
 	public void init(int nextLevel) {
 
 		super.init(nextLevel);
+
 		// backgrounds
 		temple = new Background("/Backgrounds/temple1.gif", 0.5, 0);
 
@@ -67,22 +68,16 @@ public class Level4State extends GameState {
 		setupGameObjects(50, 190, 160, 154, true);
 		setupMusic(LEVEL_BOSS_MUSIC_NAME, "/Music/level1boss.mp3", true);
 
-		// player
-		player = new Player(tileMap);
-		player.setPosition(50, 190);
-		player.setHealth(PlayerSave.getHealth());
-		player.setLives(PlayerSave.getLives());
-		player.setTime(PlayerSave.getTime());
-
+		player.setPosition(50, 190); // Solo configurar la posición inicial
 		// explosions
-		explosions = new ArrayList<Explosion>();
+		explosions = new ArrayList<>();
 
 		// enemies
-		enemies = new ArrayList<Enemy>();
+		enemies = new ArrayList<>();
 		populateEnemies();
 
 		// energy particle
-		energyParticles = new ArrayList<EnergyParticle>();
+		energyParticles = new ArrayList<>();
 
 		// init player
 		player.init(enemies, energyParticles);
@@ -95,12 +90,12 @@ public class Level4State extends GameState {
 		portal.setPosition(270, 395);
 		teleport = new Teleport(tileMap);
 		teleport.setPosition(480, 40);
-		
+
 		tlp = new Piece(tileMap, new int[] { 0, 0, 10, 10 });
 		trp = new Piece(tileMap, new int[] { 10, 0, 10, 10 });
 		blp = new Piece(tileMap, new int[] { 0, 10, 10, 10 });
 		brp = new Piece(tileMap, new int[] { 10, 10, 10, 10 });
-		
+
 		tlp.setPosition(260, 345);
 		trp.setPosition(270, 345);
 		blp.setPosition(260, 355);
@@ -108,15 +103,25 @@ public class Level4State extends GameState {
 
 		// start event
 		eventStart = blockInput = true;
-		tb = new ArrayList<Rectangle>();
+		tb = new ArrayList<>();
 		eventStart();
 	}
 
+
 	private void populateEnemies() {
 		enemies.clear();
+
+		// Instancia de Spirit
 		spirit = new Spirit(tileMap, player, enemies, explosions);
-		spirit.setPosition(-9000, 9000);
+		spirit.setPosition(-9000, 9000); // Posición inicial fuera de pantalla
 		enemies.add(spirit);
+
+		// Instancias adicionales de RedEnergy (ejemplo)
+		for (int i = 0; i < 5; i++) {
+			RedEnergy redEnergy = new RedEnergy(tileMap, player); // Incluye el jugador
+			redEnergy.setPosition(100 + i * 50, 200);
+			enemies.add(redEnergy);
+		}
 	}
 
 	@Override
@@ -135,16 +140,11 @@ public class Level4State extends GameState {
 		}
 
 		// play events
-		if (eventStart)
-			eventStart();
-		if (eventDead)
-			eventDead();
-		if (eventFinish)
-			eventFinish();
-		if (eventPortal)
-			eventPortal();
-		if (eventBossDead)
-			eventBossDead();
+		if (eventStart) eventStart();
+		if (eventDead) eventDead();
+		if (eventFinish) eventFinish();
+		if (eventPortal) eventPortal();
+		if (eventBossDead) eventBossDead();
 
 		// move backgrounds
 		temple.setPosition(tileMap.getx(), tileMap.gety());
@@ -180,7 +180,7 @@ public class Level4State extends GameState {
 		// update portal
 		portal.update();
 
-		// update artfact
+		// update artifact
 		tlp.update();
 		trp.update();
 		blp.update();
@@ -351,21 +351,26 @@ public class Level4State extends GameState {
 
 	private void eventPortal() {
 		eventCount++;
+
+		// Verifica si el portal ya está abierto
 		if (eventCount == 1) {
 			if (portal.isOpened()) {
-				eventCount = 360;
+				eventCount = 360; // Salta directamente a la etapa del jefe
 			}
 		}
+
+		// Generar partículas de energía entre 60 y 180 ticks
 		if (eventCount > 60 && eventCount < 180) {
-			energyParticles.add(new EnergyParticle(tileMap, 270, 353, 
-			(int) (SECURE_RANDOM.nextDouble() * 4)));
+			energyParticles.add(new EnergyParticle(tileMap, 270, 353,
+					(int) (SECURE_RANDOM.nextDouble() * 4)));
 		}
+
+		// Flash entre 160 y 180 ticks
 		if (eventCount >= 160 && eventCount <= 180) {
-			if (eventCount % 4 == 0 || eventCount % 4 == 1)
-				flash = true;
-			else
-				flash = false;
+			flash = (eventCount % 4 == 0 || eventCount % 4 == 1);
 		}
+
+		// Configuración de las piezas del portal
 		if (eventCount == 181) {
 			tileMap.setShaking(false, 0);
 			flash = false;
@@ -375,41 +380,54 @@ public class Level4State extends GameState {
 			brp.setVector(0.3, 0.3);
 			player.setEmote(Player.SURPRISED_EMOTE);
 		}
+
 		if (eventCount == 240) {
 			tlp.setVector(0, -5);
 			trp.setVector(0, -5);
 			blp.setVector(0, -5);
 			brp.setVector(0, -5);
 		}
+
 		if (eventCount == 300) {
 			player.setEmote(Player.NONE_EMOTE);
-			portal.setOpening();
+			portal.setOpening(); // Marca el portal como abierto
 		}
+
+		// Generar el jefe y proyectiles
 		if (eventCount == 360) {
 			flash = true;
-			spirit.setPosition(270, 395);
-			RedEnergy de;
-			for (int i = 0; i < 20; i++) {
-				de = new RedEnergy(tileMap);
-				de.setPosition(270, 395);
-				de.setVector(SECURE_RANDOM.nextDouble() * 10 - 5, 
-				SECURE_RANDOM.nextDouble() * -2 - 3);
 
+			// Configura la posición inicial del jefe Spirit
+			spirit.setPosition(270, 395);
+
+			// Generar proyectiles de RedEnergy
+			for (int i = 0; i < 20; i++) {
+				RedEnergy de = new RedEnergy(tileMap, player); // Incluye el jugador
+				de.setPosition(270, 395);
+				de.setVector(
+						SECURE_RANDOM.nextDouble() * 10 - 5,
+						SECURE_RANDOM.nextDouble() * -2 - 3
+				);
 				enemies.add(de);
 			}
 		}
+
 		if (eventCount == 362) {
 			flash = false;
-			JukeBox.loop("level1boss", 0, 60000, 
-			JukeBox.getFrames("level1boss") - 4000);
+
+			// Reproduce la música del jefe
+			JukeBox.loop("level1boss", 0, 60000,
+					JukeBox.getFrames("level1boss") - 4000);
 		}
+
+		// Finaliza la configuración del portal
 		if (eventCount == 420) {
 			eventPortal = blockInput = false;
 			eventCount = 0;
-			spirit.setActive();
+			spirit.setActive(); // Activa al jefe
 		}
-
 	}
+
 
 	public void eventBossDead() {
 		eventCount++;
