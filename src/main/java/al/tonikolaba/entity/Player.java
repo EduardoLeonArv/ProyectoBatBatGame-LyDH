@@ -535,12 +535,10 @@ public class Player extends MapObject {
 				for (int c = 0; c < 3; c++) {
 					if (facingRight)
 						energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, 
-						ar.y + ar.height / 2,
-								EnergyParticle.ENERGY_RIGHT));
+						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_RIGHT));				
 					else
 						energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, 
-						ar.y + ar.height / 2,
-								EnergyParticle.ENERGY_LEFT));
+						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_LEFT));
 				}
 			}
 		}
