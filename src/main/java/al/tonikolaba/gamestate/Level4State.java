@@ -153,9 +153,9 @@ public class Level4State extends GameState {
 		player.update();
 
 		// update tilemap
-		tileMap.setPosition(GamePanel.WIDTH - player.getx(), GamePanel.HEIGHT - player.gety());
-		tileMap.update();
-		tileMap.fixBounds();
+		tileMap.setPosition((double) GamePanel.WIDTH - player.getx(), 
+							(double) GamePanel.HEIGHT - player.gety());
+
 
 		// update enemies
 		for (int i = 0; i < enemies.size(); i++) {
