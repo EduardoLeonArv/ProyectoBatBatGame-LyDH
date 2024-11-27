@@ -166,7 +166,7 @@ public class Spirit extends Enemy {
 			if (stepCount >= 90 && stepCount % 30 == 0) {
 				RedEnergy de = new RedEnergy(tileMap, player); // Incluye al jugador
 				de.setPosition(x, y);
-				de.setVector(3 * Math.sin(stepCount / 32), 3 * Math.cos(stepCount / 32));
+				de.setVector(3 * Math.sin((double) stepCount / 32), 3 * Math.cos((double) stepCount / 32));
 				de.setType(RedEnergy.BOUNCE);
 				enemies.add(de);
 			}
