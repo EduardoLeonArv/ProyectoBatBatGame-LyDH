@@ -1,6 +1,8 @@
 package al.tonikolaba.main;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 
 import javax.swing.JFrame;
@@ -48,21 +50,30 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 					window.pack();
 					window.setLocationRelativeTo(null);
 					window.setVisible(true);
+
+					window.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosing(WindowEvent e) {
+							saveScore(playerName, player.getScore());
+						}
+					});
 				} catch (Exception e) {
 					LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
 				}
 			}
 		});
 
-		// Save player name and score to scores.txt (después del juego)
+
+	}
+
+	private void saveScore(String playerName, int score) {
+		// Save player name and score to scores.txt
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
-			writer.write("Player: " + playerName + " - Score: " + player.getScore() + "\n");
+			writer.write("Player: " + playerName + " - Score: " + score + "\n");
 			writer.flush();
 			System.out.println("Player name and score saved to scores.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			scanner.close();
 		}
 	}
 }
