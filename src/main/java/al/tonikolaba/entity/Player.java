@@ -551,11 +551,12 @@ public class Player extends MapObject {
 			if (animation.getFrame() == 4 && animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					if (facingRight)
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + ar.width - 4, 
-						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_RIGHT));				
+						energyParticles.add(new EnergyParticle(tileMap, ar.x + (double) ar.width - 4, 
+						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_RIGHT));
 					else
 						energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, 
-						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_LEFT));
+							ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_LEFT));
+				
 				}
 			}
 		}
@@ -571,8 +572,8 @@ public class Player extends MapObject {
 			if (animation.getFrame() == 4 && animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					energyParticles.add(
-							new EnergyParticle(tileMap, aur.x + aur.width / 2, 
-							aur.y + 5, EnergyParticle.ENERGY_UP));
+						new EnergyParticle(tileMap, aur.x + (double) aur.width / 2, 
+						aur.y + (double) 5, EnergyParticle.ENERGY_UP));					
 				}
 			}
 		}
