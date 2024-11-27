@@ -10,10 +10,19 @@ import al.tonikolaba.main.GamePanel;
  * @author N. Kolaba
  */
 
+import al.tonikolaba.entity.Player;
+
+/**
+ * @author N. Kolaba
+ */
+
 public class PauseState extends GameState {
 
-	public PauseState(GameStateManager gsm) {
-		super(gsm);
+	private Player player; // Referencia al jugador
+
+	public PauseState(GameStateManager gsm, Player player) {
+		super(gsm, player); // Llama al constructor de GameState con el jugador
+		this.player = player;
 	}
 
 	@Override
@@ -33,7 +42,11 @@ public class PauseState extends GameState {
 		g.setFont(fontMenu);
 		g.drawString("Game Paused", 280, 230);
 		g.setFont(font);
+
+		// Mostrar información del jugador (opcional)
 		g.drawString("* press ESC to continue", 250, 255);
+		g.drawString("Player Lives: " + player.getLives(), 250, 275);
+		g.drawString("Score: " + player.getScore(), 250, 295);
 	}
 
 	@Override
@@ -45,5 +58,5 @@ public class PauseState extends GameState {
 			gsm.setState(GameStateManager.MENUSTATE);
 		}
 	}
-
 }
+

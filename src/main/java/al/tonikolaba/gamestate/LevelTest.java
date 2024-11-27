@@ -16,6 +16,14 @@ import al.tonikolaba.tilemap.Background;
  * @author N.Kolaba
  *
  */
+/**
+ *
+ */
+
+/**
+ * @author N.Kolaba
+ *
+ */
 public class LevelTest extends GameState {
 
 	private static final String LEVEL_BOSS_MUSIC_NAME = "level1boss";
@@ -29,8 +37,9 @@ public class LevelTest extends GameState {
 	private boolean eventBossDead;
 	private boolean eventQuake;
 
-	public LevelTest(GameStateManager gsm) {
-		super(gsm);
+	// Constructor actualizado para incluir Player
+	public LevelTest(GameStateManager gsm, Player player) {
+		super(gsm, player); // Pasa GameStateManager y Player a la clase base
 		init(GameStateManager.ACIDSTATE);
 	}
 

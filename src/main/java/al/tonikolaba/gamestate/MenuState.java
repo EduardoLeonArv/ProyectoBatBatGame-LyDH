@@ -15,23 +15,34 @@ import al.tonikolaba.handlers.Keys;
  * @author tonikolaba
  */
 
+/** Copyright to N.Kolaba
+ All rights reserved ©.
+ **/
+
+import al.tonikolaba.entity.Player;
+
+/**
+ * @author tonikolaba
+ */
 public class MenuState extends BasicState {
 
-	public MenuState(GameStateManager gsm) {
+	private Player player; // Referencia al jugador
+
+	public MenuState(GameStateManager gsm, Player player) {
 		super(gsm);
+		this.player = player; // Asignar el jugador
 		options = new String[] { "Play", "Options", "Quit" };
 	}
 
 	@Override
 	public void draw(Graphics2D i) {
-
 		super.draw(i);
-		// titles and fonts
+
+		// títulos y fuentes
 		i.setFont(fontMenu);
-		// i.drawRoundRect(210, 160, 240, 160, 50, 50);
-		// i.drawRect(220, 170, 220, 140);// Fills a square
+
 		i.setColor(Color.RED);
-		i.drawString("Play", 300, 223); // 25
+		i.drawString("Play", 300, 223);
 		i.drawString("Options", 300, 248);
 		i.drawString("Quit", 300, 273);
 	}
@@ -39,17 +50,17 @@ public class MenuState extends BasicState {
 	@Override
 	protected void select() {
 		switch (currentChoice) {
-		case 0:
-			JukeBox.play("menuselect");
-			PlayerSave.init();
-			gsm.setState(GameStateManager.LEVEL1STATE); // start this level entrance
-			break;
-		case 1:
-			gsm.setState(GameStateManager.OPTIONSSTATE);
-			break;
-		default:
-			System.exit(0);
-			break;
+			case 0:
+				JukeBox.play("menuselect");
+				PlayerSave.init();
+				gsm.setState(GameStateManager.LEVEL1STATE); // Pasar el jugador al nuevo estado
+				break;
+			case 1:
+				gsm.setState(GameStateManager.OPTIONSSTATE); // Pasar el jugador al menú de opciones
+				break;
+			default:
+				System.exit(0);
+				break;
 		}
 	}
 
@@ -66,5 +77,4 @@ public class MenuState extends BasicState {
 			currentChoice++;
 		}
 	}
-
 }

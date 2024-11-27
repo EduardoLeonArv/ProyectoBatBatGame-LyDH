@@ -19,6 +19,7 @@ import al.tonikolaba.tilemap.TileMap;
 
 public class Player extends MapObject {
 
+	private String name; // Atributo para almacenar el nombre del jugador
 	public static final int NONE_EMOTE = 0;
 	public static final int CONFUSED_EMOTE = 1;
 	public static final int SURPRISED_EMOTE = 2;
@@ -76,8 +77,9 @@ public class Player extends MapObject {
 
 	public Player(TileMap tm) {
 
-		super(tm);
 
+		super(tm);
+		score = 0;
 		ar = new Rectangle(0, 0, 0, 0);
 		ar.width = 30;
 		ar.height = 20;
@@ -144,6 +146,15 @@ public class Player extends MapObject {
 		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
 		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
 
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	// Metodo para obtener el nombre del jugador
+	public String getName() {
+		return name;
 	}
 
 	public void init(List<Enemy> enemies, List<EnergyParticle> energyParticles) {
@@ -251,11 +262,17 @@ public class Player extends MapObject {
 
 	public void increaseScore(int score) {
 		this.score += score;
+		System.out.println("Current score: " + this.score); // Log para depuración
 	}
 
 	public int getScore() {
 		return score;
 	}
+
+	public void setScore(int scoreAux) {
+		this.score = scoreAux;
+	}
+
 
 	public void hit(int damage) {
 		if (flinching)

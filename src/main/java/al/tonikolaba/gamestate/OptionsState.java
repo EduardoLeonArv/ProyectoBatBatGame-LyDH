@@ -14,14 +14,23 @@ import al.tonikolaba.handlers.Keys;
  * @author N.Kolaba
  */
 
+/** Copyright to N.Kolaba
+ All rights reserved ©.
+ **/
+
+import al.tonikolaba.entity.Player;
+
+/**
+ * @author N.Kolaba
+ */
 public class OptionsState extends BasicState {
 
-	// Font fontMenu;
+	private Player player; // Referencia al jugador
 
-	public OptionsState(GameStateManager gsm) {
+	public OptionsState(GameStateManager gsm, Player player) {
 		super(gsm);
+		this.player = player; // Asignar el jugador
 		options = new String[] { "HowTo Play", "Language", "Back" };
-		// fontMenu = new Font("Arial", Font.BOLD, 20);
 	}
 
 	@Override
@@ -34,8 +43,7 @@ public class OptionsState extends BasicState {
 	public void draw(Graphics2D i) {
 		super.draw(i);
 		i.setFont(fontMenu);
-		// i.drawRoundRect(210, 160, 265, 160, 50, 50);
-		// i.drawRect(220, 170, 245, 140);// Fills a square
+
 		i.setColor(Color.RED);
 		i.drawString("HowTo Play", 300, 223);
 		i.drawString("Language", 300, 248);
@@ -45,21 +53,21 @@ public class OptionsState extends BasicState {
 	@Override
 	protected void select() {
 		switch (currentChoice) {
-		case 0:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.HOWTOPLAY);
-			break;
-		case 1:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.OPTIONSSTATE);
-			break;
-		case 2:
-			JukeBox.play("menuselect");
-			gsm.setState(GameStateManager.MENUSTATE);
-			break;
-		default:
-			gsm.setState(GameStateManager.MENUSTATE);
-			break;
+			case 0:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.HOWTOPLAY); // Pasar el jugador
+				break;
+			case 1:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.OPTIONSSTATE); // Pasar el jugador si hay subopciones
+				break;
+			case 2:
+				JukeBox.play("menuselect");
+				gsm.setState(GameStateManager.MENUSTATE); // Regresar al menú principal con el jugador
+				break;
+			default:
+				gsm.setState(GameStateManager.MENUSTATE);
+				break;
 		}
 	}
 
