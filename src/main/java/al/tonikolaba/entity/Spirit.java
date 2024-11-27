@@ -157,8 +157,8 @@ public class Spirit extends Enemy {
 				dx = dy = 0;
 			}
 			if (stepCount == 60) {
-				x = tileMap.getWidth() / 2;
-				y = tileMap.getHeight() / 2;
+				x = tileMap.getWidth() / 2.0;
+				y = tileMap.getHeight() / 2.0;
 				explosions.add(new Explosion(tileMap, (int) x, (int) y));
 			}
 			if (stepCount >= 90 && stepCount % 30 == 0) {
