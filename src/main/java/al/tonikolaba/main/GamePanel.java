@@ -101,8 +101,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 			try {
 				Thread.sleep(wait);
-			} catch (Exception e) {
-				LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt(); // Reestablece el estado de interrupción del hilo
+				LoggingHelper.LOGGER.log(Level.SEVERE, "Thread interrupted: " + e.getMessage());
 			}
 		}
 
