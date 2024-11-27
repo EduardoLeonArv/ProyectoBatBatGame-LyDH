@@ -554,7 +554,7 @@ public class Player extends MapObject {
 						energyParticles.add(new EnergyParticle(tileMap, ar.x + (double) ar.width - 4, 
 						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_RIGHT));
 					else
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + 4, 
+						energyParticles.add(new EnergyParticle(tileMap, ar.x + (double) 4, 
 							ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_LEFT));
 				
 				}

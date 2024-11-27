@@ -66,17 +66,9 @@ public class AcidState extends BasicState {
 
 	@Override
 	protected void select() {
-		switch (currentChoice) {
-			case 0:
-				JukeBox.play("menuselect");
-				gsm.setState(GameStateManager.MENUSTATE);
-				break;
-			default:
-				JukeBox.play("menuselect");
-				gsm.setState(GameStateManager.MENUSTATE);
-				break;
-		}
+
 	}
+	
 
 	@Override
 	public void handleInput() {
