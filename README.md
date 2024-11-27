@@ -1,3 +1,14 @@
+# Laboratorio de Desarrollo y Herramientas
+
+Este es un repositorio donde se desarrollará una práctica de Laboratorio de Desarrollo y Herramientas. Consiste en realizar un análisis y mejora de un proyecto. En este caso, hemos seleccionado uno basado en el clásico juego de Mario Bros.
+
+## Alumnos
+- Marcelo Daniel Choque Mamani - [1] [GitHub](https://github.com/alu0101074986) - [2] [ULL](https://campusingenieriaytecnologia2425.ull.es/user/profile.php?id=24250900868)
+- Gabriel Albelo Fabelo - [1] [GitHub](https://github.com/Galbelof) -  [2] [ULL](https://campusingenieriaytecnologia2425.ull.es/user/view.php?id=24250901504&course=2425090108)
+- Mikel Mugica Arregui- [1] [GitHub](https://github.com/mikelmujika16) - [2] [ULL](https://campusingenieriaytecnologia2425.ull.es/user/view.php?id=24250902287&course=2425090108)
+- Juan Eduardo León Arvelo - [1] [GitHub](https://github.com/EduardoLeonArv) - [2] [ULL](https://campusingenieriaytecnologia2425.ull.es/user/view.php?id=24250900314&course=2425090108)
+
+
 [![Bat Bat Game](https://github.com/tonikolaba/download/blob/master/info/headerOK.png)](https://github.com/tonikolaba/download/blob/master/info/headerOK.png)
 ===================
 
@@ -11,27 +22,30 @@
 
 ## BatBat Game
 
-BatBat is a java game, he had a very simple mission: to survive and to kill the evil. BatBat is the player how is asked to kill anyone in his way, which is evil. Evil has many forms and is the mission of BatBat to find and discover at any level.
+**BatBat** es un juego en Java con una misión muy simple: **sobrevivir y derrotar al mal**. El jugador toma el papel de BatBat, quien debe eliminar a cualquier enemigo en su camino, identificando y enfrentándose a las diversas formas del mal en cada nivel.
+
 
 ![Alt text](https://github.com/tonikolaba/BatBat-Game/blob/master/about/bg-update.gif)
 
-See deployment for notes on how to deploy the project on a live system.
+Consulta la sección de despliegue para más detalles sobre cómo instalar y ejecutar el proyecto en un sistema operativo.
 
 ![alt text](https://github.com/tonikolaba/BatBat-Game/blob/master/about/1.gif) | ![alt text](https://github.com/tonikolaba/BatBat-Game/blob/master/about/6.gif)
 ------------ | -------------
 
-## Run
 
-BatBat Game can easy be [Fork](https://github.com/artofsoul/BatBat-Game#fork-destination-box) on you IDE just follow the steps:
+
+
+## Ejecutar
+
+BatBat Game puede ser fácilmente **clonado (Fork)** en tu IDE. Sigue estos pasos:
+
+```bash
+1 - Importa el proyecto desde GitHub: Archivo/Importar/Git/Proyectos desde Git
+2 - Importa el proyecto desde el espacio de trabajo: Archivo/Importar/General/Proyectos existentes en el espacio de trabajo (busca dónde GitHub descargó el proyecto).
+3 - Ejecuta el juego como una aplicación de Java, Maven o Spring Boot (ambiente JDK, no JRE).
 
 ```
-BatBat Game can easy be Fork on you IDE just follow the steps:
-1 - Import from Github - File/Import/Git/Projects from Git
-2 - Import from Workspace - File/Import/General/Existing projects from Workspace(try to find where GitHub have download project)
-3 - Run Game as a Java/Maven/Spring Boot Application (JDK environment - no JRE).
-
-```
-Select Spring Boot or Maven or Java Application:
+Selecciona Spring Boot o Maven o Java Application:
 
 > 1. mvn clean install spring-boot:run
 > 2. run as Spring Boot or Java Application from IDE
@@ -39,15 +53,13 @@ Select Spring Boot or Maven or Java Application:
 > 4. docs/run/run.bat
 > 5. double click target/batbatgame.jar
 
-#### :bookmark_tabs: **If you want to play the game on Windows, Linux, Mac OS the setup file can be found on [GameJolt](http://gamejolt.com/games/BatBat-Game/264212) and any other information for any error or problem.** 
-
 > :bulb: :sparkler: :pencil: :book: :computer: :battery: :ballot_box_with_check:
 
 Simply!
  
-## Built:
+## Construido en:
 
-| Language| Version | Supported  | 
+| Lenguaje | Version | Suporte  | 
 | ------ | ------  | ------ 
 | Spring Boot | < 2.6.0 | :heavy_check_mark: 
 | Java |  > 1.8 | :heavy_check_mark: 
@@ -55,8 +67,6 @@ Simply!
 | JUnit 5 |  5.5.2 | :heavy_check_mark: 
 | :warning: ... | :question: :exclamation: | :mag: :wink: |
 
-
-Become :battery: :clap:
 ----------------------
 [![Goriar](https://github.com/tonikolaba/download/blob/master/info/BeBatBat.png)](https://github.com/Goriar)
 [![Fahaba](https://github.com/tonikolaba/download/blob/master/info/BeBatBat.png)](https://github.com/Fahaba)

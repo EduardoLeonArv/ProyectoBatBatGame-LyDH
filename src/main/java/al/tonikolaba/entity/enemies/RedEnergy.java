@@ -1,6 +1,7 @@
 package al.tonikolaba.entity.enemies;
 
 import al.tonikolaba.entity.Enemy;
+import al.tonikolaba.entity.Player;
 import al.tonikolaba.handlers.Content;
 import al.tonikolaba.tilemap.TileMap;
 
@@ -22,9 +23,9 @@ public class RedEnergy extends Enemy {
     private int type = 0;
     private int bounceCount = 0;
 
-    public RedEnergy(TileMap tm) {
+    public RedEnergy(TileMap tm, Player player) {
 
-        super(tm);
+        super(tm, player); // Pasa el jugador al constructor de Enem
 
         health = maxHealth = 1;
 
