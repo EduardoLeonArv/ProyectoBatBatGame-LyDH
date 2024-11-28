@@ -22,11 +22,8 @@ import al.tonikolaba.tilemap.Background;
 public class Level3State extends GameState {
 
 	private boolean eventQuake;
-	private Player player; // Referencia al jugador
-
 	public Level3State(GameStateManager gsm, Player player) {
 		super(gsm, player);
-		this.player = player; // Asignar el jugador
 		init(GameStateManager.LEVEL4STATE);
 	}
 
