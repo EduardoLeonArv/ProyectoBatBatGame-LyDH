@@ -1,0 +1,13 @@
+<map id="al.tonikolaba.entity.Animation.hasPlayedOnce" name="al.tonikolaba.entity.Animation.hasPlayedOnce">
+<area shape="rect" id="Node000001" title=" " alt="" coords="498,93,714,136"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_red_energy.html#a57bc1038eb564a92bcac11ead863848e" title=" " alt="" coords="240,5,426,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="530,90,449,63,412,51,414,46,451,57,532,85"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_explosion.html#a00f3aff18edfcfa4acc3a889181f892f" title=" " alt="" coords="217,72,450,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="482,104,450,101,451,95,483,99"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_fire_ball.html#a8e428920056537e2fc642d52426c7521" title=" " alt="" coords="256,123,411,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="483,131,412,138,411,133,482,125"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_portal.html#add31feb563e1aed64fd2e8533ee547e3" title=" " alt="" coords="228,189,438,216"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="544,145,451,180,408,191,406,186,449,175,542,140"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html#aac1d64e64dc90605b27877c27c4b7d7c" title=" " alt="" coords="5,181,169,224"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="212,205,169,205,169,200,212,200"/>
+</map>

@@ -140,9 +140,11 @@ public class Spirit extends Enemy {
 				enemies.add(shield[1]);
 			}
 			double pos = ticks / 32;
-			shield[0].setPosition(x + 30 * Math.sin(pos), y + 30 * Math.cos(pos));
+			shield[0].setPosition(x + 30 * Math.sin(pos), 
+			y + 30 * Math.cos(pos));
 			pos += 3.1415;
-			shield[1].setPosition(x + 30 * Math.sin(pos), y + 30 * Math.cos(pos));
+			shield[1].setPosition(x + 30 * Math.sin(pos), 
+			y + 30 * Math.cos(pos));
 		}
 
 		if (!finalAttack && health <= maxHealth / 4) {
@@ -166,7 +168,8 @@ public class Spirit extends Enemy {
 			if (stepCount >= 90 && stepCount % 30 == 0) {
 				RedEnergy de = new RedEnergy(tileMap, player); // Incluye al jugador
 				de.setPosition(x, y);
-				de.setVector(3 * Math.sin((double) stepCount / 32), 3 * Math.cos((double) stepCount / 32));
+				de.setVector(3 * Math.sin((double) stepCount / 32), 
+				3 * Math.cos((double) stepCount / 32));
 				de.setType(RedEnergy.BOUNCE);
 				enemies.add(de);
 			}

@@ -155,7 +155,8 @@ public abstract class GameState extends BasicState {
 		tileMap.setTween(1);
 	}
 
-	protected void setupGameObjects(int playerX, int playerY, int goalX, int goalY, boolean portal) {
+	protected void setupGameObjects(int playerX, int playerY, 
+	int goalX, int goalY, boolean portal) {
 		// player
 		playerXStart = playerX;
 		playerYStart = playerY;
@@ -213,21 +214,25 @@ public abstract class GameState extends BasicState {
 	protected void setupTitle(int[] titleCoords, int[] subtitleCoords) {
 		// title and subtitle
 		try {
-			batBatStart = ImageIO.read(getClass().getResourceAsStream("/HUD/batbat.gif"));
+			batBatStart = ImageIO.read(
+				getClass().getResourceAsStream("/HUD/batbat.gif"));
 			this.title = new Title(
 					batBatStart.getSubimage(titleCoords[0], 
 					titleCoords[1], titleCoords[2], titleCoords[3]));
 			this.title.sety(60);
-			this.subtitle = new Title(batBatStart.getSubimage(subtitleCoords[0], 
+			this.subtitle = new Title(batBatStart.
+			getSubimage(subtitleCoords[0], 
 			subtitleCoords[1], subtitleCoords[2],
 					subtitleCoords[3]));
 			this.subtitle.sety(85);
 		} catch (Exception e) {
-			LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
+			LoggingHelper.LOGGER.log(Level.SEVERE, 
+			e.getMessage());
 		}
 	}
 
-	protected void populateEnemies(EnemyType[] enemyTypes, int[][] coords) {
+	protected void populateEnemies(EnemyType[] enemyTypes, 
+	int[][] coords) {
 		this.enemies.clear(); // Limpia cualquier enemigo previo
 
 		for (int i = 0; i < enemyTypes.length; i++) {
@@ -243,7 +248,8 @@ public abstract class GameState extends BasicState {
 					e = new XhelBat(tileMap, player); // Incluye el jugador
 					break;
 				case SPIRIT:
-					e = new Spirit(tileMap, player, enemies, explosions); // Incluye el jugador y explosiones
+					e = new Spirit(tileMap, player, 
+					enemies, explosions); // Incluye el jugador y explosiones
 					break;
 				case ZOGU:
 					e = new Zogu(tileMap, player); // Incluye el jugador
@@ -251,7 +257,8 @@ public abstract class GameState extends BasicState {
 			}
 
 			if (e != null) {
-				e.setPosition(coords[i][0], coords[i][1]); // Configura la posición del enemigo
+				e.setPosition(coords[i][0], 
+				coords[i][1]); // Configura la posición del enemigo
 				this.enemies.add(e); // Agrega el enemigo a la lista
 			}
 		}

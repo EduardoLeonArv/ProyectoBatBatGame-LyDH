@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.EnergyParticle.EnergyParticle" name="al.tonikolaba.entity.EnergyParticle.EnergyParticle">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,180,115"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_content.html#aa96c1049e55ee5eed922d4c62d041295" title=" " alt="" coords="228,5,447,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,69,241,50,242,55,174,74"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="231,72,444,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="180,91,215,91,215,96,180,96"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="231,139,444,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,113,242,131,241,137,173,118"/>
+</map>

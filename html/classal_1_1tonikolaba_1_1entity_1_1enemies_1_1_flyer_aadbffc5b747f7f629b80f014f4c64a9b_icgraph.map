@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.entity.enemies.Flyer.getNextPosition" name="al.tonikolaba.entity.enemies.Flyer.getNextPosition">
+<area shape="rect" id="Node000001" title=" " alt="" coords="240,39,426,81"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_ufo.html#aff86100f6a5d4d0eab70a04f7fd9f6b3" title=" " alt="" coords="5,5,192,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,47,192,43,193,37,225,42"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_xhel_bat.html#af237811b7a49da8bbdaac616d9aaef80" title=" " alt="" coords="5,72,192,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,78,193,83,192,77,224,73"/>
+</map>

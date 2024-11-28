@@ -1,0 +1,11 @@
+<map id="al.tonikolaba.entity.Player.getTimeToString" name="al.tonikolaba.entity.Player.getTimeToString">
+<area shape="rect" id="Node000001" title=" " alt="" coords="460,68,652,111"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_h_u_d.html#afb13cd60fcd464a932891f75f6894537" title=" " alt="" coords="217,47,412,73"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="444,78,412,75,413,69,445,73"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_player_test.html#a999a9e412513ffc0dbdcf79ddb6c61ed" title=" " alt="" coords="228,97,401,140"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="445,105,402,111,401,105,444,100"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a0d0c9b6022291e721f8fd3d0e07845b0" title=" " alt="" coords="5,5,169,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="204,46,169,41,169,36,205,41"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html#a527da953fdd435bdf91a8ed9cfb32c5c" title=" " alt="" coords="5,72,169,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="205,79,169,84,169,79,204,74"/>
+</map>

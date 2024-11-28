@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.main.GamePanel" name="al.tonikolaba.main.GamePanel">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,80,228,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,67,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,40,115,77,112,82,63,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="91,5,168,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,48,132,80,127,80,127,48"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,5,282,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,43,150,82,147,77,204,39"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.entity.Explosion.update" name="al.tonikolaba.entity.Explosion.update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,239,69"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a2fabcdd80b392e9482d54e7278a3b7fd" title=" " alt="" coords="296,5,512,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,41,280,37,280,42,240,46"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a45c544686ba58f62c0900f0d75d61a68" title=" " alt="" coords="287,72,521,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,66,272,69,271,74,239,71"/>
+</map>

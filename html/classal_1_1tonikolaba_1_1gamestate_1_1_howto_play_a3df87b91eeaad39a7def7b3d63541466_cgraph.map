@@ -1,0 +1,16 @@
+<map id="al.tonikolaba.gamestate.HowtoPlay.handleInput" name="al.tonikolaba.gamestate.HowtoPlay.handleInput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,129,169,172"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_keys.html#ab25a912278a767003e9abaaa69f46016" title=" " alt="" coords="217,5,412,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,127,159,92,215,58,227,52,229,57,218,62,162,96,116,131"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a2838968e9a28b1a7b01a4c32ce2fdbe3" title=" " alt="" coords="234,96,395,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="168,136,218,129,219,134,169,141"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_howto_play.html#ab2a48dce92fdfe340e031cc39c3bf4bb" title=" " alt="" coords="233,163,396,205"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="169,160,218,167,217,172,168,165"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#ab4e19a769002b6645f4b3451347af412" title=" " alt="" coords="219,229,410,272"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="128,170,218,215,232,221,230,226,216,220,126,175"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1handlers_1_1_keys.html#aee3e3567bc96443a5dcbeb5679dbf3ca" title=" " alt="" coords="460,5,663,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,24,444,24,444,29,412,29"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="271,96,269,86,277,77,292,71,314,69,339,72,353,78,351,83,337,77,314,75,293,77,280,81,275,87,276,95"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#ab2a6220ac95d789960db6a83a8cb3faf" title=" " alt="" coords="464,229,660,272"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="410,248,448,248,448,253,410,253"/>
+</map>
