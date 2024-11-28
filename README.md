@@ -9,7 +9,8 @@ Este es un repositorio donde se desarrollará una práctica de Laboratorio de De
 - Juan Eduardo León Arvelo - [1] [GitHub](https://github.com/EduardoLeonArv) - [2] [ULL](https://campusingenieriaytecnologia2425.ull.es/user/view.php?id=24250900314&course=2425090108)
 
 
-[![Bat Bat Game](https://github.com/tonikolaba/download/blob/master/info/headerOK.png)](https://github.com/tonikolaba/download/blob/master/info/headerOK.png)
+![image](https://github.com/user-attachments/assets/bddc49c9-e13a-4408-9a91-e02e67fe24e2)
+
 ===================
 
 ![Java CI with Maven](https://github.com/tonikolaba/BatBat-Game/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
