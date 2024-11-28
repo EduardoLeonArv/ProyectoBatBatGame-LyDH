@@ -13,6 +13,9 @@ import al.tonikolaba.tilemap.Background;
 public class LevelTest extends GameState {
 
     private static final String LEVEL_BOSS_MUSIC_NAME = "level1boss";
+    private static final int[][] ENEMY_COORDINATES = {{150, 100}};
+    private static final EnemyType[] ENEMY_TYPES = {EnemyType.SPIRIT};
+
     private boolean eventQuake;
 
     /**
@@ -44,12 +47,17 @@ public class LevelTest extends GameState {
         // Configuración del nivel
         setupGameObjects(80, 131, 2850, 120, false);
         setupTitle(new int[]{0, 0, 178, 20}, new int[]{0, 33, 91, 13});
-        setupMusic("level4", "/Music/level1boss.mp3", true);
+        setupMusic("level4", "/Music/" + LEVEL_BOSS_MUSIC_NAME + ".mp3", true);
 
-        // Enemigos
-        enemyTypesInLevel = new EnemyType[]{EnemyType.SPIRIT};
-        coords = new int[][]{{150, 100}};
-        populateEnemies(enemyTypesInLevel, coords);
+        // Configuración de enemigos
+        configureEnemies();
+    }
+
+    /**
+     * Configura los enemigos del nivel.
+     */
+    private void configureEnemies() {
+        populateEnemies(ENEMY_TYPES, ENEMY_COORDINATES);
     }
 
     /**
@@ -110,9 +118,21 @@ public class LevelTest extends GameState {
      * @param delay Tiempo adicional para el evento.
      */
     private void setPlayerEmote(int emote, int delay) {
-        player.setEmote(emote);
-        if (delay > 0) {
-            eventCount += delay;
+        if (isValidEmote(emote)) {
+            player.setEmote(emote);
+            if (delay > 0) {
+                eventCount += delay;
+            }
         }
+    }
+
+    /**
+     * Valida si el emote es válido para el jugador.
+     *
+     * @param emote Emote a validar.
+     * @return true si es válido, false en caso contrario.
+     */
+    private boolean isValidEmote(int emote) {
+        return emote == Player.CONFUSED_EMOTE || emote == Player.NONE_EMOTE || emote == Player.SURPRISED_EMOTE;
     }
 }
