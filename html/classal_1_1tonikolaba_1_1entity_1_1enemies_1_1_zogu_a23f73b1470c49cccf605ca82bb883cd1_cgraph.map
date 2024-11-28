@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.enemies.Zogu.Zogu" name="al.tonikolaba.entity.enemies.Zogu.Zogu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,192,99"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_content.html#add9bfa590dca6ce3921a717047d56b3d" title=" " alt="" coords="240,5,488,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,53,239,41,277,33,279,38,240,47,191,58"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="257,56,470,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,75,241,75,241,80,192,80"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="257,123,470,165"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,97,262,116,261,121,186,102"/>
+</map>

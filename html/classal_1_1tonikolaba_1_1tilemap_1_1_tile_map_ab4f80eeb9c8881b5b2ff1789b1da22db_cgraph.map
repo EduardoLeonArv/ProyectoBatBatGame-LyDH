@@ -1,0 +1,5 @@
+<map id="al.tonikolaba.tilemap.TileMap.getType" name="al.tonikolaba.tilemap.TileMap.getType">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,171,48"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile.html#a2b523d10fa3e32f03b20b6719f7c626e" title=" " alt="" coords="219,13,434,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,24,203,24,203,29,171,29"/>
+</map>

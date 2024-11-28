@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.enemies.RedEnergy.RedEnergy" name="al.tonikolaba.entity.enemies.RedEnergy.RedEnergy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,192,115"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_content.html#a5ccb788f72243cff35d6d46e86849a36" title=" " alt="" coords="240,5,459,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,69,251,50,253,55,182,74"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="243,72,456,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="192,91,227,91,227,96,192,96"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="243,139,456,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,113,253,132,251,137,181,118"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="al.tonikolaba.gamestate.GameStateManager.setPaused" name="al.tonikolaba.gamestate.GameStateManager.setPaused">
+<area shape="rect" id="Node000001" title=" " alt="" coords="656,72,860,115"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a9095c1f506c4c53597942ac171a6fe9a" title=" " alt="" coords="445,5,608,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="667,70,603,51,604,46,668,65"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html#a6a2e4825b7f065f4d146c09c3babf8cc" title=" " alt="" coords="445,72,608,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="641,96,609,96,609,91,641,91"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_pause_state.html#a61104715c35a524086845500502bf939" title=" " alt="" coords="445,139,608,181"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="668,122,604,141,603,135,667,117"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#ac99ae10cd9f866e60efa4023d1bdd0fb" title=" " alt="" coords="234,5,397,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,29,397,29,397,24,430,24"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html#aac1d64e64dc90605b27877c27c4b7d7c" title=" " alt="" coords="234,72,397,115"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="430,96,397,96,397,91,430,91"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_pause_state.html#a577765d14332988cfa01b3200c920cd6" title=" " alt="" coords="234,139,397,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="430,163,397,163,397,157,430,157"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#a6e02e5700b4c58b987e0879ff5425206" title=" " alt="" coords="5,139,186,181"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="218,163,186,163,186,157,218,157"/>
+</map>

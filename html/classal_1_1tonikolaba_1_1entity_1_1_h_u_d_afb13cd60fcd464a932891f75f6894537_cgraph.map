@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.HUD.draw" name="al.tonikolaba.entity.HUD.draw">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,201,107"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#af4927c50f81b249a20d17902dd448000" title=" " alt="" coords="249,5,441,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,77,249,50,251,55,155,82"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a445918c09cd34cdb08fc1987107ef91a" title=" " alt="" coords="249,72,441,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,91,233,91,233,96,201,96"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a745cc86fd71ea8eaab4bb8d979776c6e" title=" " alt="" coords="249,139,441,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,105,251,131,249,137,154,110"/>
+</map>
