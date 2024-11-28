@@ -137,4 +137,9 @@ public class GameStateManager {
 			g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		}
 	}
+
+	public boolean isStateLoaded(int state) {
+		return state >= 0 && state < NUMGAMESTATES && gameStates[state] != null;
+	}
+
 }
