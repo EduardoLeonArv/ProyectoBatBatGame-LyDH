@@ -69,11 +69,16 @@ public abstract class GameState extends BasicState {
 
 	protected Player player; // Referencia al jugador
 	protected TileMap tileMap;
+	// Variables comunes para manejar eventos
+	protected boolean eventQuake;
+	protected boolean blockInput;
 
 	public GameState(GameStateManager gsm, Player player) {
-		super(gsm); // Llama al constructor de BasicState con los parámetros necesarios
-		this.gsm = gsm;
+		super(gsm);
 		this.player = player;
+		this.eventQuake = false;
+		this.blockInput = false;
+		this.eventCount = 0;
 	}
 
 	public void init(int nextLevel) {
@@ -155,7 +160,7 @@ public abstract class GameState extends BasicState {
 		tileMap.setTween(1);
 	}
 
-	protected void setupGameObjects(int playerX, int playerY, 
+	protected void setupGameObjects(int playerX, int playerY,
 	int goalX, int goalY, boolean portal) {
 		// player
 		playerXStart = playerX;
@@ -217,21 +222,21 @@ public abstract class GameState extends BasicState {
 			batBatStart = ImageIO.read(
 				getClass().getResourceAsStream("/HUD/batbat.gif"));
 			this.title = new Title(
-					batBatStart.getSubimage(titleCoords[0], 
+					batBatStart.getSubimage(titleCoords[0],
 					titleCoords[1], titleCoords[2], titleCoords[3]));
 			this.title.sety(60);
 			this.subtitle = new Title(batBatStart.
-			getSubimage(subtitleCoords[0], 
+			getSubimage(subtitleCoords[0],
 			subtitleCoords[1], subtitleCoords[2],
 					subtitleCoords[3]));
 			this.subtitle.sety(85);
 		} catch (Exception e) {
-			LoggingHelper.LOGGER.log(Level.SEVERE, 
+			LoggingHelper.LOGGER.log(Level.SEVERE,
 			e.getMessage());
 		}
 	}
 
-	protected void populateEnemies(EnemyType[] enemyTypes, 
+	protected void populateEnemies(EnemyType[] enemyTypes,
 	int[][] coords) {
 		this.enemies.clear(); // Limpia cualquier enemigo previo
 
@@ -248,7 +253,7 @@ public abstract class GameState extends BasicState {
 					e = new XhelBat(tileMap, player); // Incluye el jugador
 					break;
 				case SPIRIT:
-					e = new Spirit(tileMap, player, 
+					e = new Spirit(tileMap, player,
 					enemies, explosions); // Incluye el jugador y explosiones
 					break;
 				case ZOGU:
@@ -257,7 +262,7 @@ public abstract class GameState extends BasicState {
 			}
 
 			if (e != null) {
-				e.setPosition(coords[i][0], 
+				e.setPosition(coords[i][0],
 				coords[i][1]); // Configura la posición del enemigo
 				this.enemies.add(e); // Agrega el enemigo a la lista
 			}
@@ -311,7 +316,7 @@ public abstract class GameState extends BasicState {
 		player.update();
 
 		// update tilemap
-		tileMap.setPosition(GamePanel.WIDTH / 2.0 - player.getx(), 
+		tileMap.setPosition(GamePanel.WIDTH / 2.0 - player.getx(),
 		GamePanel.HEIGHT / 2.0 - player.gety());
 		tileMap.update();
 		tileMap.fixBounds();
@@ -401,13 +406,13 @@ public abstract class GameState extends BasicState {
 		eventCount++;
 		if (eventCount == 1) {
 			tb.clear();
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH, 
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH,
 			GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2, 
+			tb.add(new Rectangle(0, 0, GamePanel.WIDTH / 2,
 			GamePanel.HEIGHT));
-			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2, 
+			tb.add(new Rectangle(0, GamePanel.HEIGHT / 2,
 			GamePanel.WIDTH, GamePanel.HEIGHT / 2));
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0, 
+			tb.add(new Rectangle(GamePanel.WIDTH / 2, 0,
 			GamePanel.WIDTH / 2, GamePanel.HEIGHT));
 		}
 		if (eventCount > 1 && eventCount < 60) {
@@ -438,7 +443,7 @@ public abstract class GameState extends BasicState {
 		}
 		if (eventCount == 60) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			tb.add(new Rectangle(GamePanel.WIDTH / 2,
 			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 60) {
 			tb.get(0).x -= 6;
@@ -467,7 +472,7 @@ public abstract class GameState extends BasicState {
 			player.stop();
 		} else if (eventCount == 120) {
 			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
+			tb.add(new Rectangle(GamePanel.WIDTH / 2,
 			GamePanel.HEIGHT / 2, 0, 0));
 		} else if (eventCount > 120) {
 			tb.get(0).x -= 6;
@@ -484,4 +489,51 @@ public abstract class GameState extends BasicState {
 		}
 
 	}
+
+	protected void configureEnemies(EnemyType[] enemyTypes, int[][] coordinates) {
+		this.enemies.clear();
+		for (int i = 0; i < enemyTypes.length; i++) {
+			Enemy enemy = createEnemy(enemyTypes[i], coordinates[i][0], coordinates[i][1]);
+			if (enemy != null) {
+				this.enemies.add(enemy);
+			}
+		}
+	}
+
+	private Enemy createEnemy(EnemyType type, int x, int y) {
+		switch (type) {
+			case RED_ENERGY: return new RedEnergy(tileMap, player);
+			case UFO: return new Ufo(tileMap, player, enemies);
+			case XHELBAT: return new XhelBat(tileMap, player);
+			case SPIRIT: return new Spirit(tileMap, player, enemies, explosions);
+			case ZOGU: return new Zogu(tileMap, player);
+			default: return null;
+		}
+	}
+
+	protected void handleEventQuake(int quakeTriggerX, int[] emoteTimings) {
+		if (player.getx() > quakeTriggerX && !tileMap.isShaking()) {
+			eventQuake = blockInput = true;
+		}
+		if (eventQuake) {
+			eventCount++;
+			if (eventCount == 1) {
+				player.stop();
+				player.setPosition(quakeTriggerX, player.gety());
+			} else if (eventCount == emoteTimings[0]) {
+				player.setEmote(Player.CONFUSED_EMOTE);
+			} else if (eventCount == emoteTimings[1]) {
+				player.setEmote(Player.NONE_EMOTE);
+			} else if (eventCount == emoteTimings[2]) {
+				tileMap.setShaking(true, 10);
+			} else if (eventCount == emoteTimings[3]) {
+				player.setEmote(Player.SURPRISED_EMOTE);
+			} else if (eventCount >= emoteTimings[4]) {
+				player.setEmote(Player.NONE_EMOTE);
+				eventQuake = blockInput = false;
+				eventCount = 0;
+			}
+		}
+	}
+
 }

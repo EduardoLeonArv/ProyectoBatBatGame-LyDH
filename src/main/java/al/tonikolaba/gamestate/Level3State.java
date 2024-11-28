@@ -39,20 +39,15 @@ public class Level3State extends GameState {
 	@Override
 	public void init(int nextLevel) {
 		super.init(nextLevel);
-
-		// Fondo
 		temple = new Background("/Backgrounds/temple1.gif", 0.5, 0);
-
-		// Mapa
 		generateTileMap("/Maps/level3.map", 140, 0, false);
-
-		// Configuración del nivel
 		setupGameObjects(300, 131, 2850, 371, false);
-		setupTitle(new int[] { 0, 0, 178, 20 }, new int[] { 0, 33, 91, 13 });
+		setupTitle(new int[]{0, 0, 178, 20}, new int[]{0, 33, 91, 13});
 		setupMusic("level2", "/Music/level1v2.mp3", true);
-
-		// Configuración de enemigos
-		configureEnemies();
+		configureEnemies(
+				new EnemyType[]{EnemyType.XHELBAT, EnemyType.ZOGU, EnemyType.UFO},
+				new int[][]{{750, 100}, {900, 150}, {1320, 250}}
+		);
 	}
 
 	/**
@@ -79,14 +74,7 @@ public class Level3State extends GameState {
 	@Override
 	public void update() {
 		super.update();
-
-		if (player.getx() > 2175 && !tileMap.isShaking()) {
-			eventQuake = blockInput = true;
-		}
-
-		if (eventQuake) {
-			eventQuake();
-		}
+		handleEventQuake(2175, new int[]{60, 120, 150, 180, 300});
 	}
 
 	/**

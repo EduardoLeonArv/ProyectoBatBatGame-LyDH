@@ -37,20 +37,15 @@ public class LevelTest extends GameState {
     @Override
     public void init(int nextLevel) {
         super.init(nextLevel);
-
-        // Fondo
         temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
-
-        // Mapa
         generateTileMap("/Maps/level4.map", 140, 0, false);
-
-        // Configuración del nivel
         setupGameObjects(80, 131, 2850, 120, false);
         setupTitle(new int[]{0, 0, 178, 20}, new int[]{0, 33, 91, 13});
-        setupMusic("level4", "/Music/" + LEVEL_BOSS_MUSIC_NAME + ".mp3", true);
-
-        // Configuración de enemigos
-        configureEnemies();
+        setupMusic("level4", "/Music/level1boss.mp3", true);
+        configureEnemies(
+                new EnemyType[]{EnemyType.SPIRIT},
+                new int[][]{{150, 100}}
+        );
     }
 
     /**
@@ -66,15 +61,7 @@ public class LevelTest extends GameState {
     @Override
     public void update() {
         super.update();
-
-        // Inicia el evento de terremoto si el jugador cruza el umbral
-        if (player.getx() > 100 && !tileMap.isShaking()) {
-            eventQuake = blockInput = true;
-        }
-
-        if (eventQuake) {
-            eventQuake();
-        }
+        handleEventQuake(100, new int[]{60, 120, 150, 180, 300});
     }
 
     /**
