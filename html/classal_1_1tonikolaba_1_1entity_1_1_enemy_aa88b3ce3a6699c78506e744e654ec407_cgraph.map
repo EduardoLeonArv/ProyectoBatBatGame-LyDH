@@ -1,0 +1,10 @@
+<map id="al.tonikolaba.entity.Enemy.hit" name="al.tonikolaba.entity.Enemy.hit">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,197,107"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a014eb51f1254646be5270fd65a7579c0" title=" " alt="" coords="260,5,452,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,77,256,50,258,55,156,82"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a95b44a2326737fdd4bd120f681be2178" title=" " alt="" coords="245,72,468,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,91,229,91,229,96,197,96"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a2838968e9a28b1a7b01a4c32ce2fdbe3" title=" " alt="" coords="276,163,437,205"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="142,105,280,154,279,159,140,110"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="308,163,306,153,314,144,331,138,356,136,384,138,400,145,398,150,382,144,356,141,332,143,317,148,311,154,313,162"/>
+</map>

@@ -2,6 +2,8 @@ package al.tonikolaba.gamestate;
 
 import static org.junit.Assert.assertNotNull;
 
+import al.tonikolaba.entity.Player;
+import al.tonikolaba.tilemap.TileMap;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -19,7 +21,8 @@ public class GameStateManagerTest {
 	@Test
 	public void loadState() {
 		// setup
-		GameStateManager gm = new GameStateManager();
+		Player player = new Player(new TileMap(30));
+		GameStateManager gm = new GameStateManager(player);
 		// run functions
 		gm.loadState(3);
 		gm.loadState(4);

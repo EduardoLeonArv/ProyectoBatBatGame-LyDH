@@ -17,6 +17,8 @@ import al.tonikolaba.handlers.LoggingHelper;
 
 import al.tonikolaba.entity.Player; // Importar la clase Player
 
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
@@ -103,7 +105,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				Thread.sleep(wait);
 			} catch (InterruptedException e) {
 				Thread.currentThread().interrupt(); // Reestablece el estado de interrupción del hilo
-				LoggingHelper.LOGGER.log(Level.SEVERE, "Thread interrupted: " + e.getMessage());
+				LoggingHelper.LOGGER.log(Level.SEVERE, "Thread interrupted: {0}", e.getMessage());
 			}
 		}
 
@@ -130,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 				java.io.File out = new java.io.File("screenshot " + System.nanoTime() + ".gif");
 				javax.imageio.ImageIO.write(image, "gif", out);
 			} catch (Exception e) {
-				LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
+				LoggingHelper.LOGGER.log(Level.SEVERE, "Error while taking screenshot", e);
 			}
 		}
 		if (!recording)
@@ -140,7 +142,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			javax.imageio.ImageIO.write(image, "gif", out);
 			recordingCount++;
 		} catch (Exception e) {
-			LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
+			LoggingHelper.LOGGER.log(Level.SEVERE, "Error while recording frame", e);
 		}
 	}
 
@@ -148,12 +150,12 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		if (scoreSaved) return; // Evita guardar más de una vez
 		scoreSaved = true; // Marca que la puntuación ya se guardó
 
-		try (java.io.FileWriter writer = new java.io.FileWriter("scores.txt", true)) {
+		try (FileWriter writer = new FileWriter("scores.txt", true)) {
 			writer.write("Player: " + player.getName() + " - Score: " + player.getScore() + "\n");
 			writer.flush();
-			System.out.println("Player score saved to scores.txt");
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
+			LoggingHelper.LOGGER.log(Level.INFO, "Player score saved to scores.txt");
+		} catch (IOException e) {
+			LoggingHelper.LOGGER.log(Level.SEVERE, "Error saving score to file", e);
 		}
 	}
 

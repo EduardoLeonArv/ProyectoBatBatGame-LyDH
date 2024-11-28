@@ -1,0 +1,248 @@
+\doxysection{al.\+tonikolaba.\+audio.\+Juke\+Box Class Reference}
+\hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box}{}\label{classal_1_1tonikolaba_1_1audio_1_1_juke_box}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+
+
+Collaboration diagram for al.\+tonikolaba.\+audio.\+Juke\+Box\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a32006b64f1a930d4055af942cc9b4f0f}{init}} ()
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa1f07fd604a8bf126ef45004d7a1b821}{load}} (String s, String n)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a2838968e9a28b1a7b01a4c32ce2fdbe3}{play}} (String s)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a809c14acb32c76f075b08df761b2b811}{play}} (String s, int i)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a5fc710bc94e3b661b88dfe1b74408bb8}{stop}} (String s)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3ff4aec0a5906ea0830fe3e5a3b4995e}{resume}} (String s)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3f91f4e5d9610839df63464a4a75d05f}{loop}} (String s)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a718421995c83cf44e9204869d7bc4851}{loop}} (String s, int frame)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a06e03c368b5b6fbed04915ce6bf4a960}{loop}} (String s, int start, int end)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa5b6106058c193c1739d419e487ae694}{loop}} (String s, int frame, int start, int end)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a4b30c879c75e76d71a4b8c62b8803940}{set\+Position}} (String s, int frame)
+\item 
+static int \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a1af7f9660a13401e98cf794f46acab3b}{get\+Frames}} (String s)
+\item 
+static int \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aac239318d910a03b0e3dbe40c1c1232e}{get\+Position}} (String s)
+\item 
+static void \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_afa047d6de87c432bc8d64467b6e2338f}{close}} (String s)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Hash\+Map$<$ String, Clip $>$ \mbox{\hyperlink{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aea319c9ddbc12296dfc9e8406b0afa4d}{clips}} = new Hash\+Map$<$$>$()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase para gestionar el audio del juego. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_afa047d6de87c432bc8d64467b6e2338f}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!close@{close}}
+\index{close@{close}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_afa047d6de87c432bc8d64467b6e2338f} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+close (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_afa047d6de87c432bc8d64467b6e2338f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a1af7f9660a13401e98cf794f46acab3b}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!getFrames@{getFrames}}
+\index{getFrames@{getFrames}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{getFrames()}{getFrames()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a1af7f9660a13401e98cf794f46acab3b} 
+static int al.\+tonikolaba.\+audio.\+Juke\+Box.\+get\+Frames (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a1af7f9660a13401e98cf794f46acab3b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aac239318d910a03b0e3dbe40c1c1232e}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aac239318d910a03b0e3dbe40c1c1232e} 
+static int al.\+tonikolaba.\+audio.\+Juke\+Box.\+get\+Position (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a32006b64f1a930d4055af942cc9b4f0f}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!init@{init}}
+\index{init@{init}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a32006b64f1a930d4055af942cc9b4f0f} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a32006b64f1a930d4055af942cc9b4f0f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa1f07fd604a8bf126ef45004d7a1b821}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!load@{load}}
+\index{load@{load}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa1f07fd604a8bf126ef45004d7a1b821} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+load (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{String}]{n}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa1f07fd604a8bf126ef45004d7a1b821_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3f91f4e5d9610839df63464a4a75d05f}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!loop@{loop}}
+\index{loop@{loop}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3f91f4e5d9610839df63464a4a75d05f} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+loop (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3f91f4e5d9610839df63464a4a75d05f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3f91f4e5d9610839df63464a4a75d05f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a718421995c83cf44e9204869d7bc4851}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!loop@{loop}}
+\index{loop@{loop}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a718421995c83cf44e9204869d7bc4851} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+loop (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{int}]{frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a718421995c83cf44e9204869d7bc4851_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa5b6106058c193c1739d419e487ae694}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!loop@{loop}}
+\index{loop@{loop}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa5b6106058c193c1739d419e487ae694} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+loop (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{int}]{frame}{, }\item[{int}]{start}{, }\item[{int}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aa5b6106058c193c1739d419e487ae694_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a06e03c368b5b6fbed04915ce6bf4a960}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!loop@{loop}}
+\index{loop@{loop}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a06e03c368b5b6fbed04915ce6bf4a960} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+loop (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{int}]{start}{, }\item[{int}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a06e03c368b5b6fbed04915ce6bf4a960_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a2838968e9a28b1a7b01a4c32ce2fdbe3}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!play@{play}}
+\index{play@{play}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a2838968e9a28b1a7b01a4c32ce2fdbe3} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+play (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a2838968e9a28b1a7b01a4c32ce2fdbe3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a2838968e9a28b1a7b01a4c32ce2fdbe3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a809c14acb32c76f075b08df761b2b811}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!play@{play}}
+\index{play@{play}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a809c14acb32c76f075b08df761b2b811} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+play (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{int}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3ff4aec0a5906ea0830fe3e5a3b4995e}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!resume@{resume}}
+\index{resume@{resume}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{resume()}{resume()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a3ff4aec0a5906ea0830fe3e5a3b4995e} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+resume (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a4b30c879c75e76d71a4b8c62b8803940}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!setPosition@{setPosition}}
+\index{setPosition@{setPosition}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{setPosition()}{setPosition()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a4b30c879c75e76d71a4b8c62b8803940} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+set\+Position (\begin{DoxyParamCaption}\item[{String}]{s}{, }\item[{int}]{frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a5fc710bc94e3b661b88dfe1b74408bb8}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!stop@{stop}}
+\index{stop@{stop}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a5fc710bc94e3b661b88dfe1b74408bb8} 
+static void al.\+tonikolaba.\+audio.\+Juke\+Box.\+stop (\begin{DoxyParamCaption}\item[{String}]{s}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1audio_1_1_juke_box_a5fc710bc94e3b661b88dfe1b74408bb8_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aea319c9ddbc12296dfc9e8406b0afa4d}\index{al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}!clips@{clips}}
+\index{clips@{clips}!al.tonikolaba.audio.JukeBox@{al.tonikolaba.audio.JukeBox}}
+\doxysubsubsection{\texorpdfstring{clips}{clips}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1audio_1_1_juke_box_aea319c9ddbc12296dfc9e8406b0afa4d} 
+Hash\+Map$<$String, Clip$>$ al.\+tonikolaba.\+audio.\+Juke\+Box.\+clips = new Hash\+Map$<$$>$()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/al/tonikolaba/audio/\mbox{\hyperlink{_juke_box_8java}{Juke\+Box.\+java}}\end{DoxyCompactItemize}

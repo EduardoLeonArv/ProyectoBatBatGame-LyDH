@@ -1,0 +1,17 @@
+<map id="al.tonikolaba.entity.Spirit.update" name="al.tonikolaba.entity.Spirit.update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,213,212,240"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#ac1ecb4238fe1ee98e8f52d02a9712bd1" title=" " alt="" coords="294,5,460,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,212,169,139,210,95,258,58,279,47,281,52,261,62,214,99,174,142,120,215"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#afe76ebce3dec9726ce36a84382838e1e" title=" " alt="" coords="294,72,460,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,211,182,169,258,124,279,116,281,121,261,129,185,173,128,215"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_red_energy.html#aa1025b9118edc90e749bb2a032ff33bc" title=" " alt="" coords="284,139,470,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,210,273,183,274,188,166,215"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#a1ae3cd2d8fda9aeabb6db811772fe7a9" title=" " alt="" coords="298,205,456,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="212,224,282,224,282,229,212,229"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_red_energy.html#a23541ee40cc6882d77b007e0e2730d47" title=" " alt="" coords="284,272,470,315"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="166,238,274,265,273,270,165,243"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#a6a5e1d8738a613c2851049695123d692" title=" " alt="" coords="298,339,456,381"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="128,238,185,280,261,324,284,334,282,339,258,329,182,285,125,243"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a45c544686ba58f62c0900f0d75d61a68" title=" " alt="" coords="260,405,494,432"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="120,239,141,271,173,313,213,355,261,391,272,397,269,401,258,396,210,359,169,316,137,274,116,242"/>
+</map>

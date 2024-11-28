@@ -24,7 +24,6 @@ import al.tonikolaba.entity.Player;
  */
 public class HowtoPlay extends BasicState {
 
-	private Player player; // Referencia al jugador
 
 	public HowtoPlay(GameStateManager gsm, Player player) {
 		super(gsm);

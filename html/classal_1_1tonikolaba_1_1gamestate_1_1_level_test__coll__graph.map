@@ -1,0 +1,48 @@
+<map id="al.tonikolaba.gamestate.LevelTest" name="al.tonikolaba.gamestate.LevelTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1549,428,1712,471"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html" title=" " alt="" coords="1336,428,1499,471"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1515,447,1548,447,1548,452,1515,452"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title=" " alt="" coords="980,59,1143,101"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1159,79,1250,88,1288,97,1314,110,1347,145,1372,186,1391,231,1404,277,1417,364,1420,428,1414,428,1412,365,1399,279,1386,233,1367,189,1343,148,1310,114,1286,102,1249,93,1158,84"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html" title=" " alt="" coords="1336,5,1499,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="1123,50,1191,29,1265,21,1336,20,1336,25,1266,26,1193,35,1125,55"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1321,49,1312,51,1144,74,1143,69,1312,45,1320,44"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html" title=" " alt="" coords="557,280,727,307"/>
+<area shape="poly" id="edge25_Node000002_Node000005" title=" " alt="" coords="743,291,862,297,1006,313,1084,326,1162,342,1239,364,1313,391,1381,425,1379,430,1311,396,1237,369,1161,348,1083,331,1006,318,861,302,743,296"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="668,267,706,237,750,206,850,155,954,111,986,99,987,104,956,116,853,160,753,210,709,241,672,272"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="305,352,463,395"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="469,344,595,305,597,310,471,349"/>
+<area shape="rect" id="Node000016" href="$classal_1_1tonikolaba_1_1entity_1_1_teleport.html" title=" " alt="" coords="751,404,931,431"/>
+<area shape="poly" id="edge19_Node000016_Node000006" title=" " alt="" coords="479,380,751,406,751,411,478,385"/>
+<area shape="rect" id="Node000018" href="$classal_1_1tonikolaba_1_1entity_1_1_portal.html" title=" " alt="" coords="757,468,925,495"/>
+<area shape="poly" id="edge22_Node000018_Node000006" title=" " alt="" coords="479,393,782,465,780,470,477,398"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html" title=" " alt="" coords="6,176,196,203"/>
+<area shape="poly" id="edge26_Node000002_Node000007" title=" " alt="" coords="212,187,382,187,1063,187,1136,182,1195,175,1223,176,1251,182,1281,194,1314,214,1339,236,1359,263,1390,322,1408,381,1416,427,1411,428,1402,382,1385,324,1355,266,1335,240,1310,218,1279,198,1250,187,1223,181,1195,181,1136,187,1063,192,382,192,212,192"/>
+<area shape="poly" id="edge9_Node000003_Node000007" title=" " alt="" coords="159,168,267,137,413,100,580,67,666,54,751,47,841,41,931,47,981,55,980,61,930,52,841,47,752,52,667,60,581,72,415,105,269,142,160,173"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="137,209,351,349,348,354,134,214"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html" title=" " alt="" coords="5,360,197,387"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="212,371,304,371,304,376,212,376"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="590,337,695,364"/>
+<area shape="poly" id="edge16_Node000002_Node000009" title=" " alt="" coords="710,351,975,371,1144,391,1313,419,1340,425,1339,430,1311,424,1143,396,975,376,710,356"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="710,342,764,332,824,314,881,285,906,266,929,244,939,227,942,212,940,179,937,146,941,129,953,112,977,93,981,97,957,115,946,131,942,147,945,179,948,212,944,229,933,247,910,270,884,289,826,319,765,337,711,348"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="618,85,666,112"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="681,97,793,99,930,95,979,90,979,95,931,100,793,104,681,103"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="963,651,1160,693"/>
+<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="1176,686,1210,685,1246,681,1279,671,1311,655,1333,637,1352,614,1382,563,1400,512,1410,470,1415,472,1405,513,1386,565,1357,618,1337,641,1313,660,1281,676,1247,686,1211,691,1176,691"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="963,717,1160,760"/>
+<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="1175,747,1210,745,1246,738,1280,727,1310,709,1337,684,1358,654,1375,621,1389,587,1405,521,1412,471,1417,472,1410,523,1394,589,1380,623,1363,657,1341,687,1314,713,1282,731,1247,744,1211,750,1175,753"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="963,784,1160,827"/>
+<area shape="poly" id="edge14_Node000002_Node000013" title=" " alt="" coords="1175,812,1211,809,1247,801,1280,788,1310,769,1341,736,1365,698,1383,656,1396,613,1410,531,1414,471,1419,471,1416,532,1402,614,1388,658,1370,700,1345,739,1314,773,1283,793,1248,806,1212,814,1176,817"/>
+<area shape="rect" id="Node000014" href="$classal_1_1tonikolaba_1_1entity_1_1_h_u_d.html" title=" " alt="" coords="980,851,1143,877"/>
+<area shape="poly" id="edge15_Node000002_Node000014" title=" " alt="" coords="1158,874,1198,873,1238,867,1276,854,1310,833,1330,807,1348,767,1378,662,1399,552,1411,471,1416,471,1404,553,1383,663,1353,769,1335,809,1314,837,1279,859,1239,872,1198,878,1158,879"/>
+<area shape="rect" id="Node000015" href="$classal_1_1tonikolaba_1_1entity_1_1_title.html" title=" " alt="" coords="982,125,1140,152"/>
+<area shape="poly" id="edge17_Node000002_Node000015" title=" " alt="" coords="1156,140,1248,150,1287,160,1314,172,1342,200,1364,233,1382,268,1395,305,1411,374,1418,427,1413,428,1406,375,1390,306,1377,270,1359,236,1337,204,1310,177,1285,165,1247,156,1156,145"/>
+<area shape="poly" id="edge18_Node000002_Node000016" title=" " alt="" coords="946,420,1336,442,1336,447,946,426"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="983,227,1140,253"/>
+<area shape="poly" id="edge20_Node000002_Node000017" title=" " alt="" coords="1155,232,1195,234,1236,241,1276,253,1314,272,1351,307,1380,350,1400,392,1413,427,1408,429,1395,394,1375,352,1347,311,1310,277,1274,258,1235,246,1194,239,1155,237"/>
+<area shape="poly" id="edge21_Node000002_Node000018" title=" " alt="" coords="940,473,1335,451,1336,457,941,479"/>
+<area shape="rect" id="Node000019" href="$enumal_1_1tonikolaba_1_1entity_1_1_enemy_1_1_enemy_type.html" title=" " alt="" coords="973,533,1150,576"/>
+<area shape="poly" id="edge23_Node000002_Node000019" title=" " alt="" coords="1165,544,1238,532,1311,511,1351,491,1386,469,1389,473,1354,496,1313,516,1239,537,1166,549"/>
+<area shape="rect" id="Node000020" href="$classal_1_1tonikolaba_1_1tilemap_1_1_background.html" title=" " alt="" coords="955,600,1168,627"/>
+<area shape="poly" id="edge24_Node000002_Node000020" title=" " alt="" coords="1161,627,1249,634,1286,632,1311,624,1331,610,1349,592,1377,550,1397,506,1408,470,1414,472,1402,508,1382,552,1353,595,1335,614,1313,629,1286,637,1249,639,1161,632"/>
+</map>

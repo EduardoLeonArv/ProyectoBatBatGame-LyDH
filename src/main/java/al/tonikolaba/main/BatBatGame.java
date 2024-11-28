@@ -1,6 +1,8 @@
 package al.tonikolaba.main;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.logging.Level;
 
 import javax.swing.JFrame;
@@ -26,9 +28,9 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 	public void run(String... arg0) throws Exception {
 		// Prompt for player name
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter your player name: ");
+		LoggingHelper.LOGGER.log(Level.INFO, "Enter your player name: ");
 		String playerName = scanner.nextLine();
-		System.out.println("Welcome, " + playerName + "!");
+		LoggingHelper.LOGGER.log(Level.INFO, "Welcome, {0}!", playerName);
 
 		// Inicializa el mapa y el jugador
 		TileMap tileMap = new TileMap(30); // Configura según tu juego
@@ -36,33 +38,37 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		player.setName(playerName); // Si tienes un método para guardar el nombre
 
 		// Initialize game window
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					JFrame window = new JFrame("BatBat Game \u2122");
-					window.add(new GamePanel(player)); // Pasa el jugador al panel del juego
-					window.setContentPane(new GamePanel(player));
-					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					window.setResizable(true);
-					window.pack();
-					window.setLocationRelativeTo(null);
-					window.setVisible(true);
-				} catch (Exception e) {
-					LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
-				}
+		EventQueue.invokeLater(() -> {
+			try {
+				JFrame window = new JFrame("BatBat Game \u2122");
+				window.add(new GamePanel(player)); // Pasa el jugador al panel del juego
+				window.setContentPane(new GamePanel(player));
+				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				window.setResizable(true);
+				window.pack();
+				window.setLocationRelativeTo(null);
+				window.setVisible(true);
+
+				window.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						saveScore(playerName, player.getScore());
+					}
+				});
+			} catch (Exception e) {
+				LoggingHelper.LOGGER.log(Level.SEVERE, "Error initializing game window", e);
 			}
 		});
+	}
 
-		// Save player name and score to scores.txt (después del juego)
+	private void saveScore(String playerName, int score) {
+		// Save player name and score to scores.txt
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
-			writer.write("Player: " + playerName + " - Score: " + player.getScore() + "\n");
+			writer.write("Player: " + playerName + " - Score: " + score + "\n");
 			writer.flush();
-			System.out.println("Player name and score saved to scores.txt");
+			LoggingHelper.LOGGER.log(Level.INFO, "Player name and score saved to scores.txt");
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			scanner.close();
+			LoggingHelper.LOGGER.log(Level.SEVERE, "Error saving score to file", e);
 		}
 	}
 }

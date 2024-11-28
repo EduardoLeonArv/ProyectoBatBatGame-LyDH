@@ -1,0 +1,13 @@
+<map id="al.tonikolaba.entity.MapObject.checkTileMapCollision" name="al.tonikolaba.entity.MapObject.checkTileMapCollision">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,72,200,115"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#af51b05f0a3caf7a57280bec22483f132" title=" " alt="" coords="248,72,409,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,91,232,91,232,96,200,96"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#ab065d996cc2d71a24eed311c641f6e2b" title=" " alt="" coords="457,5,622,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="397,69,454,51,456,56,399,74"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#a914dcb81688833980eb8e7c136fcc947" title=" " alt="" coords="457,72,622,115"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="409,91,441,91,441,96,409,96"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#ab4f80eeb9c8881b5b2ff1789b1da22db" title=" " alt="" coords="457,139,622,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="399,113,456,131,454,136,397,118"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile.html#a2b523d10fa3e32f03b20b6719f7c626e" title=" " alt="" coords="670,147,886,173"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="623,157,655,157,655,163,623,163"/>
+</map>
