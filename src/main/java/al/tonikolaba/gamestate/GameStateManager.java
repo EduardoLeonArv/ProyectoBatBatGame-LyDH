@@ -3,6 +3,8 @@ package al.tonikolaba.gamestate;
 import al.tonikolaba.audio.JukeBox;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.main.GamePanel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,6 +22,7 @@ import al.tonikolaba.entity.PlayerSave;
 
 public class GameStateManager {
 
+	private static final Logger LOGGER = Logger.getLogger(GameStateManager.class.getName());
 	public static final int NUMGAMESTATES = 16;
 	public static final int MENUSTATE = 0;
 	public static final int OPTIONSSTATE = 1;
@@ -100,9 +103,9 @@ public class GameStateManager {
 		try (java.io.FileWriter writer = new java.io.FileWriter("scores.txt", true)) {
 			writer.write("Player: " + player.getName() + " - Score: " + player.getScore() + "\n");
 			writer.flush();
-			System.out.println("Player name and score saved to scores.txt");
+			LOGGER.log(Level.INFO, "Player name and score saved to scores.txt");
 		} catch (java.io.IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error while saving score to file", e);
 		}
 	}
 
