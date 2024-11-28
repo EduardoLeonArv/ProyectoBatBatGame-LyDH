@@ -1,7 +1,9 @@
-/** Copyright to N.Kolaba
- All rights reserved ©.
- **/
-
+/**
+ * Clase que representa el estado de opciones del menú.
+ * Permite al jugador interactuar con submenús como "HowTo Play" y "Language".
+ *
+ * @author N.Kolaba
+ */
 package al.tonikolaba.gamestate;
 
 import java.awt.Color;
@@ -11,17 +13,18 @@ import al.tonikolaba.audio.JukeBox;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.handlers.Keys;
 
-/**
- * Clase que representa el estado de opciones del menú.
- * Permite al jugador interactuar con submenús como "HowTo Play" y "Language".
- *
- * @author N.Kolaba
- */
 public class OptionsState extends BasicState {
 
+    // Constantes de texto
     private static final String HOW_TO_PLAY = "HowTo Play";
     private static final String LANGUAGE = "Language";
     private static final String BACK = "Back";
+
+    // Coordenadas para opciones del menú
+    private static final int MENU_X = 300;
+    private static final int OPTION_1_Y = 223;
+    private static final int OPTION_2_Y = 248;
+    private static final int OPTION_3_Y = 273;
 
     private Player player; // Referencia al jugador
 
@@ -56,9 +59,9 @@ public class OptionsState extends BasicState {
         g.setFont(fontMenu);
 
         g.setColor(Color.RED);
-        g.drawString(HOW_TO_PLAY, 300, 223);
-        g.drawString(LANGUAGE, 300, 248);
-        g.drawString(BACK, 300, 273);
+        g.drawString(HOW_TO_PLAY, MENU_X, OPTION_1_Y);
+        g.drawString(LANGUAGE, MENU_X, OPTION_2_Y);
+        g.drawString(BACK, MENU_X, OPTION_3_Y);
     }
 
     /**
@@ -69,13 +72,16 @@ public class OptionsState extends BasicState {
         JukeBox.play("menuselect");
         switch (currentChoice) {
             case 0:
-                gsm.setState(GameStateManager.HOWTOPLAY); // Pasar al estado "HowTo Play"
+                // Pasar al estado "HowTo Play"
+                gsm.setState(GameStateManager.HOWTOPLAY);
                 break;
             case 1:
-                gsm.setState(GameStateManager.OPTIONSSTATE); // Ir al submenú de opciones
+                // Ir al submenú de opciones
+                gsm.setState(GameStateManager.OPTIONSSTATE);
                 break;
             case 2:
-                gsm.setState(GameStateManager.MENUSTATE); // Regresar al menú principal
+                // Regresar al menú principal
+                gsm.setState(GameStateManager.MENUSTATE);
                 break;
             default:
                 gsm.setState(GameStateManager.MENUSTATE);
@@ -103,7 +109,10 @@ public class OptionsState extends BasicState {
      * @param direction Dirección de la navegación (-1 para arriba, 1 para abajo).
      */
     private void navigateMenu(int direction) {
-        JukeBox.play("menuoption", 0);
-        currentChoice += direction;
+        int newChoice = currentChoice + direction;
+        if (newChoice >= 0 && newChoice < options.length) {
+            JukeBox.play("menuoption", 0);
+            currentChoice = newChoice;
+        }
     }
 }
