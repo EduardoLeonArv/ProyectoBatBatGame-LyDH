@@ -24,20 +24,18 @@ import al.tonikolaba.entity.Player;
  * @author N.Kolaba
  */
 
-public class AcidState extends BasicState {
+ public class AcidState extends BasicState {
+    
+    // Constructor to initialize AcidState with a GameStateManager and Player.
+    public AcidState(GameStateManager gsm, Player player) {
+        super(gsm);
+        super.player = player; // Use the inherited field from BasicState
+    }
 
-	private Player player; // Referencia al jugador
-
-	// Constructor que recibe GameStateManager y Player
-	public AcidState(GameStateManager gsm, Player player) {
-		super(gsm);
-		this.player = player; // Asignar el jugador
-	}
-
-	@Override
-	public void update() {
-		handleInput();
-	}
+    @Override
+    public void update() {
+        handleInput();
+    }
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -63,12 +61,6 @@ public class AcidState extends BasicState {
 
 		g.drawString("Press any key to Play Again", 215, 325);
 	}
-
-	@Override
-	protected void select() {
-
-	}
-	
 
 	@Override
 	public void handleInput() {
