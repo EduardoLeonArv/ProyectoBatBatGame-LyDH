@@ -119,7 +119,7 @@ public class Level4State extends GameState {
 		// Instancias adicionales de RedEnergy (ejemplo)
 		for (int i = 0; i < 5; i++) {
 			RedEnergy redEnergy = new RedEnergy(tileMap, player); // Incluye el jugador
-			redEnergy.setPosition(100 + i * 50, 200);
+			redEnergy.setPosition(100 + i * (double) 50, 200);
 			enemies.add(redEnergy);
 		}
 	}
