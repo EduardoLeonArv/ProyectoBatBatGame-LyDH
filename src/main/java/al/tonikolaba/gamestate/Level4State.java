@@ -59,15 +59,17 @@ public class Level4State extends AbstractLevelState {
 		initPieces();
 	}
 
+	private Piece createPiece(int x, int y, int[] coords) {
+		Piece piece = new Piece(tileMap, coords);
+		piece.setPosition(x, y);
+		return piece;
+	}
+
 	private void initPieces() {
-		tlp = new Piece(tileMap, new int[]{0, 0, 10, 10});
-		trp = new Piece(tileMap, new int[]{10, 0, 10, 10});
-		blp = new Piece(tileMap, new int[]{0, 10, 10, 10});
-		brp = new Piece(tileMap, new int[]{10, 10, 10, 10});
-		tlp.setPosition(260, 345);
-		trp.setPosition(270, 345);
-		blp.setPosition(260, 355);
-		brp.setPosition(270, 355);
+		tlp = createPiece(260, 345, new int[]{0, 0, 10, 10});
+		trp = createPiece(270, 345, new int[]{10, 0, 10, 10});
+		blp = createPiece(260, 355, new int[]{0, 10, 10, 10});
+		brp = createPiece(270, 355, new int[]{10, 10, 10, 10});
 	}
 
 	@Override
@@ -78,6 +80,11 @@ public class Level4State extends AbstractLevelState {
 		}
 	}
 
+	private void triggerExplosions() {
+		explosions.add(new Explosion(tileMap, spirit.getx(), spirit.gety()));
+		JukeBox.play("explode");
+	}
+
 	private void handleBossDefeated() {
 		eventCount++;
 		if (eventCount == 1) {
@@ -86,8 +93,7 @@ public class Level4State extends AbstractLevelState {
 			enemies.clear();
 		}
 		if (eventCount <= 120 && eventCount % 15 == 0) {
-			explosions.add(new Explosion(tileMap, spirit.getx(), spirit.gety()));
-			JukeBox.play("explode");
+			triggerExplosions();
 		}
 		if (eventCount == 180) {
 			JukeBox.play("fanfare");
@@ -97,6 +103,7 @@ public class Level4State extends AbstractLevelState {
 			eventCount = 0;
 		}
 	}
+
 
 	@Override
 	public void draw(Graphics2D g) {
