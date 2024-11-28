@@ -1,0 +1,5 @@
+<map id="al.tonikolaba.entity.batbat.Piece" name="al.tonikolaba.entity.batbat.Piece">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,96,179,139"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="13,5,171,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,64,95,96,89,96,89,64"/>
+</map>

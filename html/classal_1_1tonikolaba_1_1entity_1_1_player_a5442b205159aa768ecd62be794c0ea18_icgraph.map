@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.entity.Player.setTeleporting" name="al.tonikolaba.entity.Player.setTeleporting">
+<area shape="rect" id="Node000001" title=" " alt="" coords="452,5,644,48"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a8cb111d0607a862bac80c67652946275" title=" " alt="" coords="217,5,404,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="436,29,404,29,404,24,436,24"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#ac99ae10cd9f866e60efa4023d1bdd0fb" title=" " alt="" coords="5,5,169,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,29,169,29,169,24,201,24"/>
+</map>

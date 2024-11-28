@@ -1,0 +1,248 @@
+\doxysection{al.\+tonikolaba.\+gamestate.\+Basic\+State Class Reference}
+\hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state}{}\label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+
+
+Inheritance diagram for al.\+tonikolaba.\+gamestate.\+Basic\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for al.\+tonikolaba.\+gamestate.\+Basic\+State\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a8aeb0cc2102a8654a32e05ea36c723d9}{Basic\+State}} (\mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager}{Game\+State\+Manager}} \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_abeaa17197b8e049d12a72e5d3243a00c}{gsm}})
+\item 
+void \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a84ddaf27390a8eac3c3be184bca3f4ee}{update}} ()
+\item 
+void \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a34a5b8f2069d5124544fe5656abed36c}{draw}} (Graphics2D g)
+\item 
+void \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae92d7b2a49b7745737cad2a71bf77a46}{handle\+Input}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a195ea93a9d526835b5546b2ace2e850e}{select}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager}{Game\+State\+Manager}} \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_abeaa17197b8e049d12a72e5d3243a00c}{gsm}}
+\item 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1entity_1_1_player}{Player}} \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a7e4d10153c87a8a80978ea5ec325e0da}{player}}
+\item 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1tilemap_1_1_tile_map}{Tile\+Map}} \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a4ae4d560f8e9bf2af4b085eee1f34c93}{tile\+Map}}
+\item 
+boolean \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae046c58b000de7ed955a106cf5b945b0}{block\+Input}} = false
+\item 
+Buffered\+Image \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aae8b380d8a7e5afbcf47fe6d650f5377}{bg}}
+\item 
+Buffered\+Image \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a2eb8145fb222f2a498c9cec9c334dacf}{head}}
+\item 
+int \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a553c9fc55fe47df47bd9cc44dabe1407}{current\+Choice}} = 0
+\item 
+String\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aa3ffea97f299f7f5fb62891fb6263a06}{options}}
+\item 
+Font \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aed7e451937953cc94b1e0fd64fe6d43e}{font}}
+\item 
+Font \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aeb4566438194a32d9e0982a930aa5540}{font2}}
+\item 
+Font \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ab65a030c2934175814fe7f69fc78fee2}{font\+Menu}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Created by tonikolaba on 03-\/Jan-\/18. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a8aeb0cc2102a8654a32e05ea36c723d9}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!BasicState@{BasicState}}
+\index{BasicState@{BasicState}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{BasicState()}{BasicState()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a8aeb0cc2102a8654a32e05ea36c723d9} 
+al.\+tonikolaba.\+gamestate.\+Basic\+State.\+Basic\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager}{Game\+State\+Manager}}}]{gsm}{}\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a8aeb0cc2102a8654a32e05ea36c723d9_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a34a5b8f2069d5124544fe5656abed36c}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!draw@{draw}}
+\index{draw@{draw}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a34a5b8f2069d5124544fe5656abed36c} 
+void al.\+tonikolaba.\+gamestate.\+Basic\+State.\+draw (\begin{DoxyParamCaption}\item[{Graphics2D}]{g}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_acid_state_a7c17f6520e20258f2fcc41926674eff5}{al.\+tonikolaba.\+gamestate.\+Acid\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_a0d0c9b6022291e721f8fd3d0e07845b0}{al.\+tonikolaba.\+gamestate.\+Game\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_howto_play_ac336cb37087392bc882976a1a71573c0}{al.\+tonikolaba.\+gamestate.\+Howto\+Play}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level4_state_a527da953fdd435bdf91a8ed9cfb32c5c}{al.\+tonikolaba.\+gamestate.\+Level4\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_menu_state_af194623ea5b7d033c09bb919f06e94b0}{al.\+tonikolaba.\+gamestate.\+Menu\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_options_state_a857c8e84cfcb69909cc15bbcb1050df6}{al.\+tonikolaba.\+gamestate.\+Options\+State}}, and \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_pause_state_a8fa6659c4d1238fd1daa3bde8349e3db}{al.\+tonikolaba.\+gamestate.\+Pause\+State}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a34a5b8f2069d5124544fe5656abed36c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae92d7b2a49b7745737cad2a71bf77a46}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!handleInput@{handleInput}}
+\index{handleInput@{handleInput}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{handleInput()}{handleInput()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae92d7b2a49b7745737cad2a71bf77a46} 
+void al.\+tonikolaba.\+gamestate.\+Basic\+State.\+handle\+Input (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_acid_state_a4829d2f84583c24e146e0f92186c54d3}{al.\+tonikolaba.\+gamestate.\+Acid\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_a9095c1f506c4c53597942ac171a6fe9a}{al.\+tonikolaba.\+gamestate.\+Game\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_howto_play_a3df87b91eeaad39a7def7b3d63541466}{al.\+tonikolaba.\+gamestate.\+Howto\+Play}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level4_state_a6a2e4825b7f065f4d146c09c3babf8cc}{al.\+tonikolaba.\+gamestate.\+Level4\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_menu_state_a8240832a34622e5401d6a37cfa3a28af}{al.\+tonikolaba.\+gamestate.\+Menu\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_options_state_ad82f26fcbac8a4e44bc47b333fb8408c}{al.\+tonikolaba.\+gamestate.\+Options\+State}}, and \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_pause_state_a61104715c35a524086845500502bf939}{al.\+tonikolaba.\+gamestate.\+Pause\+State}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae92d7b2a49b7745737cad2a71bf77a46_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae92d7b2a49b7745737cad2a71bf77a46_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a195ea93a9d526835b5546b2ace2e850e}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!select@{select}}
+\index{select@{select}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a195ea93a9d526835b5546b2ace2e850e} 
+void al.\+tonikolaba.\+gamestate.\+Basic\+State.\+select (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_acid_state_a43b561168b000756d4d5aaef6c86bd4f}{al.\+tonikolaba.\+gamestate.\+Acid\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_howto_play_ab2a48dce92fdfe340e031cc39c3bf4bb}{al.\+tonikolaba.\+gamestate.\+Howto\+Play}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_menu_state_ae39cc54399367517243ff7e236cc1be3}{al.\+tonikolaba.\+gamestate.\+Menu\+State}}, and \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_options_state_a28363624fe9f98e711bbb4e471a593e6}{al.\+tonikolaba.\+gamestate.\+Options\+State}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a195ea93a9d526835b5546b2ace2e850e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a84ddaf27390a8eac3c3be184bca3f4ee}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!update@{update}}
+\index{update@{update}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a84ddaf27390a8eac3c3be184bca3f4ee} 
+void al.\+tonikolaba.\+gamestate.\+Basic\+State.\+update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reimplemented in \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_acid_state_a01819a6f21714610bef5a185f26d7d51}{al.\+tonikolaba.\+gamestate.\+Acid\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_ac99ae10cd9f866e60efa4023d1bdd0fb}{al.\+tonikolaba.\+gamestate.\+Game\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level1_state_a50ec9d20e408994dcd98c29c01e4c8b8}{al.\+tonikolaba.\+gamestate.\+Level1\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level2_state_a967cd28ada07e6f07c80418e266e2261}{al.\+tonikolaba.\+gamestate.\+Level2\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level3_state_a043ba43c924a903c52fe4823e24a2490}{al.\+tonikolaba.\+gamestate.\+Level3\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level4_state_aac1d64e64dc90605b27877c27c4b7d7c}{al.\+tonikolaba.\+gamestate.\+Level4\+State}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_level_test_a1a4ced6aadee7ac6dadd2deac174f72c}{al.\+tonikolaba.\+gamestate.\+Level\+Test}}, \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_options_state_a8a31963b8b33925ba918ce72a8f968cc}{al.\+tonikolaba.\+gamestate.\+Options\+State}}, and \mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_pause_state_a577765d14332988cfa01b3200c920cd6}{al.\+tonikolaba.\+gamestate.\+Pause\+State}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a84ddaf27390a8eac3c3be184bca3f4ee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a84ddaf27390a8eac3c3be184bca3f4ee_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aae8b380d8a7e5afbcf47fe6d650f5377}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!bg@{bg}}
+\index{bg@{bg}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{bg}{bg}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aae8b380d8a7e5afbcf47fe6d650f5377} 
+Buffered\+Image al.\+tonikolaba.\+gamestate.\+Basic\+State.\+bg\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae046c58b000de7ed955a106cf5b945b0}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!blockInput@{blockInput}}
+\index{blockInput@{blockInput}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{blockInput}{blockInput}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ae046c58b000de7ed955a106cf5b945b0} 
+boolean al.\+tonikolaba.\+gamestate.\+Basic\+State.\+block\+Input = false\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a553c9fc55fe47df47bd9cc44dabe1407}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!currentChoice@{currentChoice}}
+\index{currentChoice@{currentChoice}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{currentChoice}{currentChoice}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a553c9fc55fe47df47bd9cc44dabe1407} 
+int al.\+tonikolaba.\+gamestate.\+Basic\+State.\+current\+Choice = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aed7e451937953cc94b1e0fd64fe6d43e}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!font@{font}}
+\index{font@{font}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{font}{font}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aed7e451937953cc94b1e0fd64fe6d43e} 
+Font al.\+tonikolaba.\+gamestate.\+Basic\+State.\+font\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aeb4566438194a32d9e0982a930aa5540}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!font2@{font2}}
+\index{font2@{font2}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{font2}{font2}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aeb4566438194a32d9e0982a930aa5540} 
+Font al.\+tonikolaba.\+gamestate.\+Basic\+State.\+font2\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ab65a030c2934175814fe7f69fc78fee2}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!fontMenu@{fontMenu}}
+\index{fontMenu@{fontMenu}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{fontMenu}{fontMenu}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_ab65a030c2934175814fe7f69fc78fee2} 
+Font al.\+tonikolaba.\+gamestate.\+Basic\+State.\+font\+Menu\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_abeaa17197b8e049d12a72e5d3243a00c}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!gsm@{gsm}}
+\index{gsm@{gsm}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{gsm}{gsm}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_abeaa17197b8e049d12a72e5d3243a00c} 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager}{Game\+State\+Manager}} al.\+tonikolaba.\+gamestate.\+Basic\+State.\+gsm\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a2eb8145fb222f2a498c9cec9c334dacf}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!head@{head}}
+\index{head@{head}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a2eb8145fb222f2a498c9cec9c334dacf} 
+Buffered\+Image al.\+tonikolaba.\+gamestate.\+Basic\+State.\+head\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aa3ffea97f299f7f5fb62891fb6263a06}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!options@{options}}
+\index{options@{options}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_aa3ffea97f299f7f5fb62891fb6263a06} 
+String \mbox{[}$\,$\mbox{]} al.\+tonikolaba.\+gamestate.\+Basic\+State.\+options\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a7e4d10153c87a8a80978ea5ec325e0da}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!player@{player}}
+\index{player@{player}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{player}{player}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a7e4d10153c87a8a80978ea5ec325e0da} 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1entity_1_1_player}{Player}} al.\+tonikolaba.\+gamestate.\+Basic\+State.\+player\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a4ae4d560f8e9bf2af4b085eee1f34c93}\index{al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}!tileMap@{tileMap}}
+\index{tileMap@{tileMap}!al.tonikolaba.gamestate.BasicState@{al.tonikolaba.gamestate.BasicState}}
+\doxysubsubsection{\texorpdfstring{tileMap}{tileMap}}
+{\footnotesize\ttfamily \label{classal_1_1tonikolaba_1_1gamestate_1_1_basic_state_a4ae4d560f8e9bf2af4b085eee1f34c93} 
+\mbox{\hyperlink{classal_1_1tonikolaba_1_1tilemap_1_1_tile_map}{Tile\+Map}} al.\+tonikolaba.\+gamestate.\+Basic\+State.\+tile\+Map\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/al/tonikolaba/gamestate/\mbox{\hyperlink{_basic_state_8java}{Basic\+State.\+java}}\end{DoxyCompactItemize}

@@ -233,24 +233,6 @@ public class Level4State extends GameState {
 		}
 	}
 
-	@Override
-	public void handleInput() {
-		if (Keys.isPressed(Keys.ESCAPE))
-			gsm.setPaused(true);
-		if (blockInput || player.getHealth() == 0)
-			return;
-		player.setUp(Keys.getKeyState()[Keys.UP]);
-		player.setLeft(Keys.getKeyState()[Keys.LEFT]);
-		player.setDown(Keys.getKeyState()[Keys.DOWN]);
-		player.setRight(Keys.getKeyState()[Keys.RIGHT]);
-		player.setJumping(Keys.getKeyState()[Keys.BUTTON1]);
-		player.setDashing(Keys.getKeyState()[Keys.BUTTON2]);
-		if (Keys.isPressed(Keys.BUTTON3))
-			player.setAttacking();
-		if (Keys.isPressed(Keys.BUTTON4))
-			player.setCharging();
-	}
-
 ///////////////////////////////////////////////////////
 //////////////////// EVENTS
 ///////////////////////////////////////////////////////
@@ -295,35 +277,6 @@ public class Level4State extends GameState {
 			eventPortal = blockInput = true;
 			tb.clear();
 
-		}
-	}
-
-	// player has died
-	private void eventDead() {
-		eventCount++;
-		if (eventCount == 1) {
-			player.setDead();
-			player.stop();
-		}
-		if (eventCount == 60) {
-			tb.clear();
-			tb.add(new Rectangle(GamePanel.WIDTH / 2, 
-			GamePanel.HEIGHT / 2, 0, 0));
-		} else if (eventCount > 60) {
-			tb.get(0).x -= 6;
-			tb.get(0).y -= 4;
-			tb.get(0).width += 12;
-			tb.get(0).height += 8;
-		}
-		if (eventCount >= 120) {
-			if (player.getLives() == 0) {
-				gsm.setState(GameStateManager.MENUSTATE);
-			} else {
-				eventDead = blockInput = false;
-				eventCount = 0;
-				player.loseLife();
-				reset();
-			}
 		}
 	}
 

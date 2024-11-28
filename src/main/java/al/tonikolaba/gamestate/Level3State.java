@@ -16,20 +16,20 @@ import al.tonikolaba.tilemap.Background;
  */
 public class Level3State extends GameState {
 
-	private boolean eventQuake;
-	private Player player; // Referencia al jugador
+    private boolean eventQuake;
+    private Player player; // Referencia al jugador
 
-	/**
-	 * Constructor del estado del nivel 3.
-	 *
-	 * @param gsm    Gestor de estados del juego.
-	 * @param player Referencia al jugador.
-	 */
-	public Level3State(GameStateManager gsm, Player player) {
-		super(gsm, player);
-		this.player = player;
-		init(GameStateManager.LEVEL4STATE);
-	}
+    /**
+     * Constructor del estado del nivel 3.
+     *
+     * @param gsm    Gestor de estados del juego.
+     * @param player Referencia al jugador.
+     */
+    public Level3State(GameStateManager gsm, Player player) {
+        super(gsm, player);
+        this.player = player;
+        init(GameStateManager.LEVEL4STATE);
+    }
 
 	/**
 	 * Inicializa los elementos del nivel 3.

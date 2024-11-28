@@ -1,0 +1,13 @@
+<map id="al.tonikolaba.entity.enemies.Ufo" name="al.tonikolaba.entity.enemies.Ufo">
+<area shape="rect" id="Node000001" title=" " alt="" coords="104,356,311,383"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1enemies_1_1_flyer.html" title=" " alt="" coords="114,264,300,307"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,322,210,356,204,356,204,322"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_enemy.html" title=" " alt="" coords="120,188,294,215"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="210,230,210,264,204,264,204,230"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="128,96,286,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="210,154,210,188,204,188,204,154"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html" title=" " alt="" coords="5,5,196,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="127,41,186,93,182,97,124,45"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html" title=" " alt="" coords="220,5,411,32"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="291,45,232,97,229,93,288,41"/>
+</map>

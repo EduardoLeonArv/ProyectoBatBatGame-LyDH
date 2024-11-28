@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.Enemy.isDead" name="al.tonikolaba.entity.Enemy.isDead">
+<area shape="rect" id="Node000001" title=" " alt="" coords="439,47,657,73"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a233bcaf3b74cbf793b08cf8b5a54f7b5" title=" " alt="" coords="217,5,391,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="430,47,391,41,392,36,431,41"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html#aac1d64e64dc90605b27877c27c4b7d7c" title=" " alt="" coords="222,72,386,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="431,79,387,85,386,80,430,73"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#ac99ae10cd9f866e60efa4023d1bdd0fb" title=" " alt="" coords="5,5,169,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,29,169,29,169,24,201,24"/>
+</map>

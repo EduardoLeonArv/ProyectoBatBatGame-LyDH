@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.gamestate.BasicState.select" name="al.tonikolaba.gamestate.BasicState.select">
+<area shape="rect" id="Node000001" title=" " alt="" coords="656,5,820,48"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html#ae92d7b2a49b7745737cad2a71bf77a46" title=" " alt="" coords="445,5,608,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,29,609,29,609,24,641,24"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html#a84ddaf27390a8eac3c3be184bca3f4ee" title=" " alt="" coords="234,5,397,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="430,29,397,29,397,24,430,24"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#a6e02e5700b4c58b987e0879ff5425206" title=" " alt="" coords="5,5,186,48"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="218,29,186,29,186,24,218,24"/>
+</map>

@@ -160,7 +160,7 @@ public abstract class GameState extends BasicState {
 		// player
 		playerXStart = playerX;
 		playerYStart = playerY;
-		player = new Player(tileMap);
+		player.setTileMap(tileMap);
 		player.setPosition(playerX, playerY);
 		player.setHealth(PlayerSave.getHealth());
 		player.setLives(PlayerSave.getLives());

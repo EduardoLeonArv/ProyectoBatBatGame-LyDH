@@ -30,6 +30,7 @@
 *.ipr
 *.iws
 
+/scores.txt
 ## Plugin-specific files:
 
 # IntelliJ

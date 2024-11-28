@@ -1,0 +1,17 @@
+<map id="al.tonikolaba.gamestate.GameState" name="al.tonikolaba.gamestate.GameState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="217,172,380,215"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html" title=" " alt="" coords="428,5,591,48"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="323,158,368,108,396,81,427,58,446,46,449,51,429,62,400,85,372,111,327,162"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level2_state.html" title=" " alt="" coords="428,72,591,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="351,162,427,124,453,113,455,118,429,129,354,167"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level3_state.html" title=" " alt="" coords="428,139,591,181"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="395,175,427,170,428,176,396,181"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level4_state.html" title=" " alt="" coords="428,205,591,248"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="396,206,428,211,427,216,395,211"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level_test.html" title=" " alt="" coords="428,272,591,315"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="354,220,429,258,455,269,453,274,427,262,351,225"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1gamestate_1_1_pause_state.html" title=" " alt="" coords="428,339,591,381"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="327,225,372,275,400,301,429,324,449,336,446,340,427,329,396,305,368,279,323,228"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title=" " alt="" coords="5,172,169,215"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,191,216,191,216,196,184,196"/>
+</map>

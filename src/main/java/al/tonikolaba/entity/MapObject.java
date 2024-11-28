@@ -92,6 +92,11 @@ public class MapObject {
 		return r1.contains(r2);
 	}
 
+	public void setTileMap(TileMap tm) {
+		tileMap = tm;
+		tileSize = tm.getTileSize();
+	}
+
 	public boolean contains(Rectangle r) {
 		return getRectangle().contains(r);
 	}

@@ -1,0 +1,21 @@
+<map id="al.tonikolaba.gamestate.OptionsState" name="al.tonikolaba.gamestate.OptionsState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1115,29,1278,72"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title=" " alt="" coords="829,65,993,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1008,68,1016,67,1114,55,1114,61,1017,72,1009,73"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html" title=" " alt="" coords="1115,104,1278,147"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="1008,97,1115,112,1114,117,1008,102"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1099,140,1058,140,1016,135,982,125,951,111,953,106,984,120,1017,129,1058,135,1099,135"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html" title=" " alt="" coords="557,48,727,75"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="743,68,829,76,828,82,742,73"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="305,45,463,88"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="479,62,557,60,557,66,479,67"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html" title=" " alt="" coords="6,11,196,37"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="212,18,449,18,589,23,728,33,767,39,806,48,852,62,850,67,805,53,766,44,727,39,588,28,449,23,212,23"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="206,38,221,40,305,53,304,58,220,45,205,43"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html" title=" " alt="" coords="5,77,197,104"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="212,91,280,87,304,83,305,88,281,92,212,96"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="590,104,695,131"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="711,116,805,111,832,106,832,111,806,116,711,122"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="618,183,666,209"/>
+<area shape="poly" id="edge10_Node000002_Node000009" title=" " alt="" coords="681,193,741,188,773,181,804,170,851,140,888,106,892,110,855,144,806,174,775,186,741,193,681,199"/>
+</map>
