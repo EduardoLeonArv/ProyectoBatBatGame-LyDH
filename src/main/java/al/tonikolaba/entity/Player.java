@@ -548,15 +548,21 @@ public class Player extends MapObject {
 			ar.y = (int) y - 6;
 			ar.x = facingRight ? (int) x + 10 : (int) x - 40;
 		} else {
-			if (animation.getFrame() == 4 && animation.getCount() == 0) {
+			if (animation.getFrame() == 4 
+			&& animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					if (facingRight)
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + (double) ar.width - 4, 
-						ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_RIGHT));
+						energyParticles.add(
+						new EnergyParticle(tileMap, 
+						ar.x + (double) ar.width - 4, 
+						ar.y + (double) ar.height / 2,
+						EnergyParticle.ENERGY_RIGHT));
 					else
-						energyParticles.add(new EnergyParticle(tileMap, ar.x + (double) 4, 
-							ar.y + (double) ar.height / 2, EnergyParticle.ENERGY_LEFT));
-				
+						energyParticles.add(
+							new EnergyParticle(tileMap, 
+							ar.x + (double) 4, 
+							ar.y + (double) ar.height / 2, 
+							EnergyParticle.ENERGY_LEFT));
 				}
 			}
 		}
@@ -569,11 +575,14 @@ public class Player extends MapObject {
 			aur.x = (int) x - 15;
 			aur.y = (int) y - 50;
 		} else {
-			if (animation.getFrame() == 4 && animation.getCount() == 0) {
+			if (animation.getFrame() == 4 
+			&& animation.getCount() == 0) {
 				for (int c = 0; c < 3; c++) {
 					energyParticles.add(
-						new EnergyParticle(tileMap, aur.x + (double) aur.width / 2, 
-						aur.y + (double) 5, EnergyParticle.ENERGY_UP));					
+						new EnergyParticle(tileMap, 
+						aur.x + (double) aur.width / 2, 
+						aur.y + (double) 5, 
+						EnergyParticle.ENERGY_UP));					
 				}
 			}
 		}

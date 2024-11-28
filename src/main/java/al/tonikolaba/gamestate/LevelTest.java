@@ -1,115 +1,77 @@
 /**
- * 
+ * @author N.Kolaba
  */
 package al.tonikolaba.gamestate;
 
-import java.util.ArrayList;
-
-import al.tonikolaba.entity.EnergyParticle;
 import al.tonikolaba.entity.Player;
-import al.tonikolaba.entity.Spirit;
 import al.tonikolaba.entity.Enemy.EnemyType;
-import al.tonikolaba.entity.batbat.Piece;
 import al.tonikolaba.tilemap.Background;
 
-/**
- * @author N.Kolaba
- *
- */
-/**
- *
- */
-
-/**
- * @author N.Kolaba
- *
- */
 public class LevelTest extends GameState {
 
-	private static final String LEVEL_BOSS_MUSIC_NAME = "level1boss";
-	private ArrayList<EnergyParticle> energyParticles;
-	private Piece tlp;
-	private Piece trp;
-	private Piece blp;
-	private Piece brp;
-	private Spirit spirit;
-	private boolean flash;
-	private boolean eventBossDead;
-	private boolean eventQuake;
+    private static final String LEVEL_BOSS_MUSIC_NAME = "level1boss";
+    private boolean eventQuake;
 
-	// Constructor actualizado para incluir Player
-	public LevelTest(GameStateManager gsm, Player player) {
-		super(gsm, player); // Pasa GameStateManager y Player a la clase base
-		init(GameStateManager.ACIDSTATE);
-	}
+    public LevelTest(GameStateManager gsm, Player player) {
+        super(gsm, player);
+        init(GameStateManager.ACIDSTATE);
+    }
 
-	@Override
-	public void init(int nextLevel) { // fillon niveli tj
+    @Override
+    public void init(int nextLevel) {
+        super.init(nextLevel);
 
-		super.init(nextLevel);
-		// backgrounds
-		temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
+        temple = new Background("/Backgrounds/temple.gif", 0.5, 0);
+        generateTileMap("/Maps/level4.map", 140, 0, false);
 
-		// tilemap
-		generateTileMap("/Maps/level4.map", 140, 0, false);
+        setupGameObjects(80, 131, 2850, 120, false);
+        setupTitle(new int[]{0, 0, 178, 20}, new int[]{0, 33, 91, 13});
+        setupMusic("level4", "/Music/level1boss.mp3", true);
 
-		setupGameObjects(80, 131, 2850, 120, false);
-		setupTitle(new int[] { 0, 0, 178, 20 }, new int[] { 0, 33, 91, 13 });
-		setupMusic("level4", "/Music/level1boss.mp3", true);
+        enemyTypesInLevel = new EnemyType[]{EnemyType.SPIRIT};
+        coords = new int[][]{{150, 100}};
 
-		enemyTypesInLevel = new EnemyType[] { EnemyType.SPIRIT };
+        populateEnemies(enemyTypesInLevel, coords);
+    }
 
-		coords = new int[][] { new int[] { 150, 100 } };
+    @Override
+    public void update() {
+        super.update();
 
-		populateEnemies(enemyTypesInLevel, coords);
-	}
+        if (player.getx() > 100 && !tileMap.isShaking()) {
+            eventQuake = blockInput = true;
+            eventCount++;
+        }
 
-	@Override
-	public void update() {
+        if (eventQuake) eventQuake();
+    }
 
-		super.update();
-		// eventStartFunc();
-		// check if quake event should start
+    private void eventQuake() {
+        eventCount++;
+        if (eventCount == 1) {
+            player.stop();
+            player.setPosition(120, player.gety());
+            setPlayerEmote(Player.CONFUSED_EMOTE, 0);
+            tileMap.setShaking(true, 10);
+        } else if (eventCount == 60) {
+            setPlayerEmote(Player.CONFUSED_EMOTE, 0);
+        } else if (eventCount == 120) {
+            setPlayerEmote(Player.NONE_EMOTE, 0);
+        } else if (eventCount == 150) {
+            tileMap.setShaking(true, 10);
+        } else if (eventCount == 180) {
+            setPlayerEmote(Player.SURPRISED_EMOTE, 0);
+        } else if (eventCount == 300) {
+            setPlayerEmote(Player.NONE_EMOTE, 0);
+            eventQuake = blockInput = false;
+            eventCount = 0;
+        }
+    }
 
-		if (player.getx() > 100 && !tileMap.isShaking()) {
-			eventQuake = blockInput = true;
-			eventCount++;
-		}
-
-		if (eventQuake)
-			eventQuake();
-
-	}
-
-	///////////////////////////////////////////////////////
-	//////////////////// EVENTS
-	///////////////////////////////////////////////////////
-
-	// earthquake
-	private void eventQuake() {
-		eventCount++;
-		if (eventCount == 1) {
-			player.stop();
-			player.setPosition(120, player.gety());
-			player.setEmote(Player.CONFUSED_EMOTE);
-			player.setEmote(Player.NONE_EMOTE);
-			player.setEmote(Player.SURPRISED_EMOTE);
-			tileMap.setShaking(true, 10);
-		}
-		if (eventCount == 60) {
-			player.setEmote(Player.CONFUSED_EMOTE);
-		}
-		if (eventCount == 120)
-			player.setEmote(Player.NONE_EMOTE);
-		if (eventCount == 150)
-			tileMap.setShaking(true, 10);
-		if (eventCount == 180)
-			player.setEmote(Player.SURPRISED_EMOTE);
-		if (eventCount == 300) {
-			player.setEmote(Player.NONE_EMOTE);
-			eventQuake = blockInput = false;
-			eventCount = 0;
-		}
-	}
-
+    private void setPlayerEmote(int emote, int delay) {
+        player.setEmote(emote);
+        if (delay > 0) {
+            eventCount += delay;
+        }
+    }
 }
