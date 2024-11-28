@@ -28,9 +28,4 @@ public class Level3State extends AbstractLevelState {
 	protected String getMusicPath() {
 		return "/Music/level1v2.mp3";
 	}
-
-	@Override
-	protected int getNextLevelState() {
-		return GameStateManager.LEVEL4STATE;
-	}
 }

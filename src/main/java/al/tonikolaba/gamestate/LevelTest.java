@@ -3,6 +3,7 @@ package al.tonikolaba.gamestate;
 import al.tonikolaba.entity.Enemy.EnemyType;
 import al.tonikolaba.entity.Player;
 
+
 public class LevelTest extends AbstractLevelState {
 
     public LevelTest(GameStateManager gsm, Player player) {
@@ -27,10 +28,5 @@ public class LevelTest extends AbstractLevelState {
     @Override
     protected String getMusicPath() {
         return "/Music/level1boss.mp3";
-    }
-
-    @Override
-    protected int getNextLevelState() {
-        return GameStateManager.ACIDSTATE;
     }
 }
