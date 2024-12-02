@@ -1,5 +1,7 @@
 # Laboratorio de Desarrollo y Herramientas
 
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=EduardoLeonArv_ProyectoBatBatGame-LyDH)](https://sonarcloud.io/summary/new_code?id=EduardoLeonArv_ProyectoBatBatGame-LyDH)
+
 Este es un repositorio donde se desarrollará una práctica de Laboratorio de Desarrollo y Herramientas. Consiste en realizar un análisis y mejora de un proyecto. En este caso, hemos seleccionado uno basado en el clásico juego de Mario Bros.
 
 ## Alumnos
