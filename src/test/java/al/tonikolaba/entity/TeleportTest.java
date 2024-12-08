@@ -1,6 +1,8 @@
 package al.tonikolaba.entity;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import al.tonikolaba.tilemap.TileMap;
@@ -31,7 +33,10 @@ public class TeleportTest {
         // Verify if animation frames are set up
         teleport.update(); // Call update to initialize animations
         assertNotNull(teleport.animation, "Animation should not be null.");
-        assertNotNull(teleport.animation.getFrame(), "Animation frames should not be null.");
+        
+        // Verify that the frame value is valid
+        assertTrue(teleport.animation.getFrame() >= 0, "Animation frame index should be non-negative.");
     }
+
 
 }
