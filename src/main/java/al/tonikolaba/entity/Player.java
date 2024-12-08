@@ -614,4 +614,12 @@ public class Player extends MapObject {
 		super.draw(g);
 
 	}
+	public boolean isTeleporting() {
+		return teleporting;
+	}
+
+	public boolean isCharging() {
+		return charging;
+	}
+
 }
