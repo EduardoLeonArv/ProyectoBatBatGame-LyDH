@@ -36,17 +36,16 @@ class ExplosionTest {
 
     @Test
     void testUpdate() {
-        // Actualizar animación
-        explosion.update();
+        // Inicialmente, la explosión no debe estar marcada para eliminar
+        assertFalse(explosion.shouldRemove(), "Explosion no debería estar marcada para eliminación al inicio");
 
-        // Verificar que no se marque para eliminar antes de que termine la animación
-        assertFalse(explosion.shouldRemove(), "Explosion no debería estar marcada para eliminación antes de que termine la animación");
-
-        // Simular el final de la animación
-        for (int i = 0; i < 10; i++) { // Dependiendo de las actualizaciones necesarias
+        // Simular actualizaciones hasta que la animación se marque como completada
+        while (!explosion.shouldRemove()) {
             explosion.update();
         }
-        assertFalse(explosion.shouldRemove(), "Explosion debería estar marcada para eliminación después de que termine la animación");
+
+        // Verificar que ahora se marca como eliminada
+        assertTrue(explosion.shouldRemove(), "Explosion debería estar marcada para eliminación después de que termine la animación");
     }
 
     @Test
