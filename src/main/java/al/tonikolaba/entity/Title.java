@@ -17,10 +17,10 @@ public class Title {
     private BufferedImage image;
 
     private int count;
-    private boolean done;
+    boolean done;
     private boolean remove;
 
-    private double x;
+    double x;
     private double y;
     private double dx;
 

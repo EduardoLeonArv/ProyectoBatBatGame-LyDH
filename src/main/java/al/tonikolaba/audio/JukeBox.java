@@ -11,9 +11,14 @@ import al.tonikolaba.handlers.LoggingHelper;
 /**
  * Clase para gestionar el audio del juego.
  */
+import java.util.Map;
+/**
+ * Clase para gestionar el audio del juego.
+ */
 public class JukeBox {
 
-    public static HashMap<String, Clip> clips = new HashMap<>();
+    // Cambiar de HashMap a Map y hacerlo privado, estático y final
+    private static final Map<String, Clip> clips = new HashMap<>();
     private static int gap;
     private static boolean mute = false;
 
@@ -22,9 +27,7 @@ public class JukeBox {
     }
 
     public static void init() {
-        if (clips == null) {
-            clips = new HashMap<>();
-        }
+        // Este método ya no es necesario para inicializar `clips` porque es `final`
     }
 
     public static void load(String s, String n) {
@@ -33,13 +36,13 @@ public class JukeBox {
             AudioInputStream ais = AudioSystem.getAudioInputStream(JukeBox.class.getResourceAsStream(s));
             AudioFormat baseFormat = ais.getFormat();
             AudioFormat decodeFormat = new AudioFormat(
-                AudioFormat.Encoding.PCM_SIGNED,
-                baseFormat.getSampleRate(),
-                16,
-                baseFormat.getChannels(),
-                baseFormat.getChannels() * 2,
-                baseFormat.getSampleRate(),
-                false
+                    AudioFormat.Encoding.PCM_SIGNED,
+                    baseFormat.getSampleRate(),
+                    16,
+                    baseFormat.getChannels(),
+                    baseFormat.getChannels() * 2,
+                    baseFormat.getSampleRate(),
+                    false
             );
             AudioInputStream dais = AudioSystem.getAudioInputStream(decodeFormat, ais);
             clip = AudioSystem.getClip();
@@ -118,5 +121,10 @@ public class JukeBox {
     public static void close(String s) {
         stop(s);
         clips.get(s).close();
+    }
+
+    // Método para acceder al mapa de clips si es necesario
+    public static Map<String, Clip> getClips() {
+        return clips;
     }
 }

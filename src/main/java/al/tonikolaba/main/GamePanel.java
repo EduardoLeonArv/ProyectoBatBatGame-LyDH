@@ -113,7 +113,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		saveScore();
 	}
 
-	private void update() {
+	protected void update() {
 		gsm.update(); // Se asegura de actualizar el estado del juego
 		Keys.update();
 	}
@@ -146,7 +146,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
-	private void saveScore() {
+	public void saveScore() {
 		if (scoreSaved) return; // Evita guardar más de una vez
 		scoreSaved = true; // Marca que la puntuación ya se guardó
 
@@ -182,5 +182,17 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Not necessary
+	}
+
+	public boolean isRecording() {
+		return recording;
+	}
+
+	public boolean isScreenshot() {
+		return screenshot;
+	}
+
+	public boolean isScoreSaved() {
+		return scoreSaved;
 	}
 }

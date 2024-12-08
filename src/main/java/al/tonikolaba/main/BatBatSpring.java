@@ -22,7 +22,7 @@ public class BatBatSpring {
 		EventQueue.invokeLater(() -> {
 			@SuppressWarnings("unused")
 			BatBatGame window = context.getBean(BatBatGame.class);
-			// window.setVisible(true);
+			window.setVisible(true);
 		});
 	}
 

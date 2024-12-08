@@ -94,7 +94,7 @@ public class GameStateManager {
 	}
 
 	// Método para guardar el puntaje en un archivo
-	private void saveScoreToFile() {
+	public void saveScoreToFile() {
 		if (scoreSaved) return; // Evita guardar múltiples veces
 
 		scoreSaved = true; // Marca que el puntaje ya se guardó

@@ -36,6 +36,10 @@ public abstract class BasicState {
 	protected Font font2;
 	protected Font fontMenu;
 
+	public void setCurrentChoice(int choice) {
+		this.currentChoice = choice;
+	}
+
 	public BasicState(GameStateManager gsm) {
 		this.gsm = gsm;
 		try {

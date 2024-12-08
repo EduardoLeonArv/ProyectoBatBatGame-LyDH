@@ -27,7 +27,8 @@ public class HowtoPlay extends BasicState {
 
 	public HowtoPlay(GameStateManager gsm, Player player) {
 		super(gsm);
-		this.player = player; // Asignar el jugador
+		this.player = player;
+		this.options = new String[] { "Option1", "Option2" }; // Opciones ficticias
 	}
 
 	@Override
