@@ -38,8 +38,8 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: mvn sonar:sonar \
-        -Dsonar.projectKey=tu_projectKey \
-        -Dsonar.organization=tu_organizacion \
+        -Dsonar.projectKey=EduardoLeonArv_ProyectoBatBatGame-LyDH \
+        -Dsonar.organization=eduardoleonarv \
         -Dsonar.host.url=https://sonarcloud.io
 
     - name: Install Xvfb
