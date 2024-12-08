@@ -2,24 +2,24 @@ package al.tonikolaba.entity;
 
 import al.tonikolaba.audio.JukeBox;
 import al.tonikolaba.tilemap.TileMap;
+import java.util.logging.Logger;
 
-/**
- * @author ArtOfSoul
- */
 /**
  * Enemy class representing an enemy in the game.
  * Handles health, damage, and interactions with the player.
  */
 public class Enemy extends MapObject {
 
-    protected int health;
+    private static final Logger logger = Logger.getLogger(Enemy.class.getName()); // Logger agregado
+
+    public int health;
     protected int maxHealth;
     protected boolean dead;
     private Player player; // Reference to the player
     protected int damage;
     protected boolean remove;
-    protected boolean flinching;
-    protected long flinchCount;
+    public boolean flinching;
+    public long flinchCount;
 
     // Constructor modificado
     public Enemy(TileMap tm, Player player) {
@@ -27,7 +27,6 @@ public class Enemy extends MapObject {
         this.player = player; // Vincula el jugador con el enemigo
         this.remove = false;
     }
-
 
     // Check if the enemy is dead
     public boolean isDead() {
@@ -59,7 +58,7 @@ public class Enemy extends MapObject {
             // Incrementa el puntaje del jugador
             if (player != null) {
                 player.increaseScore(10);
-                System.out.println("Enemy defeated! Current score: " + player.getScore());
+                logger.info("Enemy defeated! Current score: " + player.getScore()); // Sustituye System.out.println
             }
 
             remove = true; // Marca al enemigo para ser eliminado
@@ -78,5 +77,4 @@ public class Enemy extends MapObject {
     public enum EnemyType {
         RED_ENERGY, UFO, XHELBAT, ZOGU, SPIRIT
     }
-
 }

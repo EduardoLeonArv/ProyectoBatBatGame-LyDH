@@ -32,13 +32,13 @@ public class Spirit extends Enemy {
 	private ArrayList<Explosion> explosions;
 
 	private boolean active;
-	private boolean finalAttack;
+	boolean finalAttack;
 
 	private int step;
-	private int stepCount;
+	int stepCount;
 
 	// Attack pattern
-	private int[] steps = { 0, 1, 0, 1, 2, 1, 0, 2, 1, 2 };
+	private int[] steps = {0, 1, 0, 1, 2, 1, 0, 2, 1, 2};
 
 	//// Attacks:
 	// Fly around throwing dark energy (0)
@@ -140,11 +140,11 @@ public class Spirit extends Enemy {
 				enemies.add(shield[1]);
 			}
 			double pos = ticks / 32;
-			shield[0].setPosition(x + 30 * Math.sin(pos), 
-			y + 30 * Math.cos(pos));
+			shield[0].setPosition(x + 30 * Math.sin(pos),
+					y + 30 * Math.cos(pos));
 			pos += 3.1415;
-			shield[1].setPosition(x + 30 * Math.sin(pos), 
-			y + 30 * Math.cos(pos));
+			shield[1].setPosition(x + 30 * Math.sin(pos),
+					y + 30 * Math.cos(pos));
 		}
 
 		if (!finalAttack && health <= maxHealth / 4) {
@@ -168,8 +168,8 @@ public class Spirit extends Enemy {
 			if (stepCount >= 90 && stepCount % 30 == 0) {
 				RedEnergy de = new RedEnergy(tileMap, player); // Incluye al jugador
 				de.setPosition(x, y);
-				de.setVector(3 * Math.sin((double) stepCount / 32), 
-				3 * Math.cos((double) stepCount / 32));
+				de.setVector(3 * Math.sin((double) stepCount / 32),
+						3 * Math.cos((double) stepCount / 32));
 				de.setType(RedEnergy.BOUNCE);
 				enemies.add(de);
 			}
@@ -230,5 +230,27 @@ public class Spirit extends Enemy {
 				return;
 		}
 		super.draw(g);
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public boolean isFlinching() {
+		return flinching;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setHealth(int health) {
+		if (health < 0) {
+			this.health = 0; // Asegura que la salud no sea negativa
+		} else if (health > maxHealth) {
+			this.health = maxHealth; // Limita la salud al máximo permitido
+		} else {
+			this.health = health;
+		}
 	}
 }

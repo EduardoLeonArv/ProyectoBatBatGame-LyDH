@@ -71,4 +71,8 @@ public class Keys {
 		return KEY_STATE;
 	}
 
+	public static void setPressed(int key, boolean pressed) {
+		keySet(key, pressed); // Usa keySet para actualizar el estado
+	}
+
 }

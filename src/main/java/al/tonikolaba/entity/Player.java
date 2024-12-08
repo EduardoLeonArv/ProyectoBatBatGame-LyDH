@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import al.tonikolaba.audio.JukeBox;
 import al.tonikolaba.handlers.LoggingHelper;
 import al.tonikolaba.tilemap.TileMap;
+import java.util.logging.Logger;
 
 /**
  * @author ArtOfSoul
@@ -39,8 +40,8 @@ public class Player extends MapObject {
 	private static final int KNOCKBACK_ANIM = 8;
 	private static final int DEAD_ANIM = 9;
 	private static final int TELEPORTING_ANIM = 10;
-	public final String PLAYERJUMP_MUSIC_NAME = "playerjump";
-	public final String PLAYERATTACK_MUSIC_NAME = "playerattack";
+	public static final String PLAYERJUMP_MUSICNAME = "playerjump";
+	public static final String PLAYERATTACKMUSICNAME = "playerattack";
 	// references
 	private ArrayList<Enemy> enemies;
 	// player stuff
@@ -60,8 +61,8 @@ public class Player extends MapObject {
 	private long time;
 	// actions
 	private boolean dashing;
-	public boolean attacking;
-	public boolean upattacking;
+	protected boolean attacking;
+	protected boolean upattacking;
 	private boolean charging;
 	private int chargingTick;
 	private boolean teleporting;
@@ -142,7 +143,7 @@ public class Player extends MapObject {
 		setAnimation(IDLE_ANIM);
 
 		JukeBox.load("/SFX/playerlands.mp3", "playerlands");
-		JukeBox.load("/SFX/playerattack.mp3", PLAYERATTACK_MUSIC_NAME);
+		JukeBox.load("/SFX/playerattack.mp3", PLAYERATTACKMUSICNAME);
 		JukeBox.load("/SFX/playerhit.mp3", "playerhit");
 		JukeBox.load("/SFX/playercharge.mp3", "playercharge");
 
@@ -261,8 +262,10 @@ public class Player extends MapObject {
 	}
 
 	public void increaseScore(int score) {
+		Logger logger = Logger.getLogger(getClass().getName()); // Inicializar logger
+
 		this.score += score;
-		System.out.println("Current score: " + this.score); // Log para depuración
+		logger.info(() -> String.format("Current score: %d", this.score)); // Usar formato integrado
 	}
 
 	public int getScore() {
@@ -277,9 +280,7 @@ public class Player extends MapObject {
 	public void hit(int damage) {
 		if (flinching)
 			return;
-		// JukeBox.load("/SFX/playerhit.mp3", "playerhit");
-		// Clip c = clips.get(s);
-		// JukeBox.play("playerhit", 2);
+
 		stop();
 		health -= damage;
 		if (health < 0)
@@ -326,14 +327,14 @@ public class Player extends MapObject {
 		if (jumping && !falling) {
 			dy = jumpStart;
 			falling = true;
-			JukeBox.play(PLAYERJUMP_MUSIC_NAME);
+			JukeBox.play(PLAYERJUMP_MUSICNAME);
 		}
 
 		if (doubleJump) {
 			dy = doubleJumpStart;
 			alreadyDoubleJump = true;
 			doubleJump = false;
-			JukeBox.play(PLAYERJUMP_MUSIC_NAME);
+			JukeBox.play(PLAYERJUMP_MUSICNAME);
 			for (int i = 0; i < 6; i++) {
 				energyParticles.add(new EnergyParticle(tileMap, x, y + cheight / 4.0, 
 				EnergyParticle.ENERGY_DOWN));
@@ -543,7 +544,7 @@ public class Player extends MapObject {
 
 	private void checkAttackingAnim() {
 		if (currentAction != ATTACKING_ANIM) {
-			JukeBox.play(PLAYERATTACK_MUSIC_NAME);
+			JukeBox.play(PLAYERATTACKMUSICNAME);
 			setAnimation(ATTACKING_ANIM);
 			ar.y = (int) y - 6;
 			ar.x = facingRight ? (int) x + 10 : (int) x - 40;
@@ -570,7 +571,7 @@ public class Player extends MapObject {
 
 	private void checkUpAttackingAnim() {
 		if (currentAction != UPATTACKING_ANIM) {
-			JukeBox.play(PLAYERATTACK_MUSIC_NAME);
+			JukeBox.play(PLAYERATTACKMUSICNAME);
 			setAnimation(UPATTACKING_ANIM);
 			aur.x = (int) x - 15;
 			aur.y = (int) y - 50;

@@ -18,8 +18,8 @@ public class FireBall extends MapObject {
 
     private boolean hit;
     private boolean remove;
-    private BufferedImage[] sprites;
-    private BufferedImage[] hitSprites;
+    BufferedImage[] sprites;
+    BufferedImage[] hitSprites;
 
     public FireBall(TileMap tm, boolean right) {
 

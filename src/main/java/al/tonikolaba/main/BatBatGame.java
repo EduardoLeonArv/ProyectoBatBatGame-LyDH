@@ -61,7 +61,7 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		});
 	}
 
-	private void saveScore(String playerName, int score) {
+	protected void saveScore(String playerName, int score) {
 		// Save player name and score to scores.txt
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
 			writer.write("Player: " + playerName + " - Score: " + score + "\n");

@@ -21,7 +21,7 @@ public class RedEnergy extends Enemy {
     private boolean start;
     private boolean permanent;
     private int type = 0;
-    private int bounceCount = 0;
+    int bounceCount = 0;
 
     public RedEnergy(TileMap tm, Player player) {
 

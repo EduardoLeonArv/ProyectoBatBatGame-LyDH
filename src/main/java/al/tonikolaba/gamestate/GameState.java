@@ -26,6 +26,7 @@ import al.tonikolaba.entity.enemies.RedEnergy;
 import al.tonikolaba.entity.enemies.Ufo;
 import al.tonikolaba.entity.enemies.XhelBat;
 import al.tonikolaba.entity.enemies.Zogu;
+import al.tonikolaba.handlers.Content;
 import al.tonikolaba.handlers.Keys;
 import al.tonikolaba.handlers.LoggingHelper;
 import al.tonikolaba.main.GamePanel;

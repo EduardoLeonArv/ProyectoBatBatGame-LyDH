@@ -12,7 +12,7 @@ public abstract class EnemyProjectile extends MapObject {
     protected boolean remove;
     protected int damage;
 
-    public EnemyProjectile(TileMap tm) {
+    protected EnemyProjectile(TileMap tm) {
         super(tm);
     }
 
