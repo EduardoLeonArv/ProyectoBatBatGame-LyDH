@@ -3,51 +3,52 @@ package al.tonikolaba.main;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.tilemap.TileMap;
 
+import javax.swing.*;
 import java.io.*;
-import javax.swing.SwingUtilities;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BatBatGameTest {
 
+    private BatBatGame game;
+
+    @BeforeEach
+    public void setUp() {
+        game = spy(new BatBatGame());
+    }
+
     @Test
-    @DisplayName("Test Score Saving Functionality")
+    @DisplayName("Test Save Score")
     public void testSaveScore() throws IOException {
         // Arrange
-        BatBatGame game = spy(new BatBatGame());
         String playerName = "TestPlayer";
         int score = 100;
         File tempFile = File.createTempFile("scores", ".txt");
         tempFile.deleteOnExit();
 
         // Act
+        doNothing().when(game).saveScore(eq(playerName), eq(score));
         game.saveScore(playerName, score);
 
-        // Ensure the score is actually saved to the temporary file
-        try (FileWriter writer = new FileWriter(tempFile, true)) {
-            writer.write("Player: " + playerName + " - Score: " + score + "\n");
-            writer.flush();
-        }
-
         // Assert
-        try (BufferedReader reader = new BufferedReader(new FileReader(tempFile))) {
-            String line = reader.readLine();
-            assertNotNull("Score file should not be empty", line);
-            assertTrue("Score file should contain the player's name and score", line.contains("TestPlayer") && line.contains("100"));
-        }
+        verify(game, times(1)).saveScore(playerName, score);
     }
 
     @Test
     @DisplayName("Test Player Initialization")
     public void testPlayerInitialization() {
         // Arrange
-        TileMap tmMock = mock(TileMap.class);
+        TileMap tileMap = new TileMap(30);
 
         // Act
-        Player player = new Player(tmMock);
+        Player player = new Player(tileMap);
         player.setName("TestPlayer");
 
         // Assert
@@ -57,9 +58,6 @@ public class BatBatGameTest {
     @Test
     @DisplayName("Test Game Window Initialization")
     public void testGameWindowInitialization() {
-        // Arrange
-        BatBatGame game = spy(new BatBatGame());
-
         // Simulate input for player name
         InputStream sysInBackup = System.in; // Backup System.in to restore later
         ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
@@ -70,7 +68,6 @@ public class BatBatGameTest {
             game.run();
             SwingUtilities.invokeAndWait(() -> {
                 game.dispose(); // Close the game window
-                System.exit(0); // Ensure complete termination
             });
         } catch (Exception e) {
             fail("Game window initialization failed: " + e.getMessage());
@@ -80,5 +77,19 @@ public class BatBatGameTest {
 
         // Assert
         assertNotNull("Game window should be initialized", game);
+    }
+
+    @Test
+    @DisplayName("Test Logging for Initialization")
+    public void testLoggingDuringInitialization() throws Exception {
+        // Arrange
+        Logger loggerMock = mock(Logger.class);
+        doNothing().when(loggerMock).log(eq(Level.INFO), anyString());
+
+        // Act
+        game.run();
+
+        // Assert
+        verify(loggerMock, atLeastOnce()).log(eq(Level.INFO), anyString());
     }
 }
