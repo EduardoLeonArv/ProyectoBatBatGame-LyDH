@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import al.tonikolaba.audio.JukeBox;
 
 @RunWith(JUnitPlatform.class)
 @DisplayName("Player Tests")
@@ -610,5 +611,39 @@ public class PlayerTest {
 		);
 	}
 
+	@Test
+	@DisplayName("Test Up Attacking Animation")
+	public void testCheckUpAttackingAnim() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Inicializar enemigos y partículas de energía
+		List<Enemy> enemies = new ArrayList<>();
+		List<EnergyParticle> energyParticles = new ArrayList<>();
+		player.init(enemies, energyParticles);
+
+		// Configurar la animación inicial en IDLE_ANIM
+		player.setAnimation(Player.getIdleAnim());
+
+		// Configurar el estado para un ataque hacia arriba
+		player.up = true; // Asegurar que 'up' esté en true para activar upattacking
+		player.setAttacking(); // Esto debe activar upattacking
+		player.update(); // Llama a checkUpAttackingAnim()
+
+		// Verificar que la animación cambió a UPATTACKING_ANIM
+		assertEquals("Player should switch to UPATTACKING_ANIM",
+				Player.getUpAttackingAnim(),
+				player.getCurrentAction());
+
+		// Simular que el frame y count están en el estado correcto
+		player.getAnimation().setFrame(4); // Frame esperado
+		player.getAnimation().setCount(0); // Count esperado
+		player.update(); // Llama a checkUpAttackingAnim de nuevo
+
+		// Verificar que se añadieron partículas de energía
+		assertEquals("Three energy particles should be added",
+				3,
+				player.getEnergyParticles().size());
+	}
 
 }
