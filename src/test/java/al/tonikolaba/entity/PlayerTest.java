@@ -578,7 +578,7 @@ public class PlayerTest {
 		Player player = new Player(tm);
 
 		assertEquals("Default current action should be 0", 0, player.getCurrentAction());
-	}
+	} 
 
 	@Test
 	@DisplayName("Test Energy Particles Initialization")
