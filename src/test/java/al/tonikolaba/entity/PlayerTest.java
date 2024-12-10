@@ -6,7 +6,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.StreamHandler;
+import static org.mockito.Mockito.*;
 
+import al.tonikolaba.handlers.LoggingHelper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
@@ -510,6 +518,46 @@ public class PlayerTest {
 		assertEquals("Player should have jumpStart velocity when jumping", player.jumpStart, player.dy, 0.2);
 		assertTrue("Player should be in falling state after jumping", player.falling);
 	}
+
+	@Test
+	@DisplayName("Test Logging in Catch Block Without Exception")
+	public void testLoggingInCatchBlockWithoutException() {
+		// Capturar la salida del logger
+		ByteArrayOutputStream logOutput = new ByteArrayOutputStream();
+		StreamHandler streamHandler = new StreamHandler(logOutput, new SimpleFormatter());
+
+		// Agregar un handler temporal al logger
+		LoggingHelper.LOGGER.addHandler(streamHandler);
+		LoggingHelper.LOGGER.setLevel(Level.SEVERE);
+
+		// Restablecer logMessageShown
+		Player.resetLogMessageShown();
+
+		// Registrar un mensaje de prueba para depuración
+		LoggingHelper.LOGGER.log(Level.SEVERE, "Test message for debug purposes");
+
+		// Ejecutar el constructor de Player
+		TileMap tm = new TileMap(30);
+		new Player(tm);
+
+		// Asegurarse de vaciar el buffer del logger
+		streamHandler.flush();
+
+		// Verificar el log capturado
+		String loggedMessage = logOutput.toString();
+		System.out.println("Captured Log: " + loggedMessage);
+
+		assertTrue("El log debería contener el mensaje registrado.",
+				loggedMessage.contains("Simulated log entry for test purposes"));
+
+		// Quitar el handler temporal para no afectar otros tests
+		LoggingHelper.LOGGER.removeHandler(streamHandler);
+	}
+
+
+
+
+
 
 
 }
