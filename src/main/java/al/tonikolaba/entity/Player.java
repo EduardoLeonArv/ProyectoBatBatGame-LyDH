@@ -278,31 +278,43 @@ public class Player extends MapObject {
 
 
 	public void hit(int damage) {
-		if (flinching)
-			return;
+		// Ajustar salud primero, luego manejar otros estados
+		System.out.println("Health before damage: " + health);
+		health = Math.max(0, health - damage); // Limitar salud a 0
+		System.out.println("Health after damage: " + health);
 
+		// Evitar daño adicional si está en estado de flinch
+		if (flinching) return;
+
+		// Actualizar estado del jugador
 		stop();
-		health -= damage;
-		if (health < 0)
-			health = 0;
 		flinching = true;
 		flinchCount = 0;
-		if (facingRight)
-			dx = -1;
-		else
-			dx = 1;
+		dx = facingRight ? -1 : 1;
 		dy = -3;
 		knockback = true;
 		falling = true;
 		jumping = false;
 	}
 
+
+
 	public void reset() {
-		health = maxHealth;
-		facingRight = true;
-		currentAction = -1;
-		stop();
+		health = maxHealth; // Restaurar la salud al máximo
+		flinching = false; // Restablecer el estado de flinch
+		knockback = false; // Desactivar knockback
+		falling = false;
+		jumping = false;
+		attacking = false;
+		dashing = false;
+		currentAction = -1; // Resetear la acción actual
+		facingRight = true; // Dirección predeterminada
+		stop(); // Detener todos los movimientos
 	}
+
+
+
+
 
 	public void stop() {
 		left = right = up = down = flinching = dashing = jumping = attacking = upattacking = charging = false;
