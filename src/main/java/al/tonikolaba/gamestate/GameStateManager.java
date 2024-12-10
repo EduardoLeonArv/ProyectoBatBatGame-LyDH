@@ -67,14 +67,6 @@ public class GameStateManager {
 			gameStates[state] = new HowtoPlay(this, player);
 		else if (state == LEVEL1STATE)
 			gameStates[state] = new Level1State(this, player);
-		else if (state == LEVEL2STATE)
-			gameStates[state] = new Level2State(this, player);
-		else if (state == LEVEL3STATE)
-			gameStates[state] = new Level3State(this, player);
-		else if (state == LEVEL4STATE)
-			gameStates[state] = new Level4State(this, player);
-		else if (state == ACIDSTATE)
-			gameStates[state] = new AcidState(this, player);
 	}
 
 	// Método para descargar un estado del juego

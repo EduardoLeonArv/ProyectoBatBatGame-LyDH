@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.handlers.Keys;
 
-class HowtoPlayTest {
+class HowToPlayTest {
 
     private HowtoPlay howtoPlay;
     private GameStateManager mockGSM;

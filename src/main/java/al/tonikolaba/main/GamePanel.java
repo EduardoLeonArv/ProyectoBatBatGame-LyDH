@@ -30,16 +30,16 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 
 	// game thread
 	private transient Thread thread;
-	private boolean running;
+	boolean running;
 	private int fps = 60;
 	private long targetTime = 1000 / fps;
 
 	// image
-	private transient BufferedImage image;
-	private transient Graphics2D g;
+	transient BufferedImage image;
+	transient Graphics2D g;
 
 	// game state manager
-	private transient GameStateManager gsm;
+	transient GameStateManager gsm;
 
 	// player reference
 	private Player player; // Referencia al jugador
@@ -47,7 +47,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 	// other
 	private boolean recording = false;
 	private int recordingCount = 0;
-	private boolean screenshot;
+	boolean screenshot;
 	private boolean scoreSaved = false; // Nueva bandera para evitar guardar múltiples veces
 
 	// Constructor modificado para aceptar el jugador
@@ -69,7 +69,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
-	private void init() {
+	void init() {
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 
@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		gsm.draw(g); // Dibuja el estado actual del juego
 	}
 
-	private void drawToScreen() {
+	void drawToScreen() {
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		g2.dispose();
