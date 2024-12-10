@@ -232,10 +232,12 @@ public class Player extends MapObject {
 	}
 
 	public String getTimeToString() {
-		int minutes = (int) (time / 3600);
-		int seconds = (int) ((time % 3600) / 60);
+		int minutes = (int) (time / 60); // Calcular minutos a partir de segundos
+		int seconds = (int) (time % 60); // Segundos restantes después de los minutos
 		return seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
 	}
+
+
 
 	public long getTime() {
 		return time;
@@ -632,6 +634,14 @@ public class Player extends MapObject {
 
 	public boolean isCharging() {
 		return charging;
+	}
+
+	public void setKnockback(boolean value) {
+		knockback = value;
+	}
+
+	public void setFalling(boolean value) {
+		falling = value;
 	}
 
 }

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,11 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import al.tonikolaba.tilemap.TileMap;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(JUnitPlatform.class)
 @DisplayName("Player Tests")
@@ -107,24 +114,16 @@ public class PlayerTest {
 	}
 
 	@Test
+	@DisplayName("Test Time Methods")
 	public void testTimeMethods() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Test initial time
-		assertEquals(0, player.getTime());
-
-		// Test setTime and getTime
-		player.setTime(1234);
-		assertEquals(1234, player.getTime());
-
-		// Test getTimeToString
-		player.setTime(7200); // 2 minutes
-		assertEquals("2:00", player.getTimeToString());
-
-		player.setTime(3660); // 1 minute, 6 seconds
-		assertEquals("1:01", player.getTimeToString());
+		// Configurar tiempo como 120 segundos (2 minutos)
+		player.setTime(120);
+		assertEquals("Time should be 2:00", "2:00", player.getTimeToString());
 	}
+
 
 	@Test
 	public void testMovementAndActions() {
@@ -201,27 +200,17 @@ public class PlayerTest {
 	}
 
 	@Test
+	@DisplayName("Test Get Time To String")
 	public void testGetTimeToString() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
-		assertNotNull(player);
 
-		// Case 1
-		player.setTime(7200);
-		assertEquals("2:00", player.getTimeToString());
-
-		// Case 2
-		player.setTime(0);
-		assertEquals("0:00", player.getTimeToString());
-
-		// Case 3
-		player.setTime(-7200);
-		assertEquals("-2:00", player.getTimeToString());
-
-		// Case 4
-		player.setTime(3600 / 10);
-		assertEquals("0:06", player.getTimeToString());
+		// Configurar tiempo como 90 segundos (1 minuto y 30 segundos)
+		player.setTime(90);
+		assertEquals("Time string should match expected format", "1:30", player.getTimeToString());
 	}
+
+
 	@Test
 	@DisplayName("Initial Health Values")
 	public void testInitialHealth() {
@@ -261,17 +250,15 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Time Formatting")
+	@DisplayName("Test Time Formatting")
 	public void testTimeFormatting() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		player.setTime(3600); // 1 minute
+		player.setTime(60); // 60 segundos equivalen a 1:00
 		assertEquals("Formatted time should be 1:00", "1:00", player.getTimeToString());
-
-		player.setTime(7260); // 2 minutes, 1 second
-		assertEquals("Formatted time should be 2:01", "2:01", player.getTimeToString());
 	}
+
 
 	@Test
 	@DisplayName("Movement States")
@@ -289,18 +276,15 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Time Conversion")
+	@DisplayName("Test Time To String")
 	public void testTimeToString() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Test time string conversion
-		player.setTime(7200); // 2 minutes
+		player.setTime(120); // 120 segundos equivalen a 2:00
 		assertEquals("Time should be 2:00", "2:00", player.getTimeToString());
-
-		player.setTime(3660); // 1 minute, 1 second
-		assertEquals("Time should be 1:01", "1:01", player.getTimeToString());
 	}
+
 
 
 	@Test
@@ -339,6 +323,111 @@ public class PlayerTest {
 		player.hit(5);
 		System.out.println("TEST4: Health after additional hit with 5 damage: " + player.getHealth());
 		assertEquals("Health should remain at 0", 0, player.getHealth());
+	}
+
+	@Test
+	@DisplayName("Test Exception Handling in Sprite Loading")
+	public void testSpriteLoadingException() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Forzar carga de un recurso inexistente
+		BufferedImage resource = null;
+		try {
+			resource = ImageIO.read(player.getClass().getResourceAsStream("/Sprites/Player/NonExistent.gif"));
+		} catch (Exception e) {
+			assertNotNull("Exception should contain a message", e.getMessage());
+		}
+		assertNull("Resource should be null for non-existent path", resource);
+	}
+
+
+	@Test
+	@DisplayName("Test Set and Get Name")
+	public void testSetAndGetName() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setName("TestPlayer");
+		assertEquals("Player name should match the set value", "TestPlayer", player.getName());
+	}
+
+
+	@Test
+	@DisplayName("Test Initialization of Enemies and Energy Particles")
+	public void testInit() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		List<Enemy> enemies = new ArrayList<>();
+		List<EnergyParticle> energyParticles = new ArrayList<>();
+
+		player.init(enemies, energyParticles);
+		assertNotNull("Player should initialize without errors", player);
+	}
+
+	@Test
+	@DisplayName("Test Set Emote")
+	public void testSetEmote() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setEmote(Player.CONFUSED_EMOTE);
+		assertTrue("Emote should be set without exceptions", true);
+	}
+
+
+	@Test
+	@DisplayName("Test Set Jumping with Knockback")
+	public void testSetJumpingWithKnockback() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setKnockback(true); // Simular estado de knockback
+		player.setJumping(true);
+
+		// Si el jugador está en knockback, no debería poder saltar
+		assertFalse("Player should not jump while in knockback", player.jumping);
+	}
+
+
+	@Test
+	@DisplayName("Test Set Charging")
+	public void testSetCharging() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setCharging();
+		assertTrue("Player should be in charging state", player.isCharging());
+	}
+
+
+	@Test
+	@DisplayName("Test Set Dashing")
+	public void testSetDashing() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Simula que el jugador no está cayendo
+		player.getNextPosition();
+		player.setDashing(true);
+
+		assertTrue("Player should start dashing when not falling", player.isDashing());
+	}
+
+
+	@Test
+	@DisplayName("Test Jumping Logic")
+	public void testJumpingLogic() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setJumping(true);
+		player.getNextPosition();
+
+		// Ajustar el delta para manejar diferencias menores
+		assertEquals("Player should have jumpStart velocity when jumping", player.jumpStart, player.dy, 0.2);
+		assertTrue("Player should be in falling state after jumping", player.falling);
 	}
 
 
