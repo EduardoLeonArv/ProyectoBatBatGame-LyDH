@@ -14,12 +14,8 @@ import al.tonikolaba.entity.Player;
  */
 public class Level1State extends GameState {
 
-	private Player player; // Referencia al jugador
-
 	public Level1State(GameStateManager gsm, Player player) {
 		super(gsm, player);
-		this.player = player; // Asignar el jugador
-		init(GameStateManager.LEVEL2STATE);
 	}
 
 	@Override
