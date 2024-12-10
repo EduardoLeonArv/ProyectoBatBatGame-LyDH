@@ -75,7 +75,6 @@ public class Player extends MapObject {
 	private BufferedImage confused;
 	private BufferedImage surprised;
 	private int emote = NONE_EMOTE;
-	private static boolean logMessageShown = false; // Bandera para controlar el registro
 
 	public Player(TileMap tm) {
 
@@ -135,17 +134,8 @@ public class Player extends MapObject {
 			surprised = spritesheet.getSubimage(14, 0, 14, 17);
 
 		} catch (Exception e) {
-			// Cambiar el mensaje a un formato controlado
-			String errorMessage = "Error loading player resources: " + e.getMessage();
-			LoggingHelper.LOGGER.log(Level.SEVERE, errorMessage);
+			LoggingHelper.LOGGER.log(Level.SEVERE, e.getMessage());
 		}
-
-		// Registrar log de prueba solo una vez
-		if (!logMessageShown) {
-			LoggingHelper.LOGGER.log(Level.SEVERE, "Simulated log entry for test purposes.");
-			logMessageShown = true;
-		}
-
 
 		energyParticles = new ArrayList<>();
 
@@ -669,10 +659,5 @@ public class Player extends MapObject {
 
 	public double getDoubleJumpStart() {
 		return doubleJumpStart;
-	}
-
-	// Método para restablecer logMessageShown
-	public static void resetLogMessageShown() {
-		logMessageShown = false;
 	}
 }
