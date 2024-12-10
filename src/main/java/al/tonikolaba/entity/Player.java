@@ -633,7 +633,7 @@ public class Player extends MapObject {
 	}
 
 	public void setFlinching(boolean value) {
-		knockback = value;
+		flinching = value;
 	}
 
 	public void setFalling(boolean value) {
