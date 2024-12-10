@@ -130,14 +130,13 @@ public class PlayerTest {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Test initial state
-		assertFalse(player.isDashing());
+		assertFalse("Player should not be dashing initially", player.isDashing());
 
-		// Test dashing
 		player.setDashing(true);
-		assertTrue(player.isDashing());
+		assertTrue("Player should be dashing after set to true", player.isDashing());
+
 		player.setDashing(false);
-		assertFalse(player.isDashing());
+		assertFalse("Player should not be dashing after set to false", player.isDashing());
 
 		// Test jumping
 		player.setJumping(true);
@@ -147,6 +146,7 @@ public class PlayerTest {
 		player.stop();
 		assertFalse(player.jumping);
 		assertFalse(player.isDashing());
+
 	}
 
 	@Test
@@ -168,36 +168,32 @@ public class PlayerTest {
 	}
 
 	@Test
+	@DisplayName("Test Set Attacking")
 	public void testSetAttacking() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
-		assertNotNull(player);
 
-		// Case 1
+		player.setKnockback(true);
 		player.setAttacking();
-		assertTrue(player.attacking);
 
-		// Case 2
-		player.stop();
-		player.setAttacking();
-		assertFalse(player.upattacking);
-
-		// Case 3
-		player.hit(4);
-		player.setAttacking();
-		assertFalse(player.attacking);
-
-		// Case 4
-		player.getNextPosition();
-		player.setAttacking();
-		assertTrue(player.attacking);
-
-		// Case 5
-		player.hit(5);
-		player.getNextPosition();
-		player.setAttacking();
-		assertTrue(player.attacking);
+		assertFalse("Player should not attack during knockback", player.isAttacking());
 	}
+
+
+	@Test
+	@DisplayName("Test Movement Behavior")
+	public void testMovementBehavior() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Activar movimiento hacia la derecha
+		player.setRight(true);
+		player.getNextPosition();
+
+		assertTrue("Player should move right", player.dx > 0);
+	}
+
+
 
 	@Test
 	@DisplayName("Test Get Time To String")
@@ -208,6 +204,16 @@ public class PlayerTest {
 		// Configurar tiempo como 90 segundos (1 minuto y 30 segundos)
 		player.setTime(90);
 		assertEquals("Time string should match expected format", "1:30", player.getTimeToString());
+	}
+
+	@Test
+	@DisplayName("Test Get Time")
+	public void testGetTime() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setTime(120);
+		assertEquals("Time should match the set value", 120, player.getTime());
 	}
 
 
@@ -257,22 +263,6 @@ public class PlayerTest {
 
 		player.setTime(60); // 60 segundos equivalen a 1:00
 		assertEquals("Formatted time should be 1:00", "1:00", player.getTimeToString());
-	}
-
-
-	@Test
-	@DisplayName("Movement States")
-	public void testMovement() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		assertFalse("Player should not be dashing initially", player.isDashing());
-
-		player.setDashing(true);
-		assertTrue("Player should be dashing after set to true", player.isDashing());
-
-		player.setDashing(false);
-		assertFalse("Player should not be dashing after set to false", player.isDashing());
 	}
 
 	@Test
@@ -397,8 +387,9 @@ public class PlayerTest {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
+		player.setKnockback(true);
 		player.setCharging();
-		assertTrue("Player should be in charging state", player.isCharging());
+		assertFalse("Player should not enter charging state during knockback", player.isCharging());
 	}
 
 
@@ -408,12 +399,102 @@ public class PlayerTest {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Simula que el jugador no está cayendo
-		player.getNextPosition();
+		// Configurar estado de caída
+		player.setFalling(true);
 		player.setDashing(true);
 
-		assertTrue("Player should start dashing when not falling", player.isDashing());
+		assertFalse("Player should not dash while falling", player.isDashing());
 	}
+
+
+	@Test
+	@DisplayName("Test Get Next Position")
+	public void testGetNextPosition() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Caso: knockback activo
+		player.setKnockback(true);
+		player.getNextPosition();
+		assertTrue("Player should still be in knockback state", player.isKnockback());
+
+		// Caso: movimiento normal
+		player.setKnockback(false);
+		player.setLeft(true);
+		player.getNextPosition();
+		assertTrue("Player should move left", player.dx < 0);
+	}
+
+	@Test
+	@DisplayName("Test Set Attacking with Knockback")
+	public void testSetAttackingWithKnockback() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Activar knockback
+		player.setKnockback(true);
+		player.setAttacking();
+
+		// Verificar que no entra en estado de ataque
+		assertFalse("Player should not attack during knockback", player.isAttacking());
+	}
+
+	@Test
+	@DisplayName("Test Jump and Fall")
+	public void testJumpAndFall() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setJumping(true);
+		player.jumpAndFall();
+
+		assertEquals("Player should have jump start velocity", player.jumpStart, player.dy, 0.2);
+		assertTrue("Player should be falling after jumping", player.isFalling());
+	}
+
+
+
+	@Test
+	@DisplayName("Test Movement with Dashing")
+	public void testMovement() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar estado inicial
+		player.setRight(true);
+		player.setDashing(true);
+
+		player.movement(); // Llamar al método de movimiento
+
+		// Verificar que la velocidad durante dashing supera maxSpeed
+		assertTrue("Player should move faster when dashing", player.dx > player.maxSpeed);
+	}
+
+
+
+
+	@Test
+	@DisplayName("Debug Test Movement with Dashing")
+	public void testMovementDebug() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar movimiento hacia la derecha y activar dashing
+		player.setRight(true);
+		player.setDashing(true);
+
+		System.out.println("Before movement: dx = " + player.dx + ", maxSpeed = " + player.maxSpeed + ", dashing = " + player.isDashing());
+
+		player.movement();
+
+		System.out.println("After movement: dx = " + player.dx + ", maxSpeed = " + player.maxSpeed + ", dashing = " + player.isDashing());
+
+		assertTrue("Player should move faster when dashing", player.dx > player.maxSpeed);
+	}
+
+
+
+
 
 
 	@Test

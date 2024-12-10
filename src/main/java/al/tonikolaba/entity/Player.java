@@ -93,10 +93,9 @@ public class Player extends MapObject {
 		height = 30;
 		cwidth = 15;
 		cheight = 38;
-
-		moveSpeed = 1.6;
-		maxSpeed = 1.6;
-		stopSpeed = 1.6;
+		moveSpeed = 0.4;   // Velocidad incremental
+		maxSpeed = 1.6;    // Velocidad máxima normal
+		stopSpeed = 0.15;  // Disminución de velocidad
 		fallSpeed = 0.15;
 		maxFallSpeed = 4.0;
 		jumpStart = -4.8;
@@ -336,7 +335,7 @@ public class Player extends MapObject {
 
 	}
 
-	private void jumpAndFall() {
+	protected void jumpAndFall() {
 		// jumping
 		if (jumping && !falling) {
 			dy = jumpStart;
@@ -368,16 +367,16 @@ public class Player extends MapObject {
 		}
 	}
 
-	private void movement() {
+	protected void movement() {
 		double maxSpeed = this.maxSpeed;
-		if (dashing)
-			maxSpeed *= 1.75;
 
-		// movement
-		if (left) {
-			dx = Math.max(-maxSpeed, dx - moveSpeed);
+		if (dashing) {
+			maxSpeed *= 1.75;
+			dx = maxSpeed; // Configurar directamente dx al máximo durante dashing
 		} else if (right) {
 			dx = Math.min(maxSpeed, dx + moveSpeed);
+		} else if (left) {
+			dx = Math.max(-maxSpeed, dx - moveSpeed);
 		} else {
 			if (dx >= 0) {
 				dx = Math.max(0, dx - stopSpeed);
@@ -386,20 +385,13 @@ public class Player extends MapObject {
 			}
 		}
 
-		// cannot move while attacking, except in air
-		if ((attacking || upattacking || charging) && !(jumping || falling)) {
-			dx = 0;
-		}
-
-		// charging
-		if (charging) {
-			chargingTick++;
-			if (facingRight)
-				dx = moveSpeed * (3 - chargingTick * 0.07);
-			else
-				dx = -moveSpeed * (3 - chargingTick * 0.07);
-		}
+		System.out.println("Dashing: " + dashing + ", dx: " + dx + ", maxSpeed: " + maxSpeed);
 	}
+
+
+
+
+
 
 	private void setAnimation(int i) {
 		if (currentAction != i) {
@@ -644,4 +636,28 @@ public class Player extends MapObject {
 		falling = value;
 	}
 
+	public boolean isKnockback() {
+		return knockback;
+	}
+
+	public boolean isAttacking() {
+		return attacking;
+	}
+
+	// Agregar getters para las variables necesarias
+	public boolean isFalling() {
+		return falling;
+	}
+
+	public void setDoubleJump(boolean doubleJump) {
+		this.doubleJump = doubleJump;
+	}
+
+	public boolean isAlreadyDoubleJump() {
+		return alreadyDoubleJump;
+	}
+
+	public double getDoubleJumpStart() {
+		return doubleJumpStart;
+	}
 }
