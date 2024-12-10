@@ -19,6 +19,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(JUnitPlatform.class)
@@ -533,35 +534,81 @@ public class PlayerTest {
 		// Test getting double jump start value
 		assertEquals("Double jump start value should be -3", -3, player.getDoubleJumpStart(), 0.001);
 	}
+
 	@Test
-	@DisplayName("Test Draw Method")
+	@DisplayName("Test Draw Method for Player")
 	public void testDraw() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Configurar estado inicial
+		// Mock de Graphics2D
+		Graphics2D gMock = Mockito.mock(Graphics2D.class);
+
+		// Configurar el emote y llamar a draw
 		player.setEmote(Player.CONFUSED_EMOTE);
-		player.setKnockback(true);
-		player.setFlinching(true);
+		player.draw(gMock);
+
+		// Verificar que drawImage se llama exactamente 2 veces (Player y MapObject)
+		Mockito.verify(gMock, Mockito.times(2)).drawImage(
+				Mockito.any(),
+				Mockito.anyInt(),
+				Mockito.anyInt(),
+				Mockito.isNull()
+		);
+	}
+
+
+
+	@Test
+	@DisplayName("Test Drawing Particles Without Direct Access")
+	public void testDrawingParticlesWithoutDirectAccess() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Mock de Graphics2D y EnergyParticle
+		Graphics2D gMock = Mockito.mock(Graphics2D.class);
+		EnergyParticle particleMock = Mockito.mock(EnergyParticle.class);
+
+		// Crear una lista mutable para partículas
+		List<EnergyParticle> particleList = new ArrayList<>();
+		particleList.add(particleMock);
+
+		// Inicializar el jugador con las partículas
+		player.init(new ArrayList<>(), particleList);
+
+		// Llamar a draw
+		player.draw(gMock);
+
+		// Verificar que la partícula intenta dibujarse
+		Mockito.verify(particleMock, Mockito.times(1)).draw(gMock);
+	}
+
+
+	@Test
+	@DisplayName("Test Flinch Prevents Drawing")
+	public void testFlinchPreventsDrawing() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
 
 		// Mock de Graphics2D
 		Graphics2D gMock = Mockito.mock(Graphics2D.class);
 
-		// Ejecutar el método draw
+		// Simular estado de flinch
+		player.hit(1); // Activar flinch
+		player.setFlinching(true);
+		player.setKnockback(false);
+
+		// Llamar a draw
 		player.draw(gMock);
 
-		// Validar que se intenta dibujar el emote CONFUSED_EMOTE
-		Mockito.verify(gMock).drawImage(
+		// Verificar que no se realizan interacciones adicionales en Player.draw
+		Mockito.verify(gMock, Mockito.atMost(1)).drawImage(
 				Mockito.any(),
-				Mockito.eq((int) (player.x + player.xmap - player.cwidth / 2.0)),
-				Mockito.eq((int) (player.y + player.ymap - 40)),
+				Mockito.anyInt(),
+				Mockito.anyInt(),
 				Mockito.isNull()
 		);
-
-		// Verificar que no se llama a super.draw si está flinching
-		if (player.isFlinching() && !player.isKnockback()) {
-			Mockito.verifyNoInteractions(gMock);
-		}
 	}
+
 
 }

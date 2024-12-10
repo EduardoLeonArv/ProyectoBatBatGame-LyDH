@@ -671,4 +671,13 @@ public class Player extends MapObject {
 	public boolean isFlinching() {
 		return flinching;
 	}
+
+	public long getFlinchCount() {
+		return flinchCount;
+	}
+
+	public void setFlinchCount(long flinchCount) {
+		this.flinchCount = flinchCount;
+	}
+
 }
