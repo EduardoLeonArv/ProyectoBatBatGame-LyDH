@@ -679,5 +679,12 @@ public class Player extends MapObject {
 	public void setFlinchCount(long flinchCount) {
 		this.flinchCount = flinchCount;
 	}
+	public int getCurrentAction() {
+		return currentAction;
+	}
+
+	public List<EnergyParticle> getEnergyParticles() {
+		return energyParticles;
+	}
 
 }

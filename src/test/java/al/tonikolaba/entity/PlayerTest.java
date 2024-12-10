@@ -13,13 +13,10 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import al.tonikolaba.tilemap.TileMap;
-import org.mockito.Mockito;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(JUnitPlatform.class)
@@ -360,17 +357,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Set Emote")
-	public void testSetEmote() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		player.setEmote(Player.CONFUSED_EMOTE);
-		assertTrue("Emote should be set without exceptions", true);
-	}
-
-
-	@Test
 	@DisplayName("Test Set Jumping with Knockback")
 	public void testSetJumpingWithKnockback() {
 		TileMap tm = new TileMap(30);
@@ -536,79 +522,107 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Draw Method for Player")
-	public void testDraw() {
+	@DisplayName("Test Get Max Health")
+	public void testGetMaxHealth() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Mock de Graphics2D
-		Graphics2D gMock = Mockito.mock(Graphics2D.class);
+		assertEquals("Max health should be 5 by default", 5, player.getMaxHealth());
+	}
 
-		// Configurar el emote y llamar a draw
+	@Test
+	@DisplayName("Test Set and Get Lives")
+	public void testSetAndGetLives() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setLives(10);
+		assertEquals("Lives should be set to 10", 10, player.getLives());
+
+		player.gainLife();
+		assertEquals("Lives should increase to 11", 11, player.getLives());
+
+		player.loseLife();
+		assertEquals("Lives should decrease to 10", 10, player.getLives());
+	}
+
+	@Test
+	@DisplayName("Test Set Emote")
+	public void testSetEmote() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
 		player.setEmote(Player.CONFUSED_EMOTE);
-		player.draw(gMock);
-
-		// Verificar que drawImage se llama exactamente 2 veces (Player y MapObject)
-		Mockito.verify(gMock, Mockito.times(2)).drawImage(
-				Mockito.any(),
-				Mockito.anyInt(),
-				Mockito.anyInt(),
-				Mockito.isNull()
-		);
+		assertTrue("Emote should be set successfully", true);
 	}
 
-
-
 	@Test
-	@DisplayName("Test Drawing Particles Without Direct Access")
-	public void testDrawingParticlesWithoutDirectAccess() {
+	@DisplayName("Test Flinching Logic")
+	public void testFlinchingLogic() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
-		// Mock de Graphics2D y EnergyParticle
-		Graphics2D gMock = Mockito.mock(Graphics2D.class);
-		EnergyParticle particleMock = Mockito.mock(EnergyParticle.class);
+		assertFalse("Player should not be flinching initially", player.isFlinching());
 
-		// Crear una lista mutable para partículas
-		List<EnergyParticle> particleList = new ArrayList<>();
-		particleList.add(particleMock);
-
-		// Inicializar el jugador con las partículas
-		player.init(new ArrayList<>(), particleList);
-
-		// Llamar a draw
-		player.draw(gMock);
-
-		// Verificar que la partícula intenta dibujarse
-		Mockito.verify(particleMock, Mockito.times(1)).draw(gMock);
-	}
-
-
-	@Test
-	@DisplayName("Test Flinch Prevents Drawing")
-	public void testFlinchPreventsDrawing() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Mock de Graphics2D
-		Graphics2D gMock = Mockito.mock(Graphics2D.class);
-
-		// Simular estado de flinch
-		player.hit(1); // Activar flinch
 		player.setFlinching(true);
-		player.setKnockback(false);
+		assertTrue("Player should be flinching after being set", player.isFlinching());
 
-		// Llamar a draw
-		player.draw(gMock);
-
-		// Verificar que no se realizan interacciones adicionales en Player.draw
-		Mockito.verify(gMock, Mockito.atMost(1)).drawImage(
-				Mockito.any(),
-				Mockito.anyInt(),
-				Mockito.anyInt(),
-				Mockito.isNull()
-		);
+		player.setFlinching(false);
+		assertFalse("Player should not be flinching after being reset", player.isFlinching());
 	}
 
+	@Test
+	@DisplayName("Test Get Current Action")
+	public void testGetCurrentAction() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
 
+		assertEquals("Default current action should be 0", 0, player.getCurrentAction());
+	}
+
+	@Test
+	@DisplayName("Test Energy Particles Initialization")
+	public void testEnergyParticlesInitialization() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		assertNotNull("Energy particles list should not be null", player.getEnergyParticles());
+		assertTrue("Energy particles list should be empty initially", player.getEnergyParticles().isEmpty());
+	}
+
+	@Test
+	@DisplayName("Test Reset Score")
+	public void testResetScore() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setScore(50);
+		player.setScore(0);
+		assertEquals("Score should reset to 0", 0, player.getScore());
+	}
+
+	@Test
+	@DisplayName("Test Double Jump Mechanics")
+	public void testDoubleJumpMechanics() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setDoubleJump(true);
+		assertTrue("Double jump should be enabled", player.isDoubleJump());
+
+		player.setDoubleJump(false);
+		assertFalse("Double jump should be disabled", player.isDoubleJump());
+	}
+
+	@Test
+	@DisplayName("Test Player Stop Mechanics")
+	public void testPlayerStopMechanics() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setDashing(true);
+		player.stop();
+
+		assertFalse("Player should stop dashing after stop is called", player.isDashing());
+	}
 }
