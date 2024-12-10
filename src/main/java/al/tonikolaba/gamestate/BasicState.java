@@ -112,4 +112,12 @@ public abstract class BasicState {
 			currentChoice++;
 		}
 	}
+
+	public int getCurrentChoice() {
+		return currentChoice;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
 }
