@@ -17,29 +17,55 @@ import al.tonikolaba.tilemap.TileMap;
 public class PlayerTest {
 
 	@Test
+	@DisplayName("Test Health Management")
 	public void testHealthMethods() {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
-
+		System.out.println("TEST1");
 		// Test initial health
-		assertEquals(5, player.getHealth());
-		assertEquals(5, player.getMaxHealth());
-
-		// Test setHealth
+		System.out.println("Initial health: " + player.getHealth());
+		assertEquals("Initial health should be 5", 5, player.getHealth());
+		System.out.println("TEST2");
+		// Modify health
 		player.setHealth(3);
-		assertEquals(3, player.getHealth());
-
-		// Test hit
+		System.out.println("Health after set to 3: " + player.getHealth());
+		assertEquals("Health should now be 3", 3, player.getHealth());
+		System.out.println("TEST3");
+		// Test taking damage
 		player.hit(2);
-		assertEquals(1, player.getHealth());
-
-		// Test health does not go below zero
+		System.out.println("Health after taking 2 damage: " + player.getHealth());
+		assertEquals("Health should decrease to 1", 1, player.getHealth());
+		System.out.println("TEST4");
+		// Ensure health does not go below zero
+		// Ensure health does not go below zero
+		System.out.println("Testing hit with 10 damage...");
 		player.hit(10);
-		assertEquals(0, player.getHealth());
-
-		// Test reset restores health
+		System.out.println("Health after taking 10 damage: " + player.getHealth());
+		assertEquals("Health should not be negative", 0, player.getHealth());
+		System.out.println("TEST5");
+		// Test reset
 		player.reset();
-		assertEquals(5, player.getHealth());
+		System.out.println("Health after reset: " + player.getHealth());
+		assertEquals("Health should reset to max", 5, player.getHealth());
+		System.out.println("TEST6");
+		// Test taking damage after reset
+		player.hit(10);
+		System.out.println("Health after reset and taking 10 damage: " + player.getHealth());
+		assertEquals("Health should be 0 after taking full damage", 0, player.getHealth());
+		System.out.println("TEST7");
+	}
+
+
+
+	@Test
+	@DisplayName("Test Reset Functionality")
+	public void testReset() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setHealth(1);
+		player.reset();
+		assertEquals("Health should reset to max after reset", 5, player.getHealth());
 	}
 
 	@Test
@@ -196,4 +222,124 @@ public class PlayerTest {
 		player.setTime(3600 / 10);
 		assertEquals("0:06", player.getTimeToString());
 	}
+	@Test
+	@DisplayName("Initial Health Values")
+	public void testInitialHealth() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		assertEquals("Initial health should be 5", 5, player.getHealth());
+		assertEquals("Initial max health should be 5", 5, player.getMaxHealth());
+	}
+
+	@Test
+	@DisplayName("Score Modification")
+	public void testScore() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setScore(10);
+		assertEquals("Score should be updated to 10", 10, player.getScore());
+
+		player.increaseScore(5);
+		assertEquals("Score should increase by 5", 15, player.getScore());
+	}
+
+	@Test
+	@DisplayName("Life Methods")
+	public void testLife() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		assertEquals("Initial lives should be 3", 3, player.getLives());
+
+		player.gainLife();
+		assertEquals("Lives should increase to 4", 4, player.getLives());
+
+		player.loseLife();
+		assertEquals("Lives should decrease to 3", 3, player.getLives());
+	}
+
+	@Test
+	@DisplayName("Time Formatting")
+	public void testTimeFormatting() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setTime(3600); // 1 minute
+		assertEquals("Formatted time should be 1:00", "1:00", player.getTimeToString());
+
+		player.setTime(7260); // 2 minutes, 1 second
+		assertEquals("Formatted time should be 2:01", "2:01", player.getTimeToString());
+	}
+
+	@Test
+	@DisplayName("Movement States")
+	public void testMovement() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		assertFalse("Player should not be dashing initially", player.isDashing());
+
+		player.setDashing(true);
+		assertTrue("Player should be dashing after set to true", player.isDashing());
+
+		player.setDashing(false);
+		assertFalse("Player should not be dashing after set to false", player.isDashing());
+	}
+
+	@Test
+	@DisplayName("Test Time Conversion")
+	public void testTimeToString() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Test time string conversion
+		player.setTime(7200); // 2 minutes
+		assertEquals("Time should be 2:00", "2:00", player.getTimeToString());
+
+		player.setTime(3660); // 1 minute, 1 second
+		assertEquals("Time should be 1:01", "1:01", player.getTimeToString());
+	}
+
+
+	@Test
+	@DisplayName("Test Setting Dead")
+	public void testSetDead() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Set player to dead
+		player.setDead();
+		assertEquals("Health should be 0 after death", 0, player.getHealth());
+	}
+
+	@Test
+	@DisplayName("Test Hit Logic Isolation")
+	public void testHitLogic() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Initial health
+		player.setHealth(5);
+		System.out.println("TEST1: Health after set to 5: " + player.getHealth());
+		assertEquals("Initial health should be 5", 5, player.getHealth());
+
+		// Take damage less than health
+		player.hit(3);
+		System.out.println("TEST2: Health after hit with 3 damage: " + player.getHealth());
+		assertEquals("Health should decrease to 2", 2, player.getHealth());
+
+		// Take damage more than remaining health
+		player.hit(10);
+		System.out.println("TEST3: Health after hit with 10 damage: " + player.getHealth());
+		assertEquals("Health should not go below 0", 0, player.getHealth());
+
+		// Ensure subsequent hits do not break logic
+		player.hit(5);
+		System.out.println("TEST4: Health after additional hit with 5 damage: " + player.getHealth());
+		assertEquals("Health should remain at 0", 0, player.getHealth());
+	}
+
+
 }
