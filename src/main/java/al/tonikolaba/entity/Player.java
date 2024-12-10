@@ -620,6 +620,7 @@ public class Player extends MapObject {
 		super.draw(g);
 
 	}
+	
 	public boolean isTeleporting() {
 		return teleporting;
 	}
@@ -672,13 +673,6 @@ public class Player extends MapObject {
 		return flinching;
 	}
 
-	public long getFlinchCount() {
-		return flinchCount;
-	}
-
-	public void setFlinchCount(long flinchCount) {
-		this.flinchCount = flinchCount;
-	}
 	public int getCurrentAction() {
 		return currentAction;
 	}
