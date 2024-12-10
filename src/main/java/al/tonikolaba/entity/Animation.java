@@ -67,9 +67,6 @@ public class Animation {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
     public BufferedImage getImage() {
         return frames[currentFrame];
     }

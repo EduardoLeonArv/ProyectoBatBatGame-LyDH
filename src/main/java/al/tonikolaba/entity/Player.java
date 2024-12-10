@@ -393,7 +393,7 @@ public class Player extends MapObject {
 
 
 
-	protected void setAnimation(int i) {
+	private void setAnimation(int i) {
 		if (currentAction != i) {
 			currentAction = i;
 			animation.setFrames(sprites.get(currentAction));
@@ -685,19 +685,6 @@ public class Player extends MapObject {
 
 	public List<EnergyParticle> getEnergyParticles() {
 		return energyParticles;
-	}
-	public static int getIdleAnim() {
-		return IDLE_ANIM;
-	}
-
-	public static int getUpAttackingAnim() {
-		return UPATTACKING_ANIM;
-	}
-	public Animation getAnimation() {
-		return animation;
-	}
-	public void setCurrentAction(int action) {
-		this.currentAction = action;
 	}
 
 }
