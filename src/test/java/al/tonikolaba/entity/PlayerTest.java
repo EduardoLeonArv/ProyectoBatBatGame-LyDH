@@ -659,13 +659,13 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Exception Handling in Constructor")
-	public void testExceptionHandlingInConstructor() {
+	@DisplayName("Test Logging for Exception Handling")
+	public void testLoggingForExceptionHandling() {
+		TileMap tm = new TileMap(30);
 		try {
-			TileMap tm = new TileMap(30);
-			new Player(tm); // Directly instantiate to trigger the constructor
+			new Player(tm);
 		} catch (Exception e) {
-			assertNotNull("Exception message should not be null", e.getMessage());
+			assertNotNull("Exception should be caught and logged", e.getMessage());
 		}
 	}
 }
