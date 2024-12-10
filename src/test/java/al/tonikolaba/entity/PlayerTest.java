@@ -13,8 +13,10 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import al.tonikolaba.tilemap.TileMap;
+import org.mockito.Mockito;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -511,5 +513,55 @@ public class PlayerTest {
 		assertTrue("Player should be in falling state after jumping", player.falling);
 	}
 
+	@Test
+	@DisplayName("Test Double Jump Logic")
+	public void testDoubleJumpLogic() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Test initial state of double jump
+		assertFalse("Initially, double jump should be false", player.isAlreadyDoubleJump());
+
+		// Test setting double jump to true
+		player.setDoubleJump(true);
+		assertTrue("Double jump should be true after setting", player.isDoubleJump());
+
+		// Test resetting double jump to false
+		player.setDoubleJump(false);
+		assertFalse("Double jump should be false after resetting", player.isDoubleJump());
+
+		// Test getting double jump start value
+		assertEquals("Double jump start value should be -3", -3, player.getDoubleJumpStart(), 0.001);
+	}
+	@Test
+	@DisplayName("Test Draw Method")
+	public void testDraw() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar estado inicial
+		player.setEmote(Player.CONFUSED_EMOTE);
+		player.setKnockback(true);
+		player.setFlinching(true);
+
+		// Mock de Graphics2D
+		Graphics2D gMock = Mockito.mock(Graphics2D.class);
+
+		// Ejecutar el método draw
+		player.draw(gMock);
+
+		// Validar que se intenta dibujar el emote CONFUSED_EMOTE
+		Mockito.verify(gMock).drawImage(
+				Mockito.any(),
+				Mockito.eq((int) (player.x + player.xmap - player.cwidth / 2.0)),
+				Mockito.eq((int) (player.y + player.ymap - 40)),
+				Mockito.isNull()
+		);
+
+		// Verificar que no se llama a super.draw si está flinching
+		if (player.isFlinching() && !player.isKnockback()) {
+			Mockito.verifyNoInteractions(gMock);
+		}
+	}
 
 }
