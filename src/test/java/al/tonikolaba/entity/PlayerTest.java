@@ -169,17 +169,7 @@ public class PlayerTest {
 		assertTrue(player.isCharging());
 	}
 
-	@Test
-	@DisplayName("Test Set Attacking")
-	public void testSetAttacking() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
 
-		player.setKnockback(true);
-		player.setAttacking();
-
-		assertFalse("Player should not attack during knockback", player.isAttacking());
-	}
 
 
 	@Test
@@ -378,9 +368,15 @@ public class PlayerTest {
 		TileMap tm = new TileMap(30);
 		Player player = new Player(tm);
 
+		// Test with knockback active
 		player.setKnockback(true);
 		player.setCharging();
-		assertFalse("Player should not enter charging state during knockback", player.isCharging());
+		assertFalse("Player should not start charging when knockback is active", player.isCharging());
+
+		// Test with normal conditions
+		player.setKnockback(false);
+		player.setCharging();
+		assertTrue("Player should start charging under normal conditions", player.isCharging());
 	}
 
 
@@ -642,4 +638,25 @@ public class PlayerTest {
 		// Minimal verification to satisfy coverage
 		Mockito.verify(mockGraphics, Mockito.atLeastOnce()).drawImage(Mockito.any(), Mockito.anyInt(), Mockito.anyInt(), Mockito.isNull());
 	}
+
+	@Test
+	@DisplayName("Test Set Attacking")
+	public void testSetAttacking() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Test with knockback active
+		player.setKnockback(true);
+		player.setAttacking();
+		assertFalse("Player should not be attacking when knockback is active", player.isAttacking());
+
+		// Test with charging active
+		player.setKnockback(false);
+		player.setCharging();
+		player.setAttacking();
+		assertFalse("Player should not be attacking when charging is active", player.isAttacking());
+
+	}
+
+
 }
