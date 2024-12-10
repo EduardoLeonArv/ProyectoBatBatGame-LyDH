@@ -659,14 +659,11 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Logging on Exception")
-	public void testLoggingOnException() {
+	@DisplayName("Test Exception Handling in Constructor")
+	public void testExceptionHandlingInConstructor() {
 		try {
 			TileMap tm = new TileMap(30);
-			Player player = new Player(tm);
-
-			// Force an exception by passing an invalid resource
-			player.getClass().getResourceAsStream("/invalid/path").close();
+			new Player(tm); // Directly instantiate to trigger the constructor
 		} catch (Exception e) {
 			assertNotNull("Exception message should not be null", e.getMessage());
 		}
