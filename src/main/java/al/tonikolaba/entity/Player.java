@@ -632,6 +632,10 @@ public class Player extends MapObject {
 		knockback = value;
 	}
 
+	public void setFlinching(boolean value) {
+		knockback = value;
+	}
+
 	public void setFalling(boolean value) {
 		falling = value;
 	}
@@ -659,5 +663,12 @@ public class Player extends MapObject {
 
 	public double getDoubleJumpStart() {
 		return doubleJumpStart;
+	}
+
+	public boolean isDoubleJump() {
+		return doubleJump;
+	}
+	public boolean isFlinching() {
+		return flinching;
 	}
 }
