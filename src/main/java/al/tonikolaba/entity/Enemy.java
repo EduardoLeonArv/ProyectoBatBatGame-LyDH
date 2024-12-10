@@ -43,6 +43,19 @@ public class Enemy extends MapObject {
         return damage;
     }
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    // Check if the enemy is flinching
+    public boolean isFlinching() {
+        return flinching;
+    }
+
+    // Getter for health
+    public int getHealth() {
+        return health;
+    }
     // Método hit modificado
     public void hit(int damage) {
         if (dead || flinching) return;

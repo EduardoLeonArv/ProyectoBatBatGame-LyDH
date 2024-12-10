@@ -269,5 +269,12 @@ public class MapObject {
 					-width, height, null);
 		}
 	}
+	public void setXtemp(double xtemp) {
+		this.xtemp = xtemp;
+	}
+
+	public void setYtemp(double ytemp) {
+		this.ytemp = ytemp;
+	}
 
 }
