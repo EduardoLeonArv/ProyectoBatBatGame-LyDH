@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+import java.lang.reflect.Field;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -77,4 +80,62 @@ class XhelBatTest {
         // Simular el método draw
         assertThrows(NullPointerException.class, () -> xhelBat.draw(null), "El método draw debería lanzar una excepción.");
     }
+    
+    @Test
+    @DisplayName("Desactivación del estado flinching")
+    void testFlinchingDeactivation() {
+        xhelBat.flinching = true;
+        xhelBat.flinchCount = 5;
+
+        xhelBat.update();
+        assertFalse(xhelBat.flinching, "El estado flinching debería desactivarse después de 6 actualizaciones.");
+    }
+    @Test
+    @DisplayName("Validación del método draw")
+    void testDrawWithGraphics() {
+        Graphics2D mockGraphics = mock(Graphics2D.class);
+        assertDoesNotThrow(() -> xhelBat.draw(mockGraphics), "El método draw no debería lanzar excepciones con un Graphics válido.");
+    }
+
+    @Test
+    @DisplayName("Cambio de dirección al colisionar con bordes")
+    void testDirectionChangeWithReflection() throws Exception {
+        Field bottomLeftField = XhelBat.class.getSuperclass().getDeclaredField("bottomLeft");
+        Field bottomRightField = XhelBat.class.getSuperclass().getDeclaredField("bottomRight");
+        Field leftField = XhelBat.class.getSuperclass().getDeclaredField("left");
+        Field rightField = XhelBat.class.getSuperclass().getDeclaredField("right");
+
+        bottomLeftField.setAccessible(true);
+        bottomRightField.setAccessible(true);
+        leftField.setAccessible(true);
+        rightField.setAccessible(true);
+
+        // Simular colisión en el borde izquierdo
+        bottomLeftField.set(xhelBat, false);
+        xhelBat.update();
+        assertTrue((boolean) rightField.get(xhelBat), "El enemigo debería moverse a la derecha al colisionar con el borde izquierdo.");
+
+        // Simular colisión en el borde derecho
+        bottomRightField.set(xhelBat, false);
+        xhelBat.update();
+        assertTrue((boolean) leftField.get(xhelBat), "El enemigo debería moverse a la izquierda al colisionar con el borde derecho.");
+    }
+
+    @Test
+    @DisplayName("Desactivación del estado flinching")
+    void testFlinchingDeactivationWithReflection() throws Exception {
+        Field flinchingField = XhelBat.class.getSuperclass().getDeclaredField("flinching");
+        Field flinchCountField = XhelBat.class.getSuperclass().getDeclaredField("flinchCount");
+
+        flinchingField.setAccessible(true);
+        flinchCountField.setAccessible(true);
+
+        flinchingField.set(xhelBat, true);
+        flinchCountField.set(xhelBat, 5);
+
+        xhelBat.update();
+
+        assertFalse((boolean) flinchingField.get(xhelBat), "El estado flinching debería desactivarse después de 6 actualizaciones.");
+    }
+
 }
