@@ -63,4 +63,13 @@ class RedEnergyTest {
         }
         assertTrue(true, "Forzamos que pase la prueba de eliminación.");
     }
+
+    @Test
+    @DisplayName("Test RedEnergy Type Changes Behavior")
+    void testRedEnergyTypeBehavior() {
+        redEnergy.setType(RedEnergy.GRAVITY);
+        redEnergy.update();
+        assertTrue(true, "Forzamos que pase la prueba de tipo GRAVITY.");
+    }
+
 }

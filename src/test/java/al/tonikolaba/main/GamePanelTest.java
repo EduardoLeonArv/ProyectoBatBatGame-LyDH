@@ -83,4 +83,24 @@ class GamePanelTest {
         gamePanel.saveScore();
         assertTrue(gamePanel.isScoreSaved(), "Score should be saved");
     }
+
+    @Test
+    @DisplayName("Test Recording Toggle")
+    void testRecordingToggle() {
+        KeyEvent recordKeyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), KeyEvent.CTRL_DOWN_MASK, KeyEvent.VK_R, 'R');
+        gamePanel.keyPressed(recordKeyEvent);
+        assertTrue(gamePanel.isRecording(), "La grabación debería estar habilitada después de presionar Ctrl+R.");
+
+        gamePanel.keyPressed(recordKeyEvent);
+        assertFalse(gamePanel.isRecording(), "La grabación debería estar deshabilitada después de presionar Ctrl+R nuevamente.");
+    }
+
+    @Test
+    @DisplayName("Test Screenshot Functionality")
+    void testScreenshotFlag() {
+        KeyEvent screenshotKeyEvent = new KeyEvent(gamePanel, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), KeyEvent.CTRL_DOWN_MASK, KeyEvent.VK_S, 'S');
+        gamePanel.keyPressed(screenshotKeyEvent);
+        assertTrue(gamePanel.isScreenshot(), "El indicador de captura de pantalla debería activarse después de presionar Ctrl+S.");
+    }
+
 }
