@@ -20,6 +20,8 @@ import al.tonikolaba.main.BatBatSpringTests;
 		"al.tonikolaba.main",
 		"al.tonikolaba.gamestate",
 		"al.tonikolaba.gamestate.entity",
+		"al.tonikolaba.entity",
+		"al.tonikolaba.handlers",
 		"al.tonikolaba.gamestate.handlers",
 		"al.tonikolaba.tilemap"
 })

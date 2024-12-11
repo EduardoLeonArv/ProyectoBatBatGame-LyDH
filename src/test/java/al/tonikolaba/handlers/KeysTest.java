@@ -1,11 +1,11 @@
 package al.tonikolaba.handlers;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
+
+import static org.junit.Assert.*;
 
 /**
  * @author N.Kolaba
@@ -15,7 +15,46 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 @DisplayName("Keys")
 public class KeysTest {
+	@Test
+	public void testKeySetAndIsPressed() {
+		Keys.setPressed(Keys.UP, true);
+		assertTrue(Keys.isPressed(Keys.UP));
+		Keys.update();
+		assertFalse(Keys.isPressed(Keys.UP)); // Después de actualizar, no debe estar presionado
+	}
 
+	@Test
+	public void testAnyKeyPress() {
+		Keys.setPressed(Keys.RIGHT, true);
+		assertTrue(Keys.anyKeyPress());
+		Keys.setPressed(Keys.RIGHT, false);
+		assertFalse(Keys.anyKeyPress());
+	}
+
+	@Test
+	public void testUpdate() {
+		Keys.setPressed(Keys.DOWN, true);
+		Keys.update();
+		assertTrue(Keys.prevKeyState[Keys.DOWN]);
+		Keys.setPressed(Keys.DOWN, false);
+		Keys.update();
+		assertFalse(Keys.prevKeyState[Keys.DOWN]);
+	}
+
+	@Test
+	public void testGetKeyState() {
+		boolean[] keyState = Keys.getKeyState();
+		assertNotNull(keyState);
+		assertEquals(Keys.NUM_KEYS, keyState.length);
+	}
+
+	@Test
+	public void testSetPressed() {
+		Keys.setPressed(Keys.ENTER, true);
+		assertTrue(Keys.getKeyState()[Keys.ENTER]);
+		Keys.setPressed(Keys.ENTER, false);
+		assertFalse(Keys.getKeyState()[Keys.ENTER]);
+	}
 	@Test
 	@SuppressWarnings("unused")
 	public void updateTest() {
