@@ -5,7 +5,8 @@ import al.tonikolaba.entity.Player;
 import al.tonikolaba.tilemap.TileMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,13 +19,18 @@ class Level1StateTest {
 
     @BeforeEach
     void setUp() {
-        TileMap tileMap = new TileMap(30);
-        player = new Player(tileMap);
+        // Crear un mock de TileMap
+        TileMap mockTileMap = mock(TileMap.class);
+        when(mockTileMap.getTileSize()).thenReturn(30);
+        when(mockTileMap.getWidth()).thenReturn(800);
+        when(mockTileMap.getHeight()).thenReturn(600);
+
+        player = new Player(mockTileMap);
         gsm = new GameStateManager(player);
 
         level1State = new Level1State(gsm, player);
+        level1State.tileMap = mockTileMap;
 
-        // Simular la inicialización del estado manualmente
         level1State.enemyTypesInLevel = new Enemy.EnemyType[] {
                 Enemy.EnemyType.XHELBAT, Enemy.EnemyType.XHELBAT, Enemy.EnemyType.ZOGU
         };
