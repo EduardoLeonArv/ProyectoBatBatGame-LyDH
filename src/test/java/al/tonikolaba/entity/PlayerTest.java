@@ -751,7 +751,7 @@ public class PlayerTest {
 		player.update();
 
 		// Comparar valores de tipo int
-		assertEquals(String.valueOf(jumpingAnimValue), player.getCurrentAction(), "La acción debería ser JUMPING.");
+		assertEquals(jumpingAnimValue, player.getCurrentAction(), "La acción debería ser JUMPING.");
 	}
 
 

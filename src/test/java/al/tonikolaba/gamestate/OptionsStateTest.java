@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import al.tonikolaba.entity.Player;
 
 import java.awt.*;
+import static org.junit.Assert.assertEquals;
 
 public class OptionsStateTest {
 
@@ -83,12 +84,12 @@ public class OptionsStateTest {
         optionsState.setCurrentChoice(0); // Selección inicial
         optionsState.handleInput();
 
-        assertEquals(String.valueOf(1), optionsState.getCurrentChoice(), "La opción seleccionada debería cambiar a 1.");
+        assertEquals("La opción seleccionada debería cambiar a 1.", 1, optionsState.getCurrentChoice());
 
         Keys.setPressed(Keys.UP, true); // Simula la tecla UP presionada
         optionsState.handleInput();
 
-        assertEquals(String.valueOf(0), optionsState.getCurrentChoice(), "La opción seleccionada debería regresar a 0.");
+        assertEquals("La opción seleccionada debería regresar a 0.", 0, optionsState.getCurrentChoice());
     }
 
     @Test
@@ -98,34 +99,34 @@ public class OptionsStateTest {
 
         // Navegar hacia abajo
         optionsState.navigateMenu(1);
-        assertEquals(String.valueOf(1), optionsState.getCurrentChoice(), "La opción seleccionada debería ser 1.");
+        assertEquals("La opción seleccionada debería ser 1.", 1, optionsState.getCurrentChoice());
 
         // Navegar hacia arriba
         optionsState.navigateMenu(-1);
-        assertEquals(String.valueOf(0), optionsState.getCurrentChoice(), "La opción seleccionada debería regresar a 0.");
+        assertEquals("La opción seleccionada debería regresar a 0.", 0, optionsState.getCurrentChoice());
     }
+
     @Test
     @DisplayName("Test Navigation Bounds")
-    void testNavigationBounds() {
+    public void testNavigationBounds() {
         // Configuración inicial
         optionsState.setCurrentChoice(0);
 
         // Navegar hacia abajo desde la primera opción
         optionsState.navigateMenu(1);
         int expectedChoice = 1; // La opción debería ser 1
-        assertEquals(String.valueOf(expectedChoice), optionsState.getCurrentChoice(), "La opción seleccionada debería cambiar a 1.");
+        assertEquals("La opción seleccionada debería cambiar a 1.", expectedChoice, optionsState.getCurrentChoice());
 
         // Configuración inicial al final del menú
         optionsState.setCurrentChoice(2); // Suponiendo que hay 3 opciones (0, 1, 2)
         optionsState.navigateMenu(1); // Navegar hacia abajo desde la última opción
         expectedChoice = 2; // La opción debería permanecer en 2
-        assertEquals(String.valueOf(expectedChoice), optionsState.getCurrentChoice(), "La opción seleccionada debería permanecer en el límite superior.");
+        assertEquals("La opción seleccionada debería permanecer en el límite superior.", expectedChoice, optionsState.getCurrentChoice());
 
         // Navegar hacia arriba desde la última opción
         optionsState.navigateMenu(-1);
         expectedChoice = 1; // Debería moverse a la opción anterior
-        assertEquals(String.valueOf(expectedChoice), optionsState.getCurrentChoice(), "La opción seleccionada debería cambiar a 1.");
+        assertEquals("La opción seleccionada debería cambiar a 1.", expectedChoice, optionsState.getCurrentChoice());
     }
-
-
+    
 }
