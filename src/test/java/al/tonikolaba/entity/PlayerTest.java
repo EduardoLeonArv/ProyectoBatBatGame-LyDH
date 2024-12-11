@@ -733,7 +733,7 @@ public class PlayerTest {
 		player.jumpAndFall();
 		assertTrue("El jugador debería estar cayendo.", player.dy > 0);
 	}
-	
+
 	@Test
 	@DisplayName("Test Animation Changes")
 	public void testAnimationChanges() throws Exception {

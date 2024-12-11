@@ -167,4 +167,27 @@ class XhelBatTest {
         assertTrue((boolean) leftField.get(xhelBat), "XhelBat debería cambiar de dirección al colisionar con un borde.");
     }
 
+    @Test
+    @DisplayName("Test Activación de XhelBat por Cercanía del Jugador")
+    void testActivationByPlayerProximity() {
+        xhelBat.x = 100;
+        xhelBat.y = 100;
+
+        when(mockPlayer.getx()).thenReturn(150);
+        xhelBat.update();
+
+        assertTrue(xhelBat.isActive(), "XhelBat debería activarse cuando el jugador está cerca.");
+    }
+
+    @Test
+    @DisplayName("Test Flinching se Resetea Correctamente")
+    void testFlinchingReset() {
+        xhelBat.flinching = true;
+        xhelBat.flinchCount = 6;
+
+        xhelBat.update();
+
+        assertFalse(xhelBat.flinching, "Flinching debería desactivarse después de la actualización.");
+    }
+
 }
