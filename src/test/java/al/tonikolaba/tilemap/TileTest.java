@@ -16,10 +16,6 @@ public class TileTest {
 
         assertNotNull(tile);
         assertEquals(Tile.NORMAL, tile.getType());
-        int type = 1;
-        Tile tile = new Tile(image, type);
-
-        assertNotNull(tile);
     }
 
     @Test
@@ -27,18 +23,13 @@ public class TileTest {
         Tile tile = new Tile(null, Tile.BLOCKED);
 
         assertEquals(Tile.BLOCKED, tile.getType());
-        int type = 1;
-        Tile tile = new Tile(null, type);
-
-        assertEquals(type, tile.getType());
     }
 
     @Test
     public void testGetImage() {
         BufferedImage image = new BufferedImage(10, 10, BufferedImage.TYPE_INT_ARGB);
         Tile tile = new Tile(image, Tile.NORMAL);
-        BufferedImage image = null;
-        Tile tile = new Tile(image, 1);
+
         assertEquals(image, tile.getImage());
     }
 }

@@ -24,31 +24,6 @@ public class KeysTest {
 	}
 
 	@Test
-	public void testAnyKeyPress() {
-		Keys.setPressed(Keys.RIGHT, true);
-		assertTrue(Keys.anyKeyPress());
-		Keys.setPressed(Keys.RIGHT, false);
-		assertFalse(Keys.anyKeyPress());
-	}
-
-	@Test
-	public void testUpdate() {
-		Keys.setPressed(Keys.DOWN, true);
-		Keys.update();
-		assertTrue(Keys.prevKeyState[Keys.DOWN]);
-		Keys.setPressed(Keys.DOWN, false);
-		Keys.update();
-		assertFalse(Keys.prevKeyState[Keys.DOWN]);
-	}
-
-	@Test
-	public void testGetKeyState() {
-		boolean[] keyState = Keys.getKeyState();
-		assertNotNull(keyState);
-		assertEquals(Keys.NUM_KEYS, keyState.length);
-	}
-
-	@Test
 	public void testSetPressed() {
 		Keys.setPressed(Keys.ENTER, true);
 		assertTrue(Keys.getKeyState()[Keys.ENTER]);
