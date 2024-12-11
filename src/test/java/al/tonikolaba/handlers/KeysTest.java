@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
-
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.Assert.*;
 
 /**
@@ -74,4 +74,43 @@ public class KeysTest {
 		Keys.update();
 		assertEquals(Keys.isPressed(1), false);
 	}
+
+	@Test
+	public void testKeySet() {
+		Keys.setPressed(Keys.UP, true);
+		assertTrue(Keys.isPressed(Keys.UP));
+
+		Keys.setPressed(Keys.UP, false);
+		assertFalse(Keys.isPressed(Keys.UP));
+	}
+
+	@Test
+	public void testUpdate() {
+		Keys.setPressed(Keys.RIGHT, true);
+		Keys.update();
+		assertTrue(Keys.prevKeyState[Keys.RIGHT]);
+		assertFalse(Keys.isPressed(Keys.RIGHT));
+	}
+
+	@Test
+	public void testAnyKeyPress() {
+		Keys.setPressed(Keys.LEFT, true);
+		assertTrue(Keys.anyKeyPress());
+
+		Keys.setPressed(Keys.LEFT, false);
+		assertFalse(Keys.anyKeyPress());
+	}
+
+	@Test
+	public void testGetKeyState() {
+		boolean[] keyState = Keys.getKeyState();
+		assertNotNull(keyState);
+		assertEquals(Keys.NUM_KEYS, keyState.length);
+	}
+
+	@Test
+	public void testInvalidKeySet() {
+		assertDoesNotThrow(() -> Keys.keySet(-1, true));
+	}
+
 }

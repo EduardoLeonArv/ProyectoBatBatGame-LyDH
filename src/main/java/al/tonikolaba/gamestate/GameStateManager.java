@@ -27,16 +27,12 @@ public class GameStateManager {
 	public static final int MENUSTATE = 0;
 	public static final int OPTIONSSTATE = 1;
 	public static final int LEVEL1STATE = 2;
-	public static final int LEVEL2STATE = 3;
-	public static final int LEVEL3STATE = 4;
-	public static final int LEVEL4STATE = 5;
 	public static final int HOWTOPLAY = 7;
-	public static final int ACIDSTATE = 15;
 
 	public BasicState[] gameStates;
-	private int currentState;
-	private PauseState pauseState;
-	private boolean paused;
+	int currentState;
+	PauseState pauseState;
+	boolean paused;
 
 	private Player player; // Referencia al jugador
 	private boolean scoreSaved = false; // Bandera para verificar si el puntaje ya se guardó
@@ -70,7 +66,7 @@ public class GameStateManager {
 	}
 
 	// Método para descargar un estado del juego
-	private void unloadState(int state) {
+    void unloadState(int state) {
 		gameStates[state] = null;
 	}
 

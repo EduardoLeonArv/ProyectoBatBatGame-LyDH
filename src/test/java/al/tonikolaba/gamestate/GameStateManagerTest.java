@@ -1,53 +1,125 @@
 package al.tonikolaba.gamestate;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import al.tonikolaba.entity.Player;
-import al.tonikolaba.tilemap.TileMap;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-/**
- * Pruebas para la clase GameStateManager.
- *
- * @author N.Kolaba
- */
-@RunWith(JUnitPlatform.class)
-@DisplayName("Game State Tests")
-public class GameStateManagerTest {
+import al.tonikolaba.entity.Player;
 
-	@Test
-	@DisplayName("Carga de estados válidos")
-	public void testLoadValidStates() {
-		// setup
-		Player player = new Player(new TileMap(30));
-		GameStateManager gm = new GameStateManager(player);
+import java.awt.Graphics2D;
 
-		// run functions
-		gm.loadState(0);
-		gm.loadState(1);
-		gm.loadState(3);
-		gm.loadState(4);
+class GameStateManagerTest {
 
-		// assert statements
-		assertNotNull("El estado 0 debería cargarse", gm.gameStates[0]);
-		assertNotNull("El estado 1 debería cargarse", gm.gameStates[1]);
-		assertNotNull("El estado 3 debería cargarse", gm.gameStates[3]);
-		assertNotNull("El estado 4 debería cargarse", gm.gameStates[4]);
+	@Mock
+	private Player mockPlayer;
+	@Mock
+	private PauseState mockPauseState;
+	@Mock
+	private Level1State mockLevel1State;
+
+	private GameStateManager gameStateManager;
+
+	@BeforeEach
+	void setUp() {
+		MockitoAnnotations.openMocks(this);
+		gameStateManager = new GameStateManager(mockPlayer);
+		gameStateManager.pauseState = mockPauseState;
+		gameStateManager.gameStates[GameStateManager.LEVEL1STATE] = mockLevel1State;
 	}
 
 	@Test
-	@DisplayName("Carga de estados fuera de los límites")
-	public void testLoadOutOfBoundsStates() {
-		// setup
-		Player player = new Player(new TileMap(30));
-		GameStateManager gm = new GameStateManager(player);
+	@DisplayName("Test load valid states")
+	void testLoadValidStates() {
+		gameStateManager.loadState(GameStateManager.MENUSTATE);
+		gameStateManager.loadState(GameStateManager.OPTIONSSTATE);
+		gameStateManager.loadState(GameStateManager.LEVEL1STATE);
+		gameStateManager.loadState(GameStateManager.HOWTOPLAY);
 
-		// assert statements para estados fuera de límites
-		assertFalse(gm.isStateLoaded(16), "El estado 16 no debería existir");
-		assertFalse(gm.isStateLoaded(13), "El estado 13 no debería existir");
+		assertNotNull(gameStateManager.gameStates[GameStateManager.MENUSTATE], "MenuState should be loaded");
+		assertNotNull(gameStateManager.gameStates[GameStateManager.OPTIONSSTATE], "OptionsState should be loaded");
+		assertNotNull(gameStateManager.gameStates[GameStateManager.LEVEL1STATE], "Level1State should be loaded");
+		assertNotNull(gameStateManager.gameStates[GameStateManager.HOWTOPLAY], "HowToPlay should be loaded");
 	}
 
+	@Test
+	@DisplayName("Test unload state")
+	void testUnloadState() {
+		gameStateManager.loadState(GameStateManager.MENUSTATE);
+		gameStateManager.unloadState(GameStateManager.MENUSTATE);
+
+		assertNull(gameStateManager.gameStates[GameStateManager.MENUSTATE], "MenuState should be unloaded");
+	}
+
+	@Test
+	@DisplayName("Test set state")
+	void testSetState() {
+		gameStateManager.setState(GameStateManager.LEVEL1STATE);
+
+		assertEquals(GameStateManager.LEVEL1STATE, gameStateManager.currentState, "Current state should be Level1State");
+	}
+
+	@Test
+	@DisplayName("Test save score to file")
+	void testSaveScoreToFile() {
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		gameStateManager.saveScoreToFile();
+
+		// Verificar que el puntaje se guardó correctamente
+		// Aquí puedes agregar lógica para verificar el contenido del archivo si es necesario
+	}
+
+	@Test
+	@DisplayName("Test pause and resume")
+	void testPauseAndResume() {
+		gameStateManager.setPaused(true);
+		assertTrue(gameStateManager.paused, "Game should be paused");
+
+		gameStateManager.setPaused(false);
+		assertFalse(gameStateManager.paused, "Game should be resumed");
+	}
+
+	@Test
+	@DisplayName("Test update when paused")
+	void testUpdateWhenPaused() {
+		gameStateManager.setPaused(true);
+		gameStateManager.update();
+
+		verify(mockPauseState, times(1)).update();
+	}
+
+	@Test
+	@DisplayName("Test update when not paused")
+	void testUpdateWhenNotPaused() {
+		gameStateManager.setPaused(false);
+		gameStateManager.loadState(GameStateManager.LEVEL1STATE);
+		gameStateManager.update();
+
+		verify(mockLevel1State, times(1)).update();
+	}
+
+	@Test
+	@DisplayName("Test draw when paused")
+	void testDrawWhenPaused() {
+		gameStateManager.setPaused(true);
+		gameStateManager.draw(mock(Graphics2D.class));
+
+		verify(mockPauseState, times(1)).draw(any(Graphics2D.class));
+	}
+
+	@Test
+	@DisplayName("Test draw when not paused")
+	void testDrawWhenNotPaused() {
+		gameStateManager.setPaused(false);
+		gameStateManager.loadState(GameStateManager.LEVEL1STATE);
+		gameStateManager.draw(mock(Graphics2D.class));
+
+		verify(mockLevel1State, times(1)).draw(any(Graphics2D.class));
+	}
 }

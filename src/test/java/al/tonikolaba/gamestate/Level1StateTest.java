@@ -5,7 +5,8 @@ import al.tonikolaba.entity.Player;
 import al.tonikolaba.tilemap.TileMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.Mockito;
+import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,13 +19,18 @@ class Level1StateTest {
 
     @BeforeEach
     void setUp() {
-        TileMap tileMap = new TileMap(30);
-        player = new Player(tileMap);
+        // Crear un mock de TileMap
+        TileMap mockTileMap = mock(TileMap.class);
+        when(mockTileMap.getTileSize()).thenReturn(30);
+        when(mockTileMap.getWidth()).thenReturn(800);
+        when(mockTileMap.getHeight()).thenReturn(600);
+
+        player = new Player(mockTileMap);
         gsm = new GameStateManager(player);
 
         level1State = new Level1State(gsm, player);
+        level1State.tileMap = mockTileMap;
 
-        // Simular la inicialización del estado manualmente
         level1State.enemyTypesInLevel = new Enemy.EnemyType[] {
                 Enemy.EnemyType.XHELBAT, Enemy.EnemyType.XHELBAT, Enemy.EnemyType.ZOGU
         };
@@ -69,7 +75,7 @@ class Level1StateTest {
 
     @Test
     void testPlayerInitialization() {
-        Player initializedPlayer = this.player; // Acceder directamente al jugador inicializado
+        Player initializedPlayer = level1State.getPlayer(); // Usar getter para player
         assertNotNull(initializedPlayer, "El jugador debería inicializarse correctamente.");
         assertEquals(100, initializedPlayer.getx(), "El jugador debería posicionarse en x=100 al inicio.");
         assertEquals(191, initializedPlayer.gety(), "El jugador debería posicionarse en y=191 al inicio.");
