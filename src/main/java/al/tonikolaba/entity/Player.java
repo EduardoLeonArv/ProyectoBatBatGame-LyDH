@@ -680,5 +680,12 @@ public class Player extends MapObject {
 	public List<EnergyParticle> getEnergyParticles() {
 		return energyParticles;
 	}
+	public int getJumpingAnim() {
+		return JUMPING_ANIM;
+	}
+
+	public int getFallingAnim() {
+		return FALLING_ANIM;
+	}
 
 }

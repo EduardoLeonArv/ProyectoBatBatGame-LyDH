@@ -19,7 +19,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(JUnitPlatform.class)
@@ -776,7 +778,112 @@ public class PlayerTest {
 		Player player = new Player(tm);
 
 		Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
-		assertDoesNotThrow(() -> player.draw(mockGraphics), "El método draw no debería lanzar excepciones.");
+		assertDoesNotThrow(() -> player.draw(mockGraphics),
+				"El método draw no debería lanzar excepciones.");
+	}
+	@Test
+	@DisplayName("Test Reset Completo")
+	public void testResetCompleto() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setHealth(2);
+		player.setKnockback(true);
+		player.setFlinching(true);
+		player.setJumping(true);
+
+		player.reset();
+
+		assertEquals("La salud debería restablecerse al máximo.", 5, player.getHealth());
+		assertFalse("El estado knockback debería desactivarse.", player.isKnockback());
+		assertFalse("El estado flinching debería desactivarse.", player.isFlinching());
+		assertFalse("El estado jumping debería desactivarse.", player.jumping);
+	}
+	@Test
+	@DisplayName("Test Eliminación de Partículas de Energía con Reflexión")
+	public void testEliminacionDeParticulasDeEnergiaConReflexion() throws Exception {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		List<EnergyParticle> particles = player.getEnergyParticles();
+		EnergyParticle particle = new EnergyParticle(tm, 100, 100, EnergyParticle.ENERGY_UP);
+		particles.add(particle);
+
+		// Usa reflexión para invocar el método `remove`
+		Method removeMethod = EnergyParticle.class.getDeclaredMethod("remove");
+		removeMethod.setAccessible(true);
+		removeMethod.invoke(particle);
+
+		player.update();
+		assertTrue("La lista de partículas de energía debería estar vacía tras la eliminación.", particles.isEmpty());
+	}
+
+	@Test
+	@DisplayName("Test Interacción con Enemigos")
+	public void testInteraccionConEnemigos() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		Enemy mockEnemy = Mockito.mock(Enemy.class);
+		Mockito.when(mockEnemy.isDead()).thenReturn(false);
+		Mockito.when(mockEnemy.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
+		Mockito.when(mockEnemy.getDamage()).thenReturn(2);
+
+		player.init(Arrays.asList(mockEnemy), new ArrayList<>());
+
+		player.hit(3); // El jugador recibe daño por interacción
+		assertEquals("La salud debería disminuir tras la interacción con un enemigo.", 2, player.getHealth());
+	}
+	@Test
+	@DisplayName("Test Lógica de Doble Salto")
+	public void testLogicaDeDobleSalto() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setFalling(true);
+		player.setDoubleJump(true);
+		player.jumpAndFall();
+
+		assertTrue("El jugador debería realizar un doble salto.", player.isAlreadyDoubleJump());
+		assertEquals("La velocidad vertical debería coincidir con el inicio del doble salto.", -3, player.dy, 0.01);
+	}
+
+	@Test
+	@DisplayName("Test Cambio de Animaciones")
+	public void testCambioDeAnimaciones() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		player.setJumping(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de salto.", player.getJumpingAnim(), player.getCurrentAction());
+
+		player.setFalling(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de caída.", player.getFallingAnim(), player.getCurrentAction());
+	}
+
+	@Test
+	@DisplayName("Test Cambio de Animaciones con Reflexión")
+	public void testCambioDeAnimacionesConReflexion() throws Exception {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
+		jumpingAnimField.setAccessible(true);
+		int jumpingAnim = jumpingAnimField.getInt(player);
+
+		Field fallingAnimField = Player.class.getDeclaredField("FALLING_ANIM");
+		fallingAnimField.setAccessible(true);
+		int fallingAnim = fallingAnimField.getInt(player);
+
+		player.setJumping(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de salto.", jumpingAnim, player.getCurrentAction());
+
+		player.setFalling(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de caída.", fallingAnim, player.getCurrentAction());
 	}
 
 }
