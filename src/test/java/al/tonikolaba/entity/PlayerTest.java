@@ -6,8 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -717,7 +715,7 @@ public class PlayerTest {
 		player.movement();
 		assertEquals("El jugador debería detenerse.", 0.0, player.dx, 0.01);
 	}
-		
+
 	@Test
 	@DisplayName("Test Jumping and Falling")
 	public void testJumpingAndFalling() {
@@ -745,14 +743,17 @@ public class PlayerTest {
 
 		// Reflexión para acceder al campo privado JUMPING_ANIM
 		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
-		((java.lang.reflect.Field) jumpingAnimField).setAccessible(true);
+		jumpingAnimField.setAccessible(true);
 		int jumpingAnimValue = (int) jumpingAnimField.get(player);
 
 		// Configurar salto
 		player.setJumping(true);
 		player.update();
+
+		// Comparar valores de tipo int
 		assertEquals(String.valueOf(jumpingAnimValue), player.getCurrentAction(), "La acción debería ser JUMPING.");
 	}
+
 
 	@Test
 	public void testResourceInitialization() {
