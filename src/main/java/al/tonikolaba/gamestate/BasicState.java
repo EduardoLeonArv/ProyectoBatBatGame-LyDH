@@ -40,6 +40,10 @@ public abstract class BasicState {
 		this.currentChoice = choice;
 	}
 
+	public int getCurrentChoice() {
+		return currentChoice;
+	}
+
 	public BasicState(GameStateManager gsm) {
 		this.gsm = gsm;
 		try {
@@ -111,5 +115,9 @@ public abstract class BasicState {
 			JukeBox.play(MENU_OPTION, 0);
 			currentChoice++;
 		}
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 }

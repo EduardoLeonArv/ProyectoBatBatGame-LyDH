@@ -34,9 +34,9 @@ public class GameStateManager {
 	public static final int ACIDSTATE = 15;
 
 	public BasicState[] gameStates;
-	private int currentState;
-	private PauseState pauseState;
-	private boolean paused;
+	int currentState;
+	PauseState pauseState;
+	boolean paused;
 
 	private Player player; // Referencia al jugador
 	private boolean scoreSaved = false; // Bandera para verificar si el puntaje ya se guardó
@@ -70,7 +70,7 @@ public class GameStateManager {
 	}
 
 	// Método para descargar un estado del juego
-	private void unloadState(int state) {
+    void unloadState(int state) {
 		gameStates[state] = null;
 	}
 
