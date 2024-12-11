@@ -1,5 +1,6 @@
 package al.tonikolaba.tilemap;
 
+import al.tonikolaba.handlers.Content;
 import org.junit.jupiter.api.Test;
 
 import java.awt.image.BufferedImage;
