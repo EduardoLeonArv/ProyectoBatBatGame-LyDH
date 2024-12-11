@@ -2,6 +2,7 @@ package al.tonikolaba.gamestate;
 
 import al.tonikolaba.entity.Enemy;
 import al.tonikolaba.entity.Player;
+import al.tonikolaba.tilemap.Background;
 import al.tonikolaba.tilemap.TileMap;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,7 +52,7 @@ class Level1StateTest {
         level1State.init(2);
         assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
     }
-    
+
     @Test
     void testInitialization() {
         assertNotNull(level1State, "Level1State debería inicializarse correctamente.");
@@ -90,4 +91,58 @@ class Level1StateTest {
         assertEquals(100, initializedPlayer.getx(), "El jugador debería posicionarse en x=100 al inicio.");
         assertEquals(191, initializedPlayer.gety(), "El jugador debería posicionarse en y=191 al inicio.");
     }
+
+    @Test
+    void testCompleteInitialization() {
+        level1State.init(2);
+
+        assertNotNull(level1State.sky, "El fondo 'sky' debería inicializarse.");
+        assertNotNull(level1State.clouds, "El fondo 'clouds' debería inicializarse.");
+        assertNotNull(level1State.mountains, "El fondo 'mountains' debería inicializarse.");
+        assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
+        assertEquals(12, level1State.enemyTypesInLevel.length, "Debería haber 12 enemigos en el nivel.");
+        assertNotNull(level1State.coords, "Las coordenadas de los enemigos deberían inicializarse.");
+        assertEquals(12, level1State.coords.length, "Debería haber 12 pares de coordenadas para los enemigos.");
+    }
+
+    @Test
+    void testUpdateLogic() {
+        // Simular que el jugador pierde toda su salud
+        player.setHealth(0);
+        level1State.update();
+
+        assertTrue(player.getHealth() <= 0, "La salud del jugador debería reflejar la muerte.");
+        // Aquí puedes agregar más verificaciones relacionadas con la lógica tras la muerte.
+    }
+
+    @Test
+    void testInvalidMapPath() {
+        Exception exception = assertThrows(RuntimeException.class, () -> level1State.generateTileMap("/invalid/path.map", 0, 140, true));
+        assertTrue(exception.getMessage().contains("No se pudo cargar el mapa"), "Debería lanzar una excepción al cargar un mapa inválido.");
+    }
+
+    @Test
+    void testInvalidBackgroundPath() {
+        Exception exception = assertThrows(RuntimeException.class, () -> new Background("/invalid/path.gif", 0.5));
+        assertTrue(exception.getMessage().contains("No se pudo cargar la imagen"), "Debería lanzar una excepción al cargar un fondo inválido.");
+    }
+
+    @Test
+    void testPopulateEnemies() {
+        level1State.populateEnemies(level1State.enemyTypesInLevel, level1State.coords);
+
+        assertNotNull(level1State.enemies, "La lista de enemigos no debería ser nula.");
+        assertEquals(12, level1State.enemies.size(), "Debería haber 12 enemigos en el nivel.");
+        // Aquí puedes agregar más validaciones para los tipos de enemigos.
+    }
+
+    @Test
+    void testSetupTitle() {
+        level1State.setupTitle(new int[] { 0, 0, 178, 19 }, new int[] { 0, 33, 93, 13 });
+
+        assertNotNull(level1State.title, "El título debería configurarse correctamente.");
+        assertNotNull(level1State.subtitle, "El subtítulo debería configurarse correctamente.");
+        // Validar dimensiones y posiciones si es relevante.
+    }
+
 }
