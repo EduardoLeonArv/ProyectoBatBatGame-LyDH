@@ -69,7 +69,7 @@ class Level1StateTest {
 
     @Test
     void testPlayerInitialization() {
-        Player initializedPlayer = this.player; // Acceder directamente al jugador inicializado
+        Player initializedPlayer = level1State.getPlayer(); // Usar getter para player
         assertNotNull(initializedPlayer, "El jugador debería inicializarse correctamente.");
         assertEquals(100, initializedPlayer.getx(), "El jugador debería posicionarse en x=100 al inicio.");
         assertEquals(191, initializedPlayer.gety(), "El jugador debería posicionarse en y=191 al inicio.");
