@@ -19,14 +19,11 @@ import al.tonikolaba.entity.HUD;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.entity.PlayerSave;
 import al.tonikolaba.entity.Portal;
-import al.tonikolaba.entity.Spirit;
 import al.tonikolaba.entity.Teleport;
 import al.tonikolaba.entity.Title;
 import al.tonikolaba.entity.enemies.RedEnergy;
-import al.tonikolaba.entity.enemies.Ufo;
 import al.tonikolaba.entity.enemies.XhelBat;
 import al.tonikolaba.entity.enemies.Zogu;
-import al.tonikolaba.handlers.Content;
 import al.tonikolaba.handlers.Keys;
 import al.tonikolaba.handlers.LoggingHelper;
 import al.tonikolaba.main.GamePanel;
@@ -247,15 +244,8 @@ public abstract class GameState extends BasicState {
 				case RED_ENERGY:
 					e = new RedEnergy(tileMap, player); // Incluye el jugador
 					break;
-				case UFO:
-					e = new Ufo(tileMap, player, enemies); // Incluye el jugador y lista de enemigos
-					break;
 				case XHELBAT:
 					e = new XhelBat(tileMap, player); // Incluye el jugador
-					break;
-				case SPIRIT:
-					e = new Spirit(tileMap, player,
-					enemies, explosions); // Incluye el jugador y explosiones
 					break;
 				case ZOGU:
 					e = new Zogu(tileMap, player); // Incluye el jugador
@@ -504,9 +494,7 @@ public abstract class GameState extends BasicState {
 	private Enemy createEnemy(EnemyType type, int x, int y) {
 		switch (type) {
 			case RED_ENERGY: return new RedEnergy(tileMap, player);
-			case UFO: return new Ufo(tileMap, player, enemies);
 			case XHELBAT: return new XhelBat(tileMap, player);
-			case SPIRIT: return new Spirit(tileMap, player, enemies, explosions);
 			case ZOGU: return new Zogu(tileMap, player);
 			default: return null;
 		}
