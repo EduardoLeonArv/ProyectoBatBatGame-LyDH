@@ -43,6 +43,16 @@ class Level1StateTest {
     }
 
     @Test
+    void testInit() {
+        TileMap mockTileMap = mock(TileMap.class);
+        Player mockPlayer = mock(Player.class);
+        Level1State level1State = new Level1State(new GameStateManager(mockPlayer), mockPlayer);
+
+        level1State.init(2);
+        assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
+    }
+    
+    @Test
     void testInitialization() {
         assertNotNull(level1State, "Level1State debería inicializarse correctamente.");
         assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
