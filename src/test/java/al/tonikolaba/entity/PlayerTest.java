@@ -733,8 +733,7 @@ public class PlayerTest {
 		player.jumpAndFall();
 		assertTrue("El jugador debería estar cayendo.", player.dy > 0);
 	}
-
-
+	
 	@Test
 	@DisplayName("Test Animation Changes")
 	public void testAnimationChanges() throws Exception {
@@ -751,8 +750,9 @@ public class PlayerTest {
 		player.update();
 
 		// Comparar valores de tipo int
-		assertEquals(jumpingAnimValue, player.getCurrentAction(), "La acción debería ser JUMPING.");
+		assertEquals("La acción debería ser JUMPING.", jumpingAnimValue, player.getCurrentAction());
 	}
+
 
 
 	@Test

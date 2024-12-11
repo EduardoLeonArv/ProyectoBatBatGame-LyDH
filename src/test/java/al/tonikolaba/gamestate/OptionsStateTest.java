@@ -128,5 +128,5 @@ public class OptionsStateTest {
         expectedChoice = 1; // Debería moverse a la opción anterior
         assertEquals("La opción seleccionada debería cambiar a 1.", expectedChoice, optionsState.getCurrentChoice());
     }
-    
+
 }
