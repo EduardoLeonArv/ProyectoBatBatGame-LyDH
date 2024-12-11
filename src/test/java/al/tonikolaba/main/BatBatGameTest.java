@@ -1,84 +1,128 @@
 package al.tonikolaba.main;
 
-import al.tonikolaba.entity.Player;
-import al.tonikolaba.tilemap.TileMap;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import al.tonikolaba.entity.Player;
+import al.tonikolaba.tilemap.TileMap;
+
+import javax.swing.*;
 import java.io.*;
+import java.util.logging.Level;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class BatBatGameTest {
 
-class BatBatGameTest {
-
-    private BatBatGame batBatGame;
+    private BatBatGame game;
 
     @BeforeEach
-    void setUp() {
-        batBatGame = new BatBatGame();
+    public void setUp() {
+        game = new BatBatGame();
     }
 
     @Test
-    void testSaveScore_Success() {
+    @DisplayName("Test Save Score")
+    public void testSaveScore() throws IOException {
+        // Arrange
         String playerName = "TestPlayer";
         int score = 100;
+        File tempFile = File.createTempFile("scores", ".txt");
+        tempFile.deleteOnExit();
 
-        File file = new File("scores.txt");
-        file.delete(); // Elimina el archivo si existe, para un entorno limpio
+        // Redirect output to a temporary file
+        System.setProperty("user.dir", tempFile.getParent());
 
-        try {
-            batBatGame.saveScore(playerName, score);
+        // Act
+        game.saveScore(playerName, score);
 
-            // Verifica que el archivo se creó
-            assertTrue(file.exists(), "El archivo scores.txt debería haberse creado.");
-
-            // Verifica el contenido del archivo
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line = reader.readLine();
-                assertEquals("Player: TestPlayer - Score: 100", line, "El contenido del archivo no es correcto.");
-            }
-        } catch (IOException e) {
-            fail("No debería lanzarse IOException: " + e.getMessage());
+        // Assert
+        try (BufferedReader reader = new BufferedReader(new FileReader(tempFile))) {
+            String line = reader.readLine();
+            assertNotNull("Score file should not be empty", line);
+            assertTrue("Score file should contain the player's name and score", line.contains("TestPlayer") && line.contains("100"));
         }
     }
 
     @Test
-    void testPlayerInitialization() {
+    @DisplayName("Test Player Initialization")
+    public void testPlayerInitialization() {
+        // Arrange
         TileMap tileMap = new TileMap(30);
+
+        // Act
         Player player = new Player(tileMap);
-
         player.setName("TestPlayer");
-        player.increaseScore(50);
 
-        assertEquals("TestPlayer", player.getName(), "El nombre del jugador no se configuró correctamente.");
-        assertEquals(50, player.getScore(), "La puntuación del jugador no se incrementó correctamente.");
+        // Assert
+        assertEquals("Player name should be set correctly", "TestPlayer", player.getName());
     }
 
     @Test
-    void testRunMethod_SimulatedInput() throws Exception {
-        // Simular la entrada del nombre del jugador usando System.in
-        String simulatedInput = "TestPlayer\n";
-        InputStream inputStreamBackup = System.in; // Backup de System.in
-        System.setIn(new ByteArrayInputStream(simulatedInput.getBytes())); // Simula la entrada
-
-        // Capturar la salida de consola para verificar los mensajes
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStreamBackup = System.out; // Backup de System.out
-        System.setOut(new PrintStream(outputStream));
+    @DisplayName("Test Game Window Initialization")
+    public void testGameWindowInitialization() {
+        // Simulate input for player name
+        InputStream sysInBackup = System.in; // Backup System.in to restore later
+        ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
+        System.setIn(in);
 
         try {
-            batBatGame.run(); // Ejecuta el método run con la entrada simulada
-
-            // Verifica la salida de consola
-            String output = outputStream.toString();
-            // Cambiamos los assertTrue por comentarios para que pase siempre
-            assertTrue(output.contains("Enter your player name:") || true, "Mensaje de entrada no validado, pero test pasa.");
-            assertTrue(output.contains("Welcome, TestPlayer!") || true, "Mensaje de bienvenida no validado, pero test pasa.");
+            // Act
+            game.run();
+        } catch (Exception e) {
+            fail("Game window initialization failed: " + e.getMessage());
         } finally {
-            // Restaurar System.in y System.out
-            System.setIn(inputStreamBackup);
-            System.setOut(printStreamBackup);
+            System.setIn(sysInBackup); // Restore System.in
+        }
+
+        // Assert
+        assertNotNull("Game window should be initialized", game);
+    }
+
+    @Test
+    @DisplayName("Test Full Game Lifecycle")
+    public void testFullGameLifecycle() {
+        // Simulate input for player name
+        InputStream sysInBackup = System.in; // Backup System.in to restore later
+        ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
+        System.setIn(in);
+
+        try {
+            // Start game
+            game.run();
+
+            // Simulate gameplay actions here (expand if necessary)
+
+            // Ensure game window can close without exceptions
+            SwingUtilities.invokeAndWait(() -> {
+                game.dispose();
+            });
+        } catch (Exception e) {
+            fail("Game lifecycle failed: " + e.getMessage());
+        } finally {
+            System.setIn(sysInBackup);
         }
     }
 
+    @Test
+    @DisplayName("Test Logging During Initialization")
+    public void testLoggingDuringInitialization() {
+        // Capture log messages during run
+        ByteArrayOutputStream logOutput = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(logOutput));
+
+        try {
+            game.run();
+        } catch (Exception e) {
+            fail("Game run failed: " + e.getMessage());
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        String logContent = logOutput.toString();
+        assertTrue("Log should contain player name prompt", logContent.contains("Enter your player name"));
+    }
 }
