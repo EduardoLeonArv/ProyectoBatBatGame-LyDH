@@ -75,5 +75,32 @@ public class JukeBoxTest {
         verify(mockClip).stop();
         verify(mockClip).close();
     }
+    @Test
+    void testLoadClipException() {
+        JukeBox.load("/resources/invalid_audio.mp3", "invalidClip");
+
+        assertFalse(JukeBox.getClips().containsKey("invalidClip"),
+                "El mapa no debería contener clips inválidos.");
+    }
+    @Test
+    void testPlayNonExistentClip() {
+        assertDoesNotThrow(() -> JukeBox.play("nonExistentClip"),
+                "El método play debería manejar clips inexistentes sin lanzar excepciones.");
+    }
+
+    @Test
+    void testStopNonExistentClip() {
+        assertDoesNotThrow(() -> JukeBox.stop("nonExistentClip"),
+                "El método stop debería manejar clips inexistentes sin lanzar excepciones.");
+    }
+    @Test
+    void testRealClipPlayback() {
+        JukeBox.load("/resources/SFX/teleport.mp3", "realClip");
+
+        JukeBox.play("realClip");
+
+        assertTrue(JukeBox.getClips().get("realClip").isRunning(),
+                "El clip debería estar en reproducción.");
+    }
 
 }
