@@ -75,6 +75,7 @@ public class Player extends MapObject {
 	private BufferedImage confused;
 	private BufferedImage surprised;
 	private int emote = NONE_EMOTE;
+	private int energy;
 
 	public Player(TileMap tm) {
 
@@ -688,4 +689,24 @@ public class Player extends MapObject {
 		return FALLING_ANIM;
 	}
 
+	public void checkProjectileCollision(List<EnemyProjectile> projectiles) {
+		for (EnemyProjectile projectile : projectiles) {
+			if (projectile.intersects(getRectangle())) {
+				hit(projectile.getDamage());
+			}
+		}
+	}
+
+	public void addEnergy(int amount) {
+		energy += amount;
+	}
+
+	public void consumeEnergy(int amount) {
+		if (energy >= amount) {
+			energy -= amount;
+		}
+	}
+	public int getEnergy() {
+		return energy;
+	}
 }

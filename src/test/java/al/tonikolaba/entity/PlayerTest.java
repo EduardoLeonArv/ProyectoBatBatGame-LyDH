@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -825,9 +826,9 @@ public class PlayerTest {
 		Player player = new Player(tm);
 
 		Enemy mockEnemy = Mockito.mock(Enemy.class);
-		Mockito.when(mockEnemy.isDead()).thenReturn(false);
-		Mockito.when(mockEnemy.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
-		Mockito.when(mockEnemy.getDamage()).thenReturn(2);
+		when(mockEnemy.isDead()).thenReturn(false);
+		when(mockEnemy.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
+		when(mockEnemy.getDamage()).thenReturn(2);
 
 		player.init(Arrays.asList(mockEnemy), new ArrayList<>());
 
@@ -885,5 +886,85 @@ public class PlayerTest {
 		player.update();
 		assertEquals("El jugador debería estar en la animación de caída.", fallingAnim, player.getCurrentAction());
 	}
+	@Test
+	@DisplayName("Test Ataque del Jugador")
+	public void testAtaqueDelJugador() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar el estado de ataque
+		player.setAttacking();
+		player.update();
+
+		assertTrue("El jugador debería estar en estado de ataque.", player.isAttacking());
+		assertEquals("El jugador debería estar en la animación de ataque.", Player.ATTACKING_ANIM, player.getCurrentAction());
+	}
+	@Test
+	@DisplayName("Test Jugador Recibiendo Daño")
+	public void testJugadorRecibiendoDaño() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Salud inicial
+		int initialHealth = player.getHealth();
+
+		// El jugador recibe daño
+		player.hit(2);
+
+		assertEquals("La salud del jugador debería reducirse.", initialHealth - 2, player.getHealth());
+		assertTrue("El jugador debería entrar en estado de flinching.", player.isFlinching());
+	}
+
+	@Test
+	@DisplayName("Test Interacción con Proyectiles Enemigos")
+	public void testInteraccionConProyectilesEnemigos() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Crear un proyectil enemigo simulado
+		EnemyProjectile mockProjectile = Mockito.mock(EnemyProjectile.class);
+		Mockito.when(mockProjectile.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
+		Mockito.when(mockProjectile.getDamage()).thenReturn(2);
+
+		// Añadir el proyectil a la lista
+		List<EnemyProjectile> projectiles = new ArrayList<>();
+		projectiles.add(mockProjectile);
+
+		// Simular colisión con el proyectil
+		player.checkProjectileCollision(projectiles);
+
+		// Verificar que el jugador recibe daño
+		assertTrue("El jugador debería entrar en estado de flinching después de ser golpeado por un proyectil.", player.isFlinching());
+		assertEquals("La salud del jugador debería reducirse.", player.getMaxHealth() - 2, player.getHealth());
+	}
+
+
+	@Test
+	@DisplayName("Test Interacción con Partículas de Energía")
+	public void testInteraccionConParticulasDeEnergia() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Crear una partícula de energía simulada
+		EnergyParticle mockParticle = Mockito.mock(EnergyParticle.class);
+		Mockito.when(mockParticle.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
+
+		// Añadir la partícula a la lista
+		List<EnergyParticle> energyParticles = new ArrayList<>();
+		energyParticles.add(mockParticle);
+
+		// Inicializar el jugador con las partículas de energía
+		player.init(new ArrayList<>(), energyParticles);
+
+		// Verificar que el jugador no tiene energía antes de recoger
+		assertEquals("La energía inicial del jugador debería ser 0.", 0, player.getEnergy());
+
+		// Simular actualización e interacción con la partícula
+		player.update();
+
+		// Verificar que el jugador recolecta energía tras la interacción
+		assertTrue("El jugador debería recoger energía tras la interacción con una partícula.", player.getEnergy() > 0);
+	}
+
 
 }
