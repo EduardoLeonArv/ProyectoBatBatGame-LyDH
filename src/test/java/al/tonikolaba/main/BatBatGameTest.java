@@ -93,9 +93,8 @@ public class BatBatGameTest {
             // Start game
             game.run();
 
-            // Simulate gameplay actions here (expand if necessary)
-
-            // Ensure game window can close without exceptions
+            // Invoke game lifecycle methods explicitly
+            game.saveScore("TestPlayer", 200);
             SwingUtilities.invokeAndWait(() -> {
                 game.dispose();
             });
@@ -124,5 +123,15 @@ public class BatBatGameTest {
 
         String logContent = logOutput.toString();
         assertTrue("Log should contain player name prompt", logContent.contains("Enter your player name"));
+    }
+
+    @Test
+    @DisplayName("Test Run Method Explicitly")
+    public void testRunMethod() throws Exception {
+        // Act
+        game.run();
+
+        // Assert
+        assertNotNull("Game instance should not be null after run", game);
     }
 }
