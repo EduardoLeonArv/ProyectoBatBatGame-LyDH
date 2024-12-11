@@ -16,16 +16,8 @@ import al.tonikolaba.main.BatBatSpringTests;
 
 @RunWith(JUnitPlatform.class)
 @DisplayName("Project Suite Tests")
-@SelectPackages({
-		"al.tonikolaba.main",
-		"al.tonikolaba.gamestate",
-		"al.tonikolaba.gamestate.entity",
-		"al.tonikolaba.entity",
-		"al.tonikolaba.handlers",
-		"al.tonikolaba.gamestate.handlers",
-		"al.tonikolaba.tilemap"
-})
-
+@SelectPackages({ "al.tonikolaba.main", "al.tonikolaba.gamestate", "al.tonikolaba.gamestate.entity",
+		"al.tonikolaba.gamestate.handlers" })
 @SelectClasses({ BatBatSpringTests.class })
 @ExcludeClassNamePatterns({ "^.*ATests?$" })
 public class ProjectSuiteTests {
