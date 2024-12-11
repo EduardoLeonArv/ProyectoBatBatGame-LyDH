@@ -2,7 +2,10 @@ package al.tonikolaba.tilemap;
 
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class TileMapTest {
 
@@ -53,4 +56,44 @@ public class TileMapTest {
         TileMap tileMap = new TileMap(32);
         assertDoesNotThrow(() -> tileMap.loadMap("/invalid/map.txt"));
     }
+
+    @Test
+    public void testGetType() {
+        TileMap tileMap = new TileMap(32);
+        tileMap.loadMap("/path/to/map.txt"); // Asegúrate de que el archivo existe para la prueba.
+
+        int tileType = tileMap.getType(0, 0); // Suponiendo un mapa válido.
+        assertEquals(Tile.NORMAL, tileType); // Cambia según el tipo esperado.
+    }
+    @Test
+    public void testUpdateShaking() {
+        TileMap tileMap = new TileMap(32);
+        tileMap.setShaking(true, 5);
+        double initialX = tileMap.getx();
+        double initialY = tileMap.gety();
+
+        tileMap.update();
+
+        assertNotEquals(initialX, tileMap.getx());
+        assertNotEquals(initialY, tileMap.gety());
+    }
+    @Test
+    public void testDraw() {
+        TileMap tileMap = new TileMap(32);
+        tileMap.loadMap("/path/to/map.txt"); // Asegúrate de tener un mapa válido.
+
+        Graphics2D g = mock(Graphics2D.class); // Usa Mockito para simular.
+        assertDoesNotThrow(() -> tileMap.draw(g));
+    }
+    @Test
+    public void testLoadMapWithInvalidRows() {
+        TileMap tileMap = new TileMap(32);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            tileMap.loadMap("/path/to/invalid_map.txt"); // Mapa con filas incompletas.
+        });
+        assertTrue(exception.getMessage().contains("El archivo del mapa tiene menos filas"));
+    }
+
+
+
 }
