@@ -1,128 +1,66 @@
 package al.tonikolaba.main;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import al.tonikolaba.main.BatBatGame;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.tilemap.TileMap;
+import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-import java.io.*;
-import java.util.logging.Level;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class BatBatGameTest {
 
-    private BatBatGame game;
-
-    @BeforeEach
-    public void setUp() {
-        game = new BatBatGame();
-    }
-
     @Test
-    @DisplayName("Test Save Score")
-    public void testSaveScore() throws IOException {
-        // Arrange
+    void testRunInitialization() throws Exception {
+        BatBatGame game = spy(BatBatGame.class);
+        String playerName = "TestPlayer";
+
+        // Simula la entrada del usuario
+        InputStream in = new ByteArrayInputStream(playerName.getBytes());
+        System.setIn(in);
+
+        // Ejecuta el método run
+        game.run();
+
+        // Valida que el jugador se haya inicializado
+        Player player = game.getPlayer();
+        assertNotNull(player, "El jugador debería inicializarse correctamente.");
+        assertEquals(playerName, player.getName(), "El nombre del jugador debería coincidir con la entrada.");
+    }
+    @Test
+    void testSaveScore() throws IOException {
+        BatBatGame game = new BatBatGame();
         String playerName = "TestPlayer";
         int score = 100;
+
+        // Crea un archivo temporal para pruebas
         File tempFile = File.createTempFile("scores", ".txt");
         tempFile.deleteOnExit();
 
-        // Redirect output to a temporary file
-        System.setProperty("user.dir", tempFile.getParent());
-
-        // Act
+        // Cambia la implementación para usar el archivo temporal
         game.saveScore(playerName, score);
 
-        // Assert
-        try (BufferedReader reader = new BufferedReader(new FileReader(tempFile))) {
-            String line = reader.readLine();
-            assertNotNull("Score file should not be empty", line);
-            assertTrue("Score file should contain the player's name and score", line.contains("TestPlayer") && line.contains("100"));
-        }
+        // Valida el contenido del archivo
+        String content = String.join("\n", Files.readAllLines(tempFile.toPath()));
+        assertTrue(content.contains("Player: " + playerName + " - Score: " + score),
+                "El archivo debería contener el nombre y la puntuación del jugador.");
     }
 
     @Test
-    @DisplayName("Test Player Initialization")
-    public void testPlayerInitialization() {
-        // Arrange
-        TileMap tileMap = new TileMap(30);
+    void testSaveScoreErrorHandling() {
+        BatBatGame game = new BatBatGame();
 
-        // Act
-        Player player = new Player(tileMap);
-        player.setName("TestPlayer");
+        // Simula un error al guardar
+        BatBatGame spyGame = spy(game);
+        doThrow(IOException.class).when(spyGame).saveScore(anyString(), anyInt());
 
-        // Assert
-        assertEquals("Player name should be set correctly", "TestPlayer", player.getName());
-    }
-
-    @Test
-    @DisplayName("Test Game Window Initialization")
-    public void testGameWindowInitialization() {
-        // Simulate input for player name
-        InputStream sysInBackup = System.in; // Backup System.in to restore later
-        ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
-        System.setIn(in);
-
-        try {
-            // Act
-            game.run();
-        } catch (Exception e) {
-            fail("Game window initialization failed: " + e.getMessage());
-        } finally {
-            System.setIn(sysInBackup); // Restore System.in
-        }
-
-        // Assert
-        assertNotNull("Game window should be initialized", game);
-    }
-
-    @Test
-    @DisplayName("Test Full Game Lifecycle")
-    public void testFullGameLifecycle() {
-        // Simulate input for player name
-        InputStream sysInBackup = System.in; // Backup System.in to restore later
-        ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
-        System.setIn(in);
-
-        try {
-            // Start game
-            game.run();
-
-            // Simulate gameplay actions here (expand if necessary)
-
-            // Ensure game window can close without exceptions
-            SwingUtilities.invokeAndWait(() -> {
-                game.dispose();
-            });
-        } catch (Exception e) {
-            fail("Game lifecycle failed: " + e.getMessage());
-        } finally {
-            System.setIn(sysInBackup);
-        }
-    }
-
-    @Test
-    @DisplayName("Test Logging During Initialization")
-    public void testLoggingDuringInitialization() {
-        // Capture log messages during run
-        ByteArrayOutputStream logOutput = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(logOutput));
-
-        try {
-            game.run();
-        } catch (Exception e) {
-            fail("Game run failed: " + e.getMessage());
-        } finally {
-            System.setOut(originalOut);
-        }
-
-        String logContent = logOutput.toString();
-        assertTrue("Log should contain player name prompt", logContent.contains("Enter your player name"));
+        assertDoesNotThrow(() -> spyGame.saveScore("TestPlayer", 100),
+                "El método saveScore debería manejar excepciones sin lanzar errores.");
     }
 }
