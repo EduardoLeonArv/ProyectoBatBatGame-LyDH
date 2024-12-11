@@ -40,6 +40,10 @@ public abstract class BasicState {
 		this.currentChoice = choice;
 	}
 
+	public int getCurrentChoice() {
+		return currentChoice;
+	}
+
 	public BasicState(GameStateManager gsm) {
 		this.gsm = gsm;
 		try {

@@ -108,7 +108,7 @@ public class OptionsState extends BasicState {
      *
      * @param direction Dirección de la navegación (-1 para arriba, 1 para abajo).
      */
-    private void navigateMenu(int direction) {
+    void navigateMenu(int direction) {
         int newChoice = currentChoice + direction;
         if (newChoice >= 0 && newChoice < options.length) {
             JukeBox.play("menuoption", 0);
