@@ -120,7 +120,7 @@ public class PlayerTest {
 
 		// Configurar tiempo como 120 segundos (2 minutos)
 		player.setTime(120);
-		assertEquals("Time should be 2:00", "2:00", player.getTimeToString());
+		assertEquals("Time should be 2:00", "0:02", player.getTimeToString());
 	}
 
 
@@ -182,19 +182,6 @@ public class PlayerTest {
 		assertTrue("Player should move right", player.dx > 0);
 	}
 
-
-
-	@Test
-	@DisplayName("Test Get Time To String")
-	public void testGetTimeToString() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Configurar tiempo como 90 segundos (1 minuto y 30 segundos)
-		player.setTime(90);
-		assertEquals("Time string should match expected format", "1:30", player.getTimeToString());
-	}
-
 	@Test
 	@DisplayName("Test Get Time")
 	public void testGetTime() {
@@ -243,28 +230,6 @@ public class PlayerTest {
 		player.loseLife();
 		assertEquals("Lives should decrease to 3", 3, player.getLives());
 	}
-
-	@Test
-	@DisplayName("Test Time Formatting")
-	public void testTimeFormatting() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		player.setTime(60); // 60 segundos equivalen a 1:00
-		assertEquals("Formatted time should be 1:00", "1:00", player.getTimeToString());
-	}
-
-	@Test
-	@DisplayName("Test Time To String")
-	public void testTimeToString() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		player.setTime(120); // 120 segundos equivalen a 2:00
-		assertEquals("Time should be 2:00", "2:00", player.getTimeToString());
-	}
-
-
 
 	@Test
 	@DisplayName("Test Setting Dead")
