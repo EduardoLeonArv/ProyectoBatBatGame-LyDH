@@ -5,8 +5,17 @@ import org.junit.jupiter.api.Test;
 import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class TileTest {
+    @Test
+    void testTileInitialization() {
+        BufferedImage image = mock(BufferedImage.class);
+        Tile tile = new Tile(image, Tile.NORMAL);
+
+        assertNotNull(tile.getImage(), "La imagen debería inicializarse correctamente.");
+        assertEquals(Tile.NORMAL, tile.getType(), "El tipo del tile debería ser NORMAL.");
+    }
 
     @Test
     public void testConstructor() {

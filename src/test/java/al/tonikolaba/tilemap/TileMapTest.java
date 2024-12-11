@@ -10,6 +10,21 @@ import static org.mockito.Mockito.mock;
 public class TileMapTest {
 
     @Test
+    void testLoadMapInvalidFile() {
+        TileMap tileMap = new TileMap(32);
+        assertThrows(Exception.class, () -> tileMap.loadMap("/invalid/map.txt"), "Debería lanzar una excepción para archivos inválidos.");
+    }
+
+    @Test
+    void testUpdateWhileShaking() {
+        TileMap tileMap = new TileMap(32);
+        tileMap.setShaking(true, 5);
+        double previousX = tileMap.getx();
+        tileMap.update();
+        assertNotEquals(previousX, tileMap.getx(), "La posición debería cambiar cuando está en modo shaking.");
+    }
+
+    @Test
     public void testConstructor() {
         TileMap tileMap = new TileMap(32);
 
