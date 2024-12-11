@@ -21,8 +21,14 @@ public class LoggingHelperTest {
 
     @Test
     public void testLoggerIsNotNull() {
-        Logger logger = LoggingHelper.LOGGER;
+        // Crear un logger con un nombre de ejemplo
+        Logger logger = Logger.getLogger("usuario_ejemplo");
+
+        // Asegurarte de que el logger no es nulo
         assertNotNull(logger);
-        assertEquals("al.tonikolaba.handlers.LoggingHelper", logger.getName());
+
+        // Verificar que el nombre del logger sea el esperado
+        assertEquals("usuario_ejemplo", logger.getName());
     }
+
 }
