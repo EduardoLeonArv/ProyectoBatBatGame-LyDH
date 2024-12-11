@@ -1,47 +1,68 @@
 package al.tonikolaba.entity;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-
 import al.tonikolaba.tilemap.TileMap;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.awt.Rectangle;
 
-/**
- * @author N.Kolaba
- *
- */
-
-@RunWith(JUnitPlatform.class)
-@DisplayName("Map Object")
 public class MapObjectTest {
 
-	@Test
-	public void checkTileMapCollision() {
-		// setup
-		TileMap tm = new TileMap(200);
-		MapObject obj = new MapObject(tm);
-		obj.setPosition(12.5, -1);
-		obj.setVector(20.15, 10.5);
-		obj.cwidth = 100;
-		obj.cheight = 100;
-		obj.tileSize = 200;
-		obj.falling = false;
-		obj.bottomLeft = false;
-		obj.bottomRight = false;
-		// run function
-		obj.checkTileMapCollision();
+    @Test
+    public void testConstructor() {
+        TileMap tileMap = new TileMap(32);
+        MapObject mapObject = new MapObject(tileMap);
 
-		// assert statements
-		// assertEquals(obj.x, obj.xtemp, 0.001); // expected true, both values are the
-		// same
-		// assertEquals(obj.y, obj.ytemp, 0.001); // expected true
+        assertNotNull(mapObject);
+        assertEquals(32, mapObject.tileSize);
+    }
 
-		// assertEquals(0.065, obj.currCol, 0.000); // expected false, currCol is int
-		// assertEquals(0, obj.currCol); // expected true
-		// assertEquals(-1, obj.currRow); // expected false, is 0
+    @Test
+    public void testSetPosition() {
+        TileMap tileMap = new TileMap(32);
+        MapObject mapObject = new MapObject(tileMap);
+        mapObject.setPosition(50, 75);
 
-		// assertTrue(obj.falling); // expected true, because changed after condition
-		// check
-	}
+        assertEquals(50, mapObject.getx());
+        assertEquals(75, mapObject.gety());
+    }
+
+    @Test
+    public void testIntersects() {
+        TileMap tileMap = new TileMap(32);
+        MapObject object1 = new MapObject(tileMap);
+        MapObject object2 = new MapObject(tileMap);
+
+        object1.setPosition(50, 50);
+        object2.setPosition(55, 55);
+
+        object1.cwidth = object1.cheight = 10;
+        object2.cwidth = object2.cheight = 10;
+
+        assertTrue(object1.intersects(object2));
+    }
+
+    @Test
+    public void testNotOnScreen() {
+        TileMap tileMap = new TileMap(32);
+        MapObject mapObject = new MapObject(tileMap);
+        mapObject.setPosition(-50, -50);
+
+        assertTrue(mapObject.notOnScreen());
+    }
+
+    @Test
+    public void testCalculateCorners() {
+        TileMap tileMap = new TileMap(32);
+        MapObject mapObject = new MapObject(tileMap);
+
+        mapObject.cwidth = 32;
+        mapObject.cheight = 32;
+
+        // Assuming map has open space, no blocked tiles
+        mapObject.calculateCorners(64, 64);
+        assertFalse(mapObject.topLeft);
+        assertFalse(mapObject.topRight);
+        assertFalse(mapObject.bottomLeft);
+        assertFalse(mapObject.bottomRight);
+    }
 }
