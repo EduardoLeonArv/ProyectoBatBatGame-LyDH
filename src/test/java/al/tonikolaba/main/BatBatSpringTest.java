@@ -32,4 +32,13 @@ public class BatBatSpringTest {
             fail("El método main no debería lanzar excepciones.");
         }
     }
+
+    @Test
+    @DisplayName("Test Bean Initialization")
+    void testBeanInitialization() {
+        try (ConfigurableApplicationContext context = SpringApplication.run(BatBatSpring.class)) {
+            assertNotNull(context.getBean(BatBatGame.class), "El bean BatBatGame debería inicializarse correctamente.");
+        }
+    }
+
 }

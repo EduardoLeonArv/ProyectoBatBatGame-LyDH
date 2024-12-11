@@ -63,4 +63,25 @@ public class BatBatGameTest {
         assertDoesNotThrow(() -> spyGame.saveScore("TestPlayer", 100),
                 "El método saveScore debería manejar excepciones sin lanzar errores.");
     }
+
+    @Test
+    void testScoreSavingOnWindowClosing() throws Exception {
+        BatBatGame game = spy(new BatBatGame());
+        game.run(); // Simula la ejecución del juego
+
+        // Simula cerrar la ventana
+        game.saveScore("TestPlayer", 100);
+
+        verify(game, times(1)).saveScore("TestPlayer", 100);
+    }
+
+    @Test
+    void testPlayerInitialization() throws Exception {
+        BatBatGame game = new BatBatGame();
+        game.run();
+
+        assertNotNull(game.getPlayer(), "El jugador debería inicializarse correctamente.");
+        assertEquals("TestPlayer", game.getPlayer().getName(), "El nombre del jugador debería ser 'TestPlayer'.");
+    }
+
 }
