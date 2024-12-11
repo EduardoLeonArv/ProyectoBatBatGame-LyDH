@@ -33,7 +33,6 @@ public class MenuState extends BasicState {
      */
     public MenuState(GameStateManager gsm, Player player) {
         super(gsm);
-        this.player = player; // Asignar el jugador
         options = new String[] { PLAY_OPTION, OPTIONS_OPTION, QUIT_OPTION };
     }
 
