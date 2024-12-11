@@ -71,4 +71,8 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 			LoggingHelper.LOGGER.log(Level.SEVERE, "Error saving score to file", e);
 		}
 	}
+
+    public Player getPlayer() {
+		return player;
+    }
 }

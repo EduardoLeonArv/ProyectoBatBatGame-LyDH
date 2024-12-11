@@ -270,4 +270,23 @@ public class MapObject {
 		}
 	}
 
+
+	public void setFalling(boolean falling) {
+		this.falling = falling;
+	}
+
+	public boolean isFalling() { return  falling; }
+
+
+	public int getCurrentAction() {
+		return currentAction;
+	}
+
+	public double getDy() {
+		return dy;
+	}
+
+	public double getDx() {
+		return dx;
+	}
 }

@@ -124,16 +124,6 @@
             <version>9.4.52.v20230823</version> <!-- Reemplaza con la última versión -->
         </dependency>
 
-
-         <!--NUEVA DEPENDENCIA-->
-         <dependency>
-             <groupId>org.mockito</groupId>
-             <artifactId>mockito-core</artifactId>
-             <version>5.5.0</version>
-             <scope>test</scope>
-         </dependency>
-
-
      <!-- PUSE LAS SIGUIENTES 4 DEPENDENCIAS -->
          <!-- Mockito Core -->
          <dependency>

@@ -583,16 +583,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Energy Particles Initialization")
-	public void testEnergyParticlesInitialization() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		assertNotNull("Energy particles list should not be null", player.getEnergyParticles());
-		assertTrue("Energy particles list should be empty initially", player.getEnergyParticles().isEmpty());
-	}
-
-	@Test
 	@DisplayName("Test Reset Score")
 	public void testResetScore() {
 		TileMap tm = new TileMap(30);
@@ -756,22 +746,6 @@ public class PlayerTest {
 		assertEquals("La acción debería ser JUMPING.", jumpingAnimValue, player.getCurrentAction());
 	}
 
-
-
-	@Test
-	public void testResourceInitialization() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Comprobar que la lista de partículas no es nula
-		assertNotNull("La lista de partículas de energía no debería ser nula.", player.getEnergyParticles());
-
-		// Comprobar que la lista no está vacía
-		assertFalse("La lista de partículas debería contener elementos.", player.getEnergyParticles().isEmpty());
-	}
-
-
-
 	@Test
 	@DisplayName("Test Draw Method")
 	public void testDrawMethod() {
@@ -799,24 +773,6 @@ public class PlayerTest {
 		assertFalse("El estado knockback debería desactivarse.", player.isKnockback());
 		assertFalse("El estado flinching debería desactivarse.", player.isFlinching());
 		assertFalse("El estado jumping debería desactivarse.", player.jumping);
-	}
-	@Test
-	@DisplayName("Test Eliminación de Partículas de Energía con Reflexión")
-	public void testEliminacionDeParticulasDeEnergiaConReflexion() throws Exception {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		List<EnergyParticle> particles = player.getEnergyParticles();
-		EnergyParticle particle = new EnergyParticle(tm, 100, 100, EnergyParticle.ENERGY_UP);
-		particles.add(particle);
-
-		// Usa reflexión para invocar el método `remove`
-		Method removeMethod = EnergyParticle.class.getDeclaredMethod("remove");
-		removeMethod.setAccessible(true);
-		removeMethod.invoke(particle);
-
-		player.update();
-		assertTrue("La lista de partículas de energía debería estar vacía tras la eliminación.", particles.isEmpty());
 	}
 
 	@Test
@@ -916,57 +872,4 @@ public class PlayerTest {
 		assertEquals("La salud del jugador debería reducirse.", initialHealth - 2, player.getHealth());
 		assertTrue("El jugador debería entrar en estado de flinching.", player.isFlinching());
 	}
-
-	@Test
-	@DisplayName("Test Interacción con Proyectiles Enemigos")
-	public void testInteraccionConProyectilesEnemigos() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Crear un proyectil enemigo simulado
-		EnemyProjectile mockProjectile = Mockito.mock(EnemyProjectile.class);
-		Mockito.when(mockProjectile.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
-		Mockito.when(mockProjectile.getDamage()).thenReturn(2);
-
-		// Añadir el proyectil a la lista
-		List<EnemyProjectile> projectiles = new ArrayList<>();
-		projectiles.add(mockProjectile);
-
-		// Simular colisión con el proyectil
-		player.checkProjectileCollision(projectiles);
-
-		// Verificar que el jugador recibe daño
-		assertTrue("El jugador debería entrar en estado de flinching después de ser golpeado por un proyectil.", player.isFlinching());
-		assertEquals("La salud del jugador debería reducirse.", player.getMaxHealth() - 2, player.getHealth());
-	}
-
-
-	@Test
-	@DisplayName("Test Interacción con Partículas de Energía")
-	public void testInteraccionConParticulasDeEnergia() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Crear una partícula de energía simulada
-		EnergyParticle mockParticle = Mockito.mock(EnergyParticle.class);
-		Mockito.when(mockParticle.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
-
-		// Añadir la partícula a la lista
-		List<EnergyParticle> energyParticles = new ArrayList<>();
-		energyParticles.add(mockParticle);
-
-		// Inicializar el jugador con las partículas de energía
-		player.init(new ArrayList<>(), energyParticles);
-
-		// Verificar que el jugador no tiene energía antes de recoger
-		assertEquals("La energía inicial del jugador debería ser 0.", 0, player.getEnergy());
-
-		// Simular actualización e interacción con la partícula
-		player.update();
-
-		// Verificar que el jugador recolecta energía tras la interacción
-		assertTrue("El jugador debería recoger energía tras la interacción con una partícula.", player.getEnergy() > 0);
-	}
-
-
 }

@@ -322,7 +322,7 @@ public class Player extends MapObject {
 
 	}
 
-	private void jumpAndFall() {
+	void jumpAndFall() {
 		// jumping
 		if (jumping && !falling) {
 			dy = jumpStart;
@@ -354,7 +354,7 @@ public class Player extends MapObject {
 		}
 	}
 
-	private void movement() {
+	void movement() {
 		double maxSpeed = this.maxSpeed;
 		if (dashing)
 			maxSpeed *= 1.75;
@@ -622,4 +622,46 @@ public class Player extends MapObject {
 		return charging;
 	}
 
+	public boolean isKnockback() { return  knockback; }
+
+	public void setKnockback(boolean knockback) {
+		this.knockback = knockback;
+	}
+
+	public boolean isAttacking() {
+		return attacking;
+	}
+
+	public boolean isAlreadyDoubleJump() {
+		return alreadyDoubleJump;
+	}
+
+	public void setDoubleJump(boolean doubleJump) {
+		this.doubleJump = doubleJump;
+	}
+
+	public boolean isDoubleJump() {
+		return doubleJump;
+	}
+
+	public double getDoubleJumpStart() {
+		return doubleJumpStart;
+	}
+
+	public void setFlinching(boolean flinching) {
+		this.flinching = flinching;
+	}
+
+
+	public boolean isFlinching() {
+		return flinching;
+	}
+
+	public int getFallingAnim() {
+		return FALLING_ANIM;
+	}
+
+	public int getJumpingAnim() {
+		return JUMPING_ANIM;
+	}
 }

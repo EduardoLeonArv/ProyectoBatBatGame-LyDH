@@ -73,6 +73,23 @@ public class Enemy extends MapObject {
         throw new IllegalStateException("Needs to be overwritten");
     }
 
+    public boolean isFlinching() {
+        return flinching;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public double getMoveSpeed() {
+        return moveSpeed;
+    }
+
+
     // Enemy types (for categorization)
     public enum EnemyType {
         RED_ENERGY, UFO, XHELBAT, ZOGU, SPIRIT

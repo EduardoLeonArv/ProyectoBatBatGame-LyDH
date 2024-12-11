@@ -87,4 +87,8 @@ public class XhelBat extends Flyer {
 
         super.draw(g);
     }
+
+    public boolean isActive() {
+        return active;
+    }
 }
