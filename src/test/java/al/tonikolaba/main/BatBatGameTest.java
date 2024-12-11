@@ -13,7 +13,6 @@ import al.tonikolaba.tilemap.TileMap;
 import javax.swing.*;
 import java.io.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BatBatGameTest {
 
@@ -21,7 +20,7 @@ public class BatBatGameTest {
 
     @BeforeEach
     public void setUp() {
-        game = spy(new BatBatGame());
+        game = new BatBatGame();
     }
 
     @Test
@@ -33,12 +32,18 @@ public class BatBatGameTest {
         File tempFile = File.createTempFile("scores", ".txt");
         tempFile.deleteOnExit();
 
+        // Redirect output to a temporary file
+        System.setProperty("user.dir", tempFile.getParent());
+
         // Act
-        doNothing().when(game).saveScore(eq(playerName), eq(score));
         game.saveScore(playerName, score);
 
         // Assert
-        verify(game, times(1)).saveScore(playerName, score);
+        try (BufferedReader reader = new BufferedReader(new FileReader(tempFile))) {
+            String line = reader.readLine();
+            assertNotNull("Score file should not be empty", line);
+            assertTrue("Score file should contain the player's name and score", line.contains("TestPlayer") && line.contains("100"));
+        }
     }
 
     @Test
@@ -66,9 +71,6 @@ public class BatBatGameTest {
         try {
             // Act
             game.run();
-            SwingUtilities.invokeAndWait(() -> {
-                game.dispose(); // Close the game window
-            });
         } catch (Exception e) {
             fail("Game window initialization failed: " + e.getMessage());
         } finally {
@@ -80,16 +82,47 @@ public class BatBatGameTest {
     }
 
     @Test
-    @DisplayName("Test Logging for Initialization")
-    public void testLoggingDuringInitialization() throws Exception {
-        // Arrange
-        Logger loggerMock = mock(Logger.class);
-        doNothing().when(loggerMock).log(eq(Level.INFO), anyString());
+    @DisplayName("Test Full Game Lifecycle")
+    public void testFullGameLifecycle() {
+        // Simulate input for player name
+        InputStream sysInBackup = System.in; // Backup System.in to restore later
+        ByteArrayInputStream in = new ByteArrayInputStream("TestPlayer\n".getBytes());
+        System.setIn(in);
 
-        // Act
-        game.run();
+        try {
+            // Start game
+            game.run();
 
-        // Assert
-        verify(loggerMock, atLeastOnce()).log(eq(Level.INFO), anyString());
+            // Simulate gameplay actions here (expand if necessary)
+
+            // Ensure game window can close without exceptions
+            SwingUtilities.invokeAndWait(() -> {
+                game.dispose();
+            });
+        } catch (Exception e) {
+            fail("Game lifecycle failed: " + e.getMessage());
+        } finally {
+            System.setIn(sysInBackup);
+        }
+    }
+
+    @Test
+    @DisplayName("Test Logging During Initialization")
+    public void testLoggingDuringInitialization() {
+        // Capture log messages during run
+        ByteArrayOutputStream logOutput = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(logOutput));
+
+        try {
+            game.run();
+        } catch (Exception e) {
+            fail("Game run failed: " + e.getMessage());
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        String logContent = logOutput.toString();
+        assertTrue("Log should contain player name prompt", logContent.contains("Enter your player name"));
     }
 }
