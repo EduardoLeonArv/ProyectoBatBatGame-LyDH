@@ -1,16 +1,15 @@
 package al.tonikolaba.tilemap;
 
-import al.tonikolaba.tilemap.Background;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class BackgroundTest {
-    private static final String IMAGE_PATH = "/resources/Image.png";
+    private static final String IMAGE_PATH = "/Image.png";
+    
     @Test
     void testBackgroundInitialization() {
         Background background = new Background(IMAGE_PATH, 0.5);
