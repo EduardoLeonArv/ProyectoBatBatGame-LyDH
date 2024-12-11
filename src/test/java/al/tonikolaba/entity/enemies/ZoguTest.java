@@ -3,6 +3,7 @@ package al.tonikolaba.entity.enemies;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -84,4 +85,15 @@ public class ZoguTest {
         // Verify drawing logic
         verify(gMock, atLeastOnce()).drawImage(any(), anyInt(), anyInt(), isNull());
     }
+    @Test
+    @DisplayName("Test Zogu Dies After Sufficient Damage")
+    public void testZoguDiesAfterDamage() {
+        TileMap tmMock = mock(TileMap.class);
+        Player playerMock = mock(Player.class);
+        Zogu zogu = new Zogu(tmMock, playerMock);
+
+        zogu.hit(2); // Supongamos que tiene 2 de salud
+        Assertions.assertTrue(zogu.isDead(), "Zogu debería estar muerto después de recibir suficiente daño.");
+    }
+
 }

@@ -137,5 +137,34 @@ class XhelBatTest {
 
         assertFalse((boolean) flinchingField.get(xhelBat), "El estado flinching debería desactivarse después de 6 actualizaciones.");
     }
+    @Test
+    @DisplayName("Test XhelBat Damages Player on Collision")
+    void testXhelBatCollisionWithPlayer() {
+        when(mockPlayer.getx()).thenReturn(100);
+        when(mockPlayer.gety()).thenReturn(100);
+
+        xhelBat.x = 100;
+        xhelBat.y = 100;
+
+        xhelBat.update();
+
+        verify(mockPlayer).hit(anyInt()); // Suponiendo que el jugador tiene un método hit
+    }
+    @Test
+    @DisplayName("Test XhelBat Changes Direction at Map Edges")
+    void testXhelBatDirectionChangeAtEdges() throws Exception {
+        Field leftField = XhelBat.class.getSuperclass().getDeclaredField("left");
+        Field bottomRightField = XhelBat.class.getSuperclass().getDeclaredField("bottomRight");
+
+        leftField.setAccessible(true);
+        bottomRightField.setAccessible(true);
+
+        leftField.set(xhelBat, false);
+        bottomRightField.set(xhelBat, false);
+
+        xhelBat.update();
+
+        assertTrue((boolean) leftField.get(xhelBat), "XhelBat debería cambiar de dirección al colisionar con un borde.");
+    }
 
 }
