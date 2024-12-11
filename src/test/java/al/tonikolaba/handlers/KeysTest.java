@@ -6,6 +6,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * @author N.Kolaba
@@ -68,4 +69,10 @@ public class KeysTest {
 		assertNotNull(keyState);
 		assertEquals(Keys.NUM_KEYS, keyState.length);
 	}
+
+	@Test
+	public void testInvalidKeySet() {
+		assertDoesNotThrow(() -> Keys.keySet(-1, true));
+	}
+
 }
