@@ -277,4 +277,7 @@ public class MapObject {
 		this.ytemp = ytemp;
 	}
 
+	public void setFalling(boolean falling) {
+		this.falling = falling;
+	}
 }
