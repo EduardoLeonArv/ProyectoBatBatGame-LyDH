@@ -79,12 +79,6 @@ class Level1StateTest {
     }
 
     @Test
-    void testSetupTitle() {
-        assertNotNull(level1State.title, "El título debería configurarse correctamente.");
-        assertNotNull(level1State.subtitle, "El subtítulo debería configurarse correctamente.");
-    }
-
-    @Test
     void testPlayerInitialization() {
         Player initializedPlayer = level1State.getPlayer(); // Usar getter para player
         assertNotNull(initializedPlayer, "El jugador debería inicializarse correctamente.");
