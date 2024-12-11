@@ -5,7 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import org.mockito.Mockito;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -668,4 +671,111 @@ public class PlayerTest {
 			assertNotNull("Exception should be caught and logged", e.getMessage());
 		}
 	}
+
+	@Test
+	@DisplayName("Test Knockback and Flinching States")
+	public void testKnockbackAndFlinching() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Activar knockback
+		player.setKnockback(true);
+		assertTrue("El estado knockback debería estar activado.", player.isKnockback());
+
+		// Desactivar knockback
+		player.setKnockback(false);
+		assertFalse("El estado knockback debería estar desactivado.", player.isKnockback());
+
+		// Activar flinching
+		player.setFlinching(true);
+		assertTrue("El estado flinching debería estar activado.", player.isFlinching());
+
+		// Desactivar flinching
+		player.setFlinching(false);
+		assertFalse("El estado flinching debería estar desactivado.", player.isFlinching());
+	}
+
+	@Test
+	@DisplayName("Test Movement Logic")
+	public void testMovementLogic() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar movimiento hacia la derecha
+		player.setRight(true);
+		player.movement();
+		assertTrue("El jugador debería moverse a la derecha.", player.dx > 0);
+
+		// Configurar movimiento hacia la izquierda
+		player.setLeft(true);
+		player.setRight(false);
+		player.movement();
+		assertTrue("El jugador debería moverse a la izquierda.", player.dx < 0);
+
+		// Detener movimiento
+		player.setLeft(false);
+		player.movement();
+		assertEquals("El jugador debería detenerse.", 0.0, player.dx, 0.01);
+	}
+		
+	@Test
+	@DisplayName("Test Jumping and Falling")
+	public void testJumpingAndFalling() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar salto
+		player.setJumping(true);
+		player.jumpAndFall();
+		assertEquals("El jugador debería tener la velocidad de salto inicial.",
+				player.jumpStart, player.dy, 0.01);
+
+		// Configurar caída
+		player.setFalling(true);
+		player.jumpAndFall();
+		assertTrue("El jugador debería estar cayendo.", player.dy > 0);
+	}
+
+
+	@Test
+	@DisplayName("Test Animation Changes")
+	public void testAnimationChanges() throws Exception {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Reflexión para acceder al campo privado JUMPING_ANIM
+		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
+		((java.lang.reflect.Field) jumpingAnimField).setAccessible(true);
+		int jumpingAnimValue = (int) jumpingAnimField.get(player);
+
+		// Configurar salto
+		player.setJumping(true);
+		player.update();
+		assertEquals(String.valueOf(jumpingAnimValue), player.getCurrentAction(), "La acción debería ser JUMPING.");
+	}
+
+	@Test
+	public void testResourceInitialization() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Comprobar que la lista de partículas no es nula
+		assertNotNull("La lista de partículas de energía no debería ser nula.", player.getEnergyParticles());
+
+		// Comprobar que la lista no está vacía
+		assertFalse("La lista de partículas debería contener elementos.", player.getEnergyParticles().isEmpty());
+	}
+
+
+
+	@Test
+	@DisplayName("Test Draw Method")
+	public void testDrawMethod() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		Graphics2D mockGraphics = Mockito.mock(Graphics2D.class);
+		assertDoesNotThrow(() -> player.draw(mockGraphics), "El método draw no debería lanzar excepciones.");
+	}
+
 }
