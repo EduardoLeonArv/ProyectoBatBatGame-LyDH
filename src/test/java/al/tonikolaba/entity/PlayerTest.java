@@ -392,6 +392,26 @@ public class PlayerTest {
 	}
 
 
+
+	@Test
+	@DisplayName("Test Movement with Dashing")
+	public void testMovement() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		// Configurar estado inicial
+		player.setRight(true);
+		player.setDashing(true);
+
+		player.movement(); // Llamar al método de movimiento
+
+		// Verificar que la velocidad durante dashing supera maxSpeed
+		assertTrue("Player should move faster when dashing", player.dx > player.maxSpeed);
+	}
+
+
+
+
 	@Test
 	@DisplayName("Debug Test Movement with Dashing")
 	public void testMovementDebug() {
