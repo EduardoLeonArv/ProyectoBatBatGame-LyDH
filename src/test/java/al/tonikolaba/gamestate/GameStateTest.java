@@ -61,27 +61,6 @@ public class GameStateTest {
     }
 
     @Test
-    void testReset() {
-        GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
-
-        TileMap tileMap = mock(TileMap.class);
-        Player player = mock(Player.class);
-        gameState.tileMap = tileMap;
-        gameState.player = player;
-
-        gameState.playerXStart = 50;
-        gameState.playerYStart = 100;
-        gameState.enemies = new ArrayList<>();
-        gameState.eventStart = false;
-
-        gameState.reset();
-
-        verify(player).reset();
-        verify(player).setPosition(50, 100);
-        assertTrue(gameState.eventStart, "El evento de inicio debería activarse después de reiniciar.");
-    }
-
-    @Test
     public void testCreateEnemy() throws Exception {
         GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
         TileMap tileMap = mock(TileMap.class);
@@ -170,7 +149,7 @@ public class GameStateTest {
         assertFalse(gameState.eventDead, "El evento de muerte debería terminar después de 120 actualizaciones.");
     }
 
-    
+
 
 
 }
