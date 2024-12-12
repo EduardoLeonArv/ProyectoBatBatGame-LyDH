@@ -12,6 +12,10 @@ import org.mockito.MockitoAnnotations;
 import al.tonikolaba.entity.Player;
 
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 class GameStateManagerTest {
 
@@ -64,16 +68,39 @@ class GameStateManagerTest {
 	}
 
 	@Test
-	@DisplayName("Test save score to file")
-	void testSaveScoreToFile() {
+	@DisplayName("Test save score to scores.txt")
+	void testSaveScoreToFile() throws IOException {
+		// Arrange: Mock player data
 		when(mockPlayer.getScore()).thenReturn(100);
 		when(mockPlayer.getName()).thenReturn("TestPlayer");
 
+		// Define the file path
+		File scoreFile = new File("scores.txt");
+
+		// Ensure the file exists; create it if necessary
+		if (!scoreFile.exists()) {
+			scoreFile.createNewFile();
+		}
+
+		// Act: Save the score
 		gameStateManager.saveScoreToFile();
 
-		// Verificar que el puntaje se guardó correctamente
-		// Aquí puedes agregar lógica para verificar el contenido del archivo si es necesario
+		// Assert: Check if the score was saved correctly
+		boolean scoreFound = false;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: TestPlayer - Score: 100")) {
+					scoreFound = true;
+					break;
+				}
+			}
+		}
+
+		// Assert that the score was found
+		assertTrue(scoreFound, "The expected score was not found in scores.txt");
 	}
+
 
 	@Test
 	@DisplayName("Test pause and resume")

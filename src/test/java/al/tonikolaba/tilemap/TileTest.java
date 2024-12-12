@@ -56,6 +56,6 @@ public class TileTest {
 
         assertEquals(image, tile.getImage());
     }
-    
+
      */
 }
