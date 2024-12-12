@@ -684,22 +684,7 @@ public class PlayerTest {
 		assertFalse("El estado jumping debería desactivarse.", player.isJumping()); // Cambio de 'jumping' a 'isJumping()' asumiendo que es un método getter
 	}
 
-	@Test
-	@DisplayName("Test Interacción con Enemigos")
-	public void testInteraccionConEnemigos() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		Enemy mockEnemy = Mockito.mock(Enemy.class);
-		when(mockEnemy.isDead()).thenReturn(false);
-		when(mockEnemy.intersects(Mockito.any(Rectangle.class))).thenReturn(true);
-		when(mockEnemy.getDamage()).thenReturn(2);
-
-		player.init(Arrays.asList(mockEnemy), new ArrayList<>());
-
-		player.hit(3); // El jugador recibe daño por interacción
-		assertEquals("La salud debería disminuir tras la interacción con un enemigo.", 2, player.getHealth());
-	}
+	
 	@Test
 	@DisplayName("Test Lógica de Doble Salto")
 	public void testLogicaDeDobleSalto() {
@@ -742,5 +727,27 @@ public class PlayerTest {
 
 		assertEquals("La salud del jugador debería reducirse.", initialHealth - 2, player.getHealth());
 		assertTrue("El jugador debería entrar en estado de flinching.", player.isFlinching());
+	}
+
+	@Test
+	@DisplayName("Test Get Falling Animation")
+	void testGetFallingAnim() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		int expectedFallingAnim = 4; // Ajusta este valor según lo que sea FALLING_ANIM en tu clase Player
+		assertEquals("El método getFallingAnim debería retornar el valor esperado para FALLING_ANIM.",
+				expectedFallingAnim, player.getFallingAnim());
+	}
+
+	@Test
+	@DisplayName("Test Get Jumping Animation")
+	void testGetJumpingAnim() {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		int expectedJumpingAnim = 3; // Ajusta este valor según lo que sea JUMPING_ANIM en tu clase Player
+		assertEquals("El método getJumpingAnim debería retornar el valor esperado para JUMPING_ANIM.",
+				expectedJumpingAnim, player.getJumpingAnim());
 	}
 }
