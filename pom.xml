@@ -344,6 +344,27 @@
                     <show>private</show>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <configLocation>src/main/resources/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failOnViolation>true</failOnViolation>
+                </configuration>
+            </plugin>
+
+            <!-- PMD Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.18.0</version>
+                <configuration>
+                    <linkXRef>true</linkXRef>
+                    <targetJdk>1.8</targetJdk>
+                </configuration>
+            </plugin>
         </plugins>
     </reporting>
 	<ciManagement>
