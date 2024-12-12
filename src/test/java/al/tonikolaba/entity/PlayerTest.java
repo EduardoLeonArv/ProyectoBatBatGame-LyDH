@@ -769,6 +769,29 @@ public class PlayerTest {
 	}
 
 	@Test
+	@DisplayName("Test Cambio de Animaciones con Reflexión")
+	public void testCambioDeAnimacionesConReflexion() throws Exception {
+		TileMap tm = new TileMap(30);
+		Player player = new Player(tm);
+
+		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
+		jumpingAnimField.setAccessible(true);
+		int jumpingAnim = jumpingAnimField.getInt(player);
+
+		Field fallingAnimField = Player.class.getDeclaredField("FALLING_ANIM");
+		fallingAnimField.setAccessible(true);
+		int fallingAnim = fallingAnimField.getInt(player);
+
+		player.setJumping(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de salto.", jumpingAnim, player.getCurrentAction());
+
+		player.setFalling(true);
+		player.update();
+		assertEquals("El jugador debería estar en la animación de caída.", fallingAnim, player.getCurrentAction());
+	}
+
+	@Test
 	@DisplayName("Test Ataque del Jugador")
 	public void testAtaqueDelJugador() {
 		TileMap tm = new TileMap(30);
