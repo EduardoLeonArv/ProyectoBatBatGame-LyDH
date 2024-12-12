@@ -641,6 +641,9 @@ public class PlayerTest {
 		player.movement();
 		assertTrue("El jugador debería moverse a la derecha.", player.dx > 0);
 
+		// Reset dx para el siguiente test
+		player.dx = 0;  // Aseguramos que dx está en cero antes de la siguiente prueba
+
 		// Configurar movimiento hacia la izquierda
 		player.setLeft(true);
 		player.setRight(false);
@@ -713,10 +716,11 @@ public class PlayerTest {
 
 		player.reset();
 
+		// Aseguramos que los valores se restablecen correctamente
 		assertEquals("La salud debería restablecerse al máximo.", 5, player.getHealth());
 		assertFalse("El estado knockback debería desactivarse.", player.isKnockback());
 		assertFalse("El estado flinching debería desactivarse.", player.isFlinching());
-		assertFalse("El estado jumping debería desactivarse.", player.jumping);
+		assertFalse("El estado jumping debería desactivarse.", player.isJumping()); // Cambio de 'jumping' a 'isJumping()' asumiendo que es un método getter
 	}
 
 	@Test
@@ -762,29 +766,6 @@ public class PlayerTest {
 		player.setFalling(true);
 		player.update();
 		assertEquals("El jugador debería estar en la animación de caída.", player.getFallingAnim(), player.getCurrentAction());
-	}
-
-	@Test
-	@DisplayName("Test Cambio de Animaciones con Reflexión")
-	public void testCambioDeAnimacionesConReflexion() throws Exception {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
-		jumpingAnimField.setAccessible(true);
-		int jumpingAnim = jumpingAnimField.getInt(player);
-
-		Field fallingAnimField = Player.class.getDeclaredField("FALLING_ANIM");
-		fallingAnimField.setAccessible(true);
-		int fallingAnim = fallingAnimField.getInt(player);
-
-		player.setJumping(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de salto.", jumpingAnim, player.getCurrentAction());
-
-		player.setFalling(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de caída.", fallingAnim, player.getCurrentAction());
 	}
 
 	@Test

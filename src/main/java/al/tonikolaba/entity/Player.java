@@ -301,6 +301,9 @@ public class Player extends MapObject {
 		health = maxHealth;
 		facingRight = true;
 		currentAction = -1;
+		knockback = false;
+		flinching = false;
+		jumping = false;
 		stop();
 	}
 
@@ -663,5 +666,9 @@ public class Player extends MapObject {
 
 	public int getJumpingAnim() {
 		return JUMPING_ANIM;
+	}
+
+	public boolean isJumping() {
+		return jumping;
 	}
 }
