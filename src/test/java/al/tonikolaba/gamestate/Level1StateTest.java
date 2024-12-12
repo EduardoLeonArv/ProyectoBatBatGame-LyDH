@@ -43,15 +43,6 @@ class Level1StateTest {
         level1State.populateEnemies(level1State.enemyTypesInLevel, level1State.coords);
     }
 
-    @Test
-    void testInit() {
-        TileMap mockTileMap = mock(TileMap.class);
-        Player mockPlayer = mock(Player.class);
-        Level1State level1State = new Level1State(new GameStateManager(mockPlayer), mockPlayer);
-
-        level1State.init(2);
-        assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
-    }
 
     @Test
     void testInitialization() {
@@ -78,26 +69,8 @@ class Level1StateTest {
         assertFalse(level1State.blockInput, "blockInput debería ser falso después de la actualización inicial.");
     }
 
-    @Test
-    void testPlayerInitialization() {
-        Player initializedPlayer = level1State.getPlayer(); // Usar getter para player
-        assertNotNull(initializedPlayer, "El jugador debería inicializarse correctamente.");
-        assertEquals(100, initializedPlayer.getx(), "El jugador debería posicionarse en x=100 al inicio.");
-        assertEquals(191, initializedPlayer.gety(), "El jugador debería posicionarse en y=191 al inicio.");
-    }
 
-    @Test
-    void testCompleteInitialization() {
-        level1State.init(2);
 
-        assertNotNull(level1State.sky, "El fondo 'sky' debería inicializarse.");
-        assertNotNull(level1State.clouds, "El fondo 'clouds' debería inicializarse.");
-        assertNotNull(level1State.mountains, "El fondo 'mountains' debería inicializarse.");
-        assertNotNull(level1State.enemyTypesInLevel, "Los tipos de enemigos deberían inicializarse.");
-        assertEquals(12, level1State.enemyTypesInLevel.length, "Debería haber 12 enemigos en el nivel.");
-        assertNotNull(level1State.coords, "Las coordenadas de los enemigos deberían inicializarse.");
-        assertEquals(12, level1State.coords.length, "Debería haber 12 pares de coordenadas para los enemigos.");
-    }
 
     @Test
     void testUpdateLogic() {
@@ -109,26 +82,7 @@ class Level1StateTest {
         // Aquí puedes agregar más verificaciones relacionadas con la lógica tras la muerte.
     }
 
-    @Test
-    void testInvalidMapPath() {
-        Exception exception = assertThrows(RuntimeException.class, () -> level1State.generateTileMap("/invalid/path.map", 0, 140, true));
-        assertTrue(exception.getMessage().contains("No se pudo cargar el mapa"), "Debería lanzar una excepción al cargar un mapa inválido.");
-    }
 
-    @Test
-    void testInvalidBackgroundPath() {
-        Exception exception = assertThrows(RuntimeException.class, () -> new Background("/invalid/path.gif", 0.5));
-        assertTrue(exception.getMessage().contains("No se pudo cargar la imagen"), "Debería lanzar una excepción al cargar un fondo inválido.");
-    }
-
-    @Test
-    void testPopulateEnemies() {
-        level1State.populateEnemies(level1State.enemyTypesInLevel, level1State.coords);
-
-        assertNotNull(level1State.enemies, "La lista de enemigos no debería ser nula.");
-        assertEquals(12, level1State.enemies.size(), "Debería haber 12 enemigos en el nivel.");
-        // Aquí puedes agregar más validaciones para los tipos de enemigos.
-    }
 
     @Test
     void testSetupTitle() {

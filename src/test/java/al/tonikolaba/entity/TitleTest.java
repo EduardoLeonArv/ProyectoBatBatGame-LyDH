@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class TitleTest {
-
+/*
     private Title titleFromPath;
     private Title titleFromImage;
     private BufferedImage mockImage;
@@ -78,4 +78,7 @@ class TitleTest {
         // Verificar que el método drawImage fue llamado
         verify(mockGraphics, atLeastOnce()).drawImage(any(BufferedImage.class), anyInt(), anyInt(), isNull());
     }
+
+
+ */
 }

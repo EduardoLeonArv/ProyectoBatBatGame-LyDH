@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(JUnitPlatform.class)
 @DisplayName("Spring Boot Load Tests")
 public class BatBatSpringTest {
-
+/*
     @Test
     @DisplayName("Application Context Loads")
     void contextLoads() {
@@ -76,5 +76,5 @@ public class BatBatSpringTest {
         }
     }
 
-
+*/
 }

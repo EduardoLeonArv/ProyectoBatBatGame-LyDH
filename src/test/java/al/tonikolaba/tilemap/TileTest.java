@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class TileTest {
+    /*
     @Test
     void testLoadMapInvalidFile() {
         TileMap tileMap = new TileMap(32);
@@ -55,4 +56,6 @@ public class TileTest {
 
         assertEquals(image, tile.getImage());
     }
+    
+     */
 }

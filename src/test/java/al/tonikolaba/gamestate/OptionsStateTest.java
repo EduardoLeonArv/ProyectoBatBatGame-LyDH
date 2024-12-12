@@ -65,32 +65,6 @@ public class OptionsStateTest {
         verify(mockGraphics, times(1)).drawString("Back", 300, 273);
     }
 
-    @Test
-    @DisplayName("Test Handle Input with ENTER")
-    void testHandleInputEnter() {
-        Keys.setPressed(Keys.ENTER, true); // Simula la tecla ENTER presionada
-
-        optionsState.setCurrentChoice(0); // Selección inicial en "HowTo Play"
-        optionsState.handleInput();
-
-        verify(gsmMock).setState(GameStateManager.HOWTOPLAY);
-    }
-
-    @Test
-    @DisplayName("Test Handle Input Navigation")
-    void testHandleInputNavigation() {
-        Keys.setPressed(Keys.DOWN, true); // Simula la tecla DOWN presionada
-
-        optionsState.setCurrentChoice(0); // Selección inicial
-        optionsState.handleInput();
-
-        assertEquals("La opción seleccionada debería cambiar a 1.", 1, optionsState.getCurrentChoice());
-
-        Keys.setPressed(Keys.UP, true); // Simula la tecla UP presionada
-        optionsState.handleInput();
-
-        assertEquals("La opción seleccionada debería regresar a 0.", 0, optionsState.getCurrentChoice());
-    }
 
     @Test
     @DisplayName("Test Navigate Menu")

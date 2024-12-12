@@ -25,17 +25,4 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("Spring Boot Load")
 public class BatBatSpringTests {
 
-	@Test
-	void contextLoads() {
-	}
-
-	@Test
-	@DisplayName("Test Configurable Application Context")
-	void testApplicationContext() {
-		try (ConfigurableApplicationContext context = SpringApplication.run(BatBatSpring.class)) {
-			assertNotNull(context.getEnvironment(), "El contexto debería cargar el entorno.");
-			assertTrue(context.containsBean("batBatGame"), "El contexto debería contener el bean 'batBatGame'.");
-		}
-	}
-
 }

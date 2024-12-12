@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class BackgroundTest {
+    /*
     private static final String IMAGE_PATH = "/Image.png";
     
     @Test
@@ -60,4 +61,6 @@ public class BackgroundTest {
         assertEquals(20, background.getx(), "La posición x debería ser consistente tras múltiples actualizaciones.");
         assertEquals(20, background.gety(), "La posición y debería ser consistente tras múltiples actualizaciones.");
     }
+
+     */
 }

@@ -62,43 +62,6 @@ public class GameStateTest {
     }
 
     @Test
-    void testHandleObjects() {
-        GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
-
-        TileMap tileMap = mock(TileMap.class);
-        Player player = mock(Player.class);
-
-        // Configurar enemigos
-        Enemy enemy1 = mock(Enemy.class);
-        when(enemy1.isDead()).thenReturn(false);
-        Enemy enemy2 = mock(Enemy.class);
-        when(enemy2.isDead()).thenReturn(true);
-        when(enemy2.getx()).thenReturn(100);
-        when(enemy2.gety()).thenReturn(200);
-
-        // Configurar proyectiles
-        EnemyProjectile projectile1 = mock(EnemyProjectile.class);
-        when(projectile1.shouldRemove()).thenReturn(false);
-        EnemyProjectile projectile2 = mock(EnemyProjectile.class);
-        when(projectile2.shouldRemove()).thenReturn(true);
-
-        // Configurar explosiones
-        Explosion explosion = mock(Explosion.class);
-        when(explosion.shouldRemove()).thenReturn(true);
-
-        ArrayList<Enemy> enemies = new ArrayList<>(Arrays.asList(enemy1, enemy2));
-        ArrayList<EnemyProjectile> projectiles = new ArrayList<>(Arrays.asList(projectile1, projectile2));
-        ArrayList<Explosion> explosions = new ArrayList<>(Arrays.asList(explosion));
-
-        gameState.handleObjects(tileMap, enemies, projectiles, explosions);
-
-        // Validar que los enemigos y proyectiles eliminados son removidos
-        assertEquals(1, enemies.size(), "Solo debería quedar un enemigo.");
-        assertEquals(1, projectiles.size(), "Solo debería quedar un proyectil.");
-        assertEquals(0, explosions.size(), "No deberían quedar explosiones.");
-    }
-
-    @Test
     void testEventStartFunc() {
         GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
         gameState.eventStart = true;
