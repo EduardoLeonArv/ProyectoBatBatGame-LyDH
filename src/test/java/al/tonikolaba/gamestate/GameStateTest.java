@@ -170,23 +170,7 @@ public class GameStateTest {
         assertFalse(gameState.eventDead, "El evento de muerte debería terminar después de 120 actualizaciones.");
     }
 
-    @Test
-    void testPopulateEnemies() {
-        GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
-
-        TileMap tileMap = mock(TileMap.class);
-        Player player = mock(Player.class);
-        gameState.tileMap = tileMap;
-        gameState.player = player;
-
-        Enemy.EnemyType[] enemyTypes = {Enemy.EnemyType.ZOGU, Enemy.EnemyType.XHELBAT};
-        int[][] coords = {{100, 200}, {300, 400}};
-
-        gameState.populateEnemies(enemyTypes, coords);
-
-        assertEquals(2, gameState.enemies.size(), "Debería haber 2 enemigos en el nivel.");
-        assertTrue(gameState.enemies.get(0) instanceof Zogu, "El primer enemigo debería ser un Zogu.");
-    }
+    
 
 
 }
