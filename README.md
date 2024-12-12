@@ -30,12 +30,11 @@ Este es un repositorio donde se desarrollará una práctica de Laboratorio de De
 
 ![Alt text](https://github.com/tonikolaba/BatBat-Game/blob/master/about/bg-update.gif)
 
-Consulta la sección de despliegue para más detalles sobre cómo instalar y ejecutar el proyecto en un sistema operativo.
 
 ![alt text](https://github.com/tonikolaba/BatBat-Game/blob/master/about/1.gif) |
 
 
-
+Consulta la sección de despliegue para más detalles sobre cómo instalar y ejecutar el proyecto en un sistema operativo.
 
 
 ## Ejecutar
