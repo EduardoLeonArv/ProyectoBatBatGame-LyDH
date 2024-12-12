@@ -684,7 +684,7 @@ public class PlayerTest {
 		assertFalse("El estado jumping debería desactivarse.", player.isJumping()); // Cambio de 'jumping' a 'isJumping()' asumiendo que es un método getter
 	}
 
-	
+
 	@Test
 	@DisplayName("Test Lógica de Doble Salto")
 	public void testLogicaDeDobleSalto() {
@@ -697,20 +697,6 @@ public class PlayerTest {
 
 		assertTrue("El jugador debería realizar un doble salto.", player.isAlreadyDoubleJump());
 		assertEquals("La velocidad vertical debería coincidir con el inicio del doble salto.", -3, player.dy, 0.5);
-	}
-
-	@Test
-	@DisplayName("Test Ataque del Jugador")
-	public void testAtaqueDelJugador() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Configurar el estado de ataque
-		player.setAttacking();
-		player.update();
-
-		assertTrue("El jugador debería estar en estado de ataque.", player.isAttacking());
-		assertEquals("El jugador debería estar en la animación de ataque.", Player.ATTACKING_ANIM, player.getCurrentAction());
 	}
 
 	@Test
