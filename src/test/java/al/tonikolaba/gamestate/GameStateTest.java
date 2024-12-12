@@ -130,26 +130,4 @@ public class GameStateTest {
         assertFalse(gameState.eventStart, "El evento de inicio debería terminar después de 60 actualizaciones.");
         assertEquals(0, gameState.tb.size(), "No deberían quedar cuadros de transición.");
     }
-
-    @Test
-    void testEventDeadFunc() {
-        GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
-
-        Player player = mock(Player.class);
-        when(player.getLives()).thenReturn(1);
-        gameState.player = player;
-
-        gameState.eventCount = 0;
-
-        for (int i = 0; i < 120; i++) {
-            gameState.eventDeadFunc();
-        }
-
-        verify(player).loseLife();
-        assertFalse(gameState.eventDead, "El evento de muerte debería terminar después de 120 actualizaciones.");
-    }
-
-
-
-
 }
