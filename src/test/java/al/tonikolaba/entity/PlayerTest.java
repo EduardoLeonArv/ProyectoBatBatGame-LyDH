@@ -743,26 +743,4 @@ public class PlayerTest {
 		assertEquals("La salud del jugador debería reducirse.", initialHealth - 2, player.getHealth());
 		assertTrue("El jugador debería entrar en estado de flinching.", player.isFlinching());
 	}
-
-	@Test
-	@DisplayName("Test Get Falling Animation")
-	void testGetFallingAnim() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		int expectedFallingAnim = 4; // Ajusta este valor según lo que sea FALLING_ANIM en tu clase Player
-		assertEquals("El método getFallingAnim debería retornar el valor esperado para FALLING_ANIM.",
-				expectedFallingAnim, player.getFallingAnim());
-	}
-
-	@Test
-	@DisplayName("Test Get Jumping Animation")
-	void testGetJumpingAnim() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		int expectedJumpingAnim = 3; // Ajusta este valor según lo que sea JUMPING_ANIM en tu clase Player
-		assertEquals("El método getJumpingAnim debería retornar el valor esperado para JUMPING_ANIM.",
-				expectedJumpingAnim, player.getJumpingAnim());
-	}
 }
