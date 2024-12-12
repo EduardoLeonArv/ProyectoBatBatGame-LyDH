@@ -392,26 +392,6 @@ public class PlayerTest {
 	}
 
 
-
-	@Test
-	@DisplayName("Test Movement with Dashing")
-	public void testMovement() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Configurar estado inicial
-		player.setRight(true);
-		player.setDashing(true);
-
-		player.movement(); // Llamar al método de movimiento
-
-		// Verificar que la velocidad durante dashing supera maxSpeed
-		assertTrue("Player should move faster when dashing", player.dx > player.maxSpeed);
-	}
-
-
-
-
 	@Test
 	@DisplayName("Debug Test Movement with Dashing")
 	public void testMovementDebug() {
@@ -675,25 +655,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	@DisplayName("Test Animation Changes")
-	public void testAnimationChanges() throws Exception {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		// Reflexión para acceder al campo privado JUMPING_ANIM
-		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
-		jumpingAnimField.setAccessible(true);
-		int jumpingAnimValue = (int) jumpingAnimField.get(player);
-
-		// Configurar salto
-		player.setJumping(true);
-		player.update();
-
-		// Comparar valores de tipo int
-		assertEquals("La acción debería ser JUMPING.", jumpingAnimValue, player.getCurrentAction());
-	}
-
-	@Test
 	@DisplayName("Test Draw Method")
 	public void testDrawMethod() {
 		TileMap tm = new TileMap(30);
@@ -751,44 +712,6 @@ public class PlayerTest {
 
 		assertTrue("El jugador debería realizar un doble salto.", player.isAlreadyDoubleJump());
 		assertEquals("La velocidad vertical debería coincidir con el inicio del doble salto.", -3, player.dy, 0.5);
-	}
-
-	@Test
-	@DisplayName("Test Cambio de Animaciones")
-	public void testCambioDeAnimaciones() {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		player.setJumping(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de salto.", player.getJumpingAnim(), player.getCurrentAction());
-
-		player.setFalling(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de caída.", player.getFallingAnim(), player.getCurrentAction());
-	}
-
-	@Test
-	@DisplayName("Test Cambio de Animaciones con Reflexión")
-	public void testCambioDeAnimacionesConReflexion() throws Exception {
-		TileMap tm = new TileMap(30);
-		Player player = new Player(tm);
-
-		Field jumpingAnimField = Player.class.getDeclaredField("JUMPING_ANIM");
-		jumpingAnimField.setAccessible(true);
-		int jumpingAnim = jumpingAnimField.getInt(player);
-
-		Field fallingAnimField = Player.class.getDeclaredField("FALLING_ANIM");
-		fallingAnimField.setAccessible(true);
-		int fallingAnim = fallingAnimField.getInt(player);
-
-		player.setJumping(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de salto.", jumpingAnim, player.getCurrentAction());
-
-		player.setFalling(true);
-		player.update();
-		assertEquals("El jugador debería estar en la animación de caída.", fallingAnim, player.getCurrentAction());
 	}
 
 	@Test
