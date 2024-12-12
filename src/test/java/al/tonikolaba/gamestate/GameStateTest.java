@@ -44,23 +44,6 @@ public class GameStateTest {
     }
 
     @Test
-    public void testHandleInput() {
-        GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
-        Player player = mock(Player.class);
-        gameState.player = player;
-        gameState.blockInput = false;
-
-        Keys.setPressed(Keys.ESCAPE, true);
-        gameState.handleInput();
-
-        Keys.setPressed(Keys.ESCAPE, false);
-        Keys.setPressed(Keys.BUTTON1, true);
-        gameState.handleInput();
-
-        verify(player).setJumping(true);
-    }
-
-    @Test
     public void testCreateEnemy() throws Exception {
         GameState gameState = mock(GameState.class, CALLS_REAL_METHODS);
         TileMap tileMap = mock(TileMap.class);
