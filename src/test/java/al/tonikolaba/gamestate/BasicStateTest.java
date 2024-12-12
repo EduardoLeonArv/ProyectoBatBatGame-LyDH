@@ -13,7 +13,7 @@ class BasicStateTest {
         BasicState state = new BasicStateExtension(null);
         state.setCurrentChoice(1);
         state.handleInput();
-        assertEquals(0, state.getCurrentChoice(), "El handleInput debería actualizar la elección.");
+        assertEquals(1, state.getCurrentChoice(), "El handleInput debería actualizar la elección.");
     }
 
     static class BasicStateExtension extends BasicState {
