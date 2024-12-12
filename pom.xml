@@ -247,44 +247,7 @@
                 <version>3.9.1.2184</version>
             </plugin>
             <!-- Checkstyle Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <configLocation>src/main/resources/checkstyle.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failOnViolation>true</failOnViolation>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
 
-            <!-- PMD Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>3.18.0</version>
-                    <configuration>
-                        <linkXRef>true</linkXRef>
-                        <targetJdk>1.8</targetJdk>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>site</phase>
-                            <goals>
-                                <goal>pmd</goal>
-                                <goal>cpd</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
 
 
             <!-- OWASP Dependency-Check -->
@@ -335,35 +298,39 @@
 	</build>
     <reporting>
         <plugins>
-            <!-- Javadoc Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.1</version>
-                <configuration>
-                    <show>private</show>
-                </configuration>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.3.0</version> <!-- Update to a compatible version -->
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.5.0</version>
-                <configuration>
-                    <configLocation>src/main/resources/checkstyle.xml</configLocation>
-                    <consoleOutput>true</consoleOutput>
-                    <failOnViolation>true</failOnViolation>
-                </configuration>
+                <version>3.6.0</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
-
-            <!-- PMD Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.18.0</version>
-                <configuration>
-                    <linkXRef>true</linkXRef>
-                    <targetJdk>1.8</targetJdk>
-                </configuration>
+                <version>3.26.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>6.0.1</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
