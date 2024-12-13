@@ -32,6 +32,7 @@ public class GameStateManager {
 	public static final int LEVEL4STATE = 5;
 	public static final int HOWTOPLAY = 7;
 	public static final int ACIDSTATE = 15;
+	private javax.swing.JFrame window; // Referencia al JFrame principal
 
 	public BasicState[] gameStates;
 	int currentState;
@@ -44,6 +45,7 @@ public class GameStateManager {
 	// Constructor modificado para recibir el jugador
 	public GameStateManager(Player player) {
 		this.player = player; // Asignar el jugador
+		this.window = window; // Asigna la referencia al JFrame principal
 		JukeBox.init();
 
 		gameStates = new BasicState[NUMGAMESTATES];
@@ -55,6 +57,11 @@ public class GameStateManager {
 
 		currentState = MENUSTATE;
 		loadState(currentState);
+
+		// Añade un hook de cierre para guardar la puntuación al salir del juego
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			saveScoreToFile(); // Guarda la puntuación al cerrar
+		}));
 	}
 
 	// Método para cargar un estado del juego
@@ -70,14 +77,18 @@ public class GameStateManager {
 	}
 
 	// Método para descargar un estado del juego
-    void unloadState(int state) {
+	void unloadState(int state) {
 		gameStates[state] = null;
 	}
 
 	// Cambiar el estado del juego
 	public void setState(int state) {
-		// Guardar puntaje antes de cambiar de estado
-		saveScoreToFile();
+		// Verifica si se está intentando pasar de LEVEL1STATE a LEVEL2STATE
+		if (currentState == LEVEL1STATE && state == LEVEL2STATE) {
+			saveScoreToFile(); // Guarda la puntuación antes de finalizar
+			endGame();
+			return; // Evita cargar el nuevo estado
+		}
 
 		// Cambiar el estado del juego
 		unloadState(currentState);
@@ -85,21 +96,112 @@ public class GameStateManager {
 		loadState(currentState);
 	}
 
+	private void endGame() {
+		// Guarda la puntuación antes de cualquier otra acción
+		saveScoreToFile();
+
+		// Leer y mostrar el Top 3 puntuaciones
+		String topScores = getTopScores();
+		int playerScore = player.getScore(); // Obtén la puntuación actual del jugador
+
+		// Mostrar un cuadro de diálogo con el Top 3 y la puntuación del jugador
+		javax.swing.JOptionPane.showMessageDialog(
+				window,
+				String.format(
+						"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
+						playerScore,
+						topScores
+				),
+				"Fin del Juego",
+				javax.swing.JOptionPane.INFORMATION_MESSAGE
+		);
+
+		// Cierra la ventana principal
+		if (window != null) {
+			window.dispose(); // Cierra el JFrame principal
+		}
+
+		// Finaliza todos los procesos del programa
+		System.exit(0);
+	}
+
+
+	private String getTopScores() {
+		java.util.List<String> scores = new java.util.ArrayList<>();
+
+		// Leer el archivo scores.txt
+		try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader("scores.txt"))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				scores.add(line);
+			}
+		} catch (java.io.IOException e) {
+			LOGGER.log(Level.SEVERE, "Error reading scores.txt", e);
+		}
+
+		// Ordenar las puntuaciones en orden descendente
+		scores.sort((line1, line2) -> {
+			try {
+				int score1 = extractScore(line1);
+				int score2 = extractScore(line2);
+				return Integer.compare(score2, score1); // Orden descendente
+			} catch (NumberFormatException e) {
+				return 0; // Si hay líneas mal formateadas, no afectan el orden
+			}
+		});
+
+		// Construir el Top 3 puntuaciones
+		StringBuilder topScores = new StringBuilder();
+		int topLimit = Math.min(3, scores.size());
+		for (int i = 0; i < topLimit; i++) {
+			topScores.append((i + 1)).append(". ").append(scores.get(i)).append("\n");
+		}
+
+		return topScores.toString();
+	}
+
+	// Método para extraer la puntuación de una línea en scores.txt
+	private int extractScore(String line) {
+		try {
+			String[] parts = line.split(" - "); // Formato esperado: "Player: [Name] - Score: [Score]"
+			String scorePart = parts[1].replace("Score: ", "").trim();
+			return Integer.parseInt(scorePart);
+		} catch (Exception e) {
+			LOGGER.log(Level.WARNING, "Failed to parse score from line: {0}", line);
+			return 0;
+		}
+	}
+
+
+
+
 	// Método para guardar el puntaje en un archivo
 	public void saveScoreToFile() {
 		if (scoreSaved) return; // Evita guardar múltiples veces
 
+		int finalScore = player.getScore(); // Obtén la puntuación actual del jugador
+		if (finalScore == 0) {
+			LOGGER.log(Level.WARNING, "Score is 0, skipping save.");
+			return; // No guarda si la puntuación es 0
+		}
+
 		scoreSaved = true; // Marca que el puntaje ya se guardó
-		PlayerSave.setScore(player.getScore()); // Actualiza el puntaje en PlayerSave
+		PlayerSave.setScore(finalScore); // Actualiza el puntaje en PlayerSave
+
+		LOGGER.log(Level.INFO, "Saving score: Player = {0}, Score = {1}",
+				new Object[]{player.getName(), finalScore});
 
 		try (java.io.FileWriter writer = new java.io.FileWriter("scores.txt", true)) {
-			writer.write("Player: " + player.getName() + " - Score: " + player.getScore() + "\n");
-			writer.flush();
+			writer.write("Player: " + player.getName() + " - Score: " + finalScore + "\n");
+			writer.flush(); // Asegúrate de que los datos se escriban inmediatamente
 			LOGGER.log(Level.INFO, "Player name and score saved to scores.txt");
 		} catch (java.io.IOException e) {
 			LOGGER.log(Level.SEVERE, "Error while saving score to file", e);
 		}
 	}
+
+
+
 
 	// Pausar el juego
 	public void setPaused(boolean b) {

@@ -12,10 +12,7 @@ import org.mockito.MockitoAnnotations;
 import al.tonikolaba.entity.Player;
 
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 class GameStateManagerTest {
 
@@ -101,6 +98,163 @@ class GameStateManagerTest {
 		assertTrue(scoreFound, "The expected score was not found in scores.txt");
 	}
 
+	@Test
+	@DisplayName("Test save score correctly")
+	void testSaveScoreCorrectly() throws IOException {
+		// Arrange: Mock player data
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		File scoreFile = new File("scores.txt");
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+
+		// Act: Save the score
+		gameStateManager.saveScoreToFile();
+
+		// Assert: Check if the score was saved correctly
+		boolean scoreFound = false;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: TestPlayer - Score: 100")) {
+					scoreFound = true;
+					break;
+				}
+			}
+		}
+
+		assertTrue(scoreFound, "The expected score was not found in scores.txt");
+	}
+
+	@Test
+	@DisplayName("Test prevent multiple score saves")
+	void testPreventMultipleScoreSaves() throws IOException {
+		// Arrange: Mock player data
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		File scoreFile = new File("scores.txt");
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+
+		// Act: Save the score twice
+		gameStateManager.saveScoreToFile();
+		gameStateManager.saveScoreToFile();
+
+		// Assert: Verify the file contains only one entry for the player
+		long occurrences = 0;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: TestPlayer - Score: 100")) {
+					occurrences++;
+				}
+			}
+		}
+
+		assertEquals(1, occurrences, "The score was saved more than once");
+	}
+
+	@Test
+	@DisplayName("Test save score for different player")
+	void testSaveScoreForDifferentPlayer() throws IOException {
+		// Arrange: Mock data for a different player
+		when(mockPlayer.getScore()).thenReturn(200);
+		when(mockPlayer.getName()).thenReturn("AnotherPlayer");
+
+		File scoreFile = new File("scores.txt");
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+
+		// Act: Save the score
+		gameStateManager.saveScoreToFile();
+
+		// Assert: Check the new score is saved correctly
+		boolean scoreFound = false;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: AnotherPlayer - Score: 200")) {
+					scoreFound = true;
+					break;
+				}
+			}
+		}
+
+		assertTrue(scoreFound, "The score for AnotherPlayer was not found in scores.txt");
+	}
+
+	@Test
+	@DisplayName("Test existing scores are not overwritten")
+	void testExistingScoresNotOverwritten() throws IOException {
+		// Arrange: Pre-fill the file with existing data
+		File scoreFile = new File("scores.txt");
+		try (FileWriter writer = new FileWriter(scoreFile)) {
+			writer.write("Player: ExistingPlayer - Score: 300\n");
+		}
+
+		when(mockPlayer.getScore()).thenReturn(150);
+		when(mockPlayer.getName()).thenReturn("NewPlayer");
+
+		// Act: Save the new score
+		gameStateManager.saveScoreToFile();
+
+		// Assert: Verify both scores are in the file
+		boolean existingScoreFound = false;
+		boolean newScoreFound = false;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: ExistingPlayer - Score: 300")) {
+					existingScoreFound = true;
+				}
+				if (line.contains("Player: NewPlayer - Score: 150")) {
+					newScoreFound = true;
+				}
+			}
+		}
+
+		assertTrue(existingScoreFound, "The existing score was overwritten");
+		assertTrue(newScoreFound, "The new score was not saved correctly");
+	}
+
+	@Test
+	@DisplayName("Test create file if it does not exist")
+	void testCreateFileIfNotExists() throws IOException {
+		// Arrange: Mock player data
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		// Define the file path and ensure it doesn't exist
+		File scoreFile = new File("scores.txt");
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+
+		// Act: Save the score
+		gameStateManager.saveScoreToFile();
+
+		// Assert: Verify that the file now exists
+		assertTrue(scoreFile.exists(), "The scores.txt file was not created");
+
+		// Assert: Check if the score was saved correctly
+		boolean scoreFound = false;
+		try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Player: TestPlayer - Score: 100")) {
+					scoreFound = true;
+					break;
+				}
+			}
+		}
+
+		assertTrue(scoreFound, "The expected score was not found in scores.txt");
+	}
 
 	@Test
 	@DisplayName("Test pause and resume")

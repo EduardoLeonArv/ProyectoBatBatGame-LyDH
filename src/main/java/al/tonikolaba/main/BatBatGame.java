@@ -13,7 +13,7 @@ import al.tonikolaba.tilemap.TileMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.FileWriter; //AGRAGAR PUNTUACIONES
+import java.io.FileWriter; // AGRAGAR PUNTUACIONES
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -37,32 +37,24 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		player = new Player(tileMap); // Crea el jugador
 		player.setName(playerName); // Si tienes un método para guardar el nombre
 
-		// Initialize game window
-		EventQueue.invokeLater(() -> {
-			try {
-				JFrame window = new JFrame("BatBat Game \u2122");
-				window.add(new GamePanel(player)); // Pasa el jugador al panel del juego
-				window.setContentPane(new GamePanel(player));
-				window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				window.setResizable(true);
-				window.pack();
-				window.setLocationRelativeTo(null);
-				window.setVisible(true);
+		// Configura la ventana actual (this)
+		setTitle("BatBat Game \u2122");
+		setContentPane(new GamePanel(player)); // Usa setContentPane directamente
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(true);
+		pack();
+		setLocationRelativeTo(null);
 
-				window.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosing(WindowEvent e) {
-						saveScore(playerName, player.getScore());
-					}
-				});
-			} catch (Exception e) {
-				LoggingHelper.LOGGER.log(Level.SEVERE, "Error initializing game window", e);
+		// Agrega listener para guardar la puntuación al cerrar
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				saveScore(playerName, player.getScore());
 			}
 		});
 	}
 
 	protected void saveScore(String playerName, int score) {
-		// Save player name and score to scores.txt
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
 			writer.write("Player: " + playerName + " - Score: " + score + "\n");
 			writer.flush();
@@ -72,7 +64,8 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		}
 	}
 
-    public Player getPlayer() {
+	public Player getPlayer() {
 		return player;
-    }
+	}
 }
+
