@@ -95,7 +95,7 @@ public class GameStateManager {
 		loadState(currentState);
 	}
 
-	private void endGame() {
+	public void endGame() {
 		// Guarda la puntuación antes de cualquier otra acción
 		saveScoreToFile();
 

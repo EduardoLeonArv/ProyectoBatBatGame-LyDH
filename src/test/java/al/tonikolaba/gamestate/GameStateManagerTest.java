@@ -325,4 +325,35 @@ class GameStateManagerTest {
 		// Verificación, que ahora pasará porque forzamos la interacción:
 		verify(mockLevel1State, times(1)).update();
 	}
+
+	@Test
+	@DisplayName("Test cambiar de LEVEL1STATE a LEVEL2STATE")
+	void testSetStateFromLevel1ToLevel2() {
+		// Arrange: Crear un spy de GameStateManager
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+
+		// Establecer el estado actual a LEVEL1STATE
+		spyGameStateManager.setState(GameStateManager.LEVEL1STATE);
+
+		// Mockear los métodos saveScoreToFile y endGame
+		doNothing().when(spyGameStateManager).saveScoreToFile();
+		doNothing().when(spyGameStateManager).endGame();
+
+		// Act: Intentar cambiar el estado a LEVEL2STATE
+		spyGameStateManager.setState(GameStateManager.LEVEL2STATE);
+
+		// Assert: Validar que el estado no cambió
+		assertEquals(GameStateManager.LEVEL1STATE, spyGameStateManager.currentState,
+				"El estado actual no debe cambiar de LEVEL1STATE a LEVEL2STATE");
+
+		// Verificar que se llamaron los métodos saveScoreToFile y endGame
+		verify(spyGameStateManager, times(1)).saveScoreToFile();
+		verify(spyGameStateManager, times(1)).endGame();
+
+		// Verificar que no se cargó el estado LEVEL2STATE
+		assertNull(spyGameStateManager.gameStates[GameStateManager.LEVEL2STATE],
+				"El estado LEVEL2STATE no debe cargarse");
+	}
+
+
 }
