@@ -32,7 +32,7 @@ public class GameStateManager {
 	public static final int LEVEL4STATE = 5;
 	public static final int HOWTOPLAY = 7;
 	public static final int ACIDSTATE = 15;
-	private javax.swing.JFrame window; // Referencia al JFrame principal
+	javax.swing.JFrame window; // Referencia al JFrame principal
 
 	public BasicState[] gameStates;
 	int currentState;
@@ -125,7 +125,7 @@ public class GameStateManager {
 	}
 
 
-	private String getTopScores() {
+	String getTopScores() {
 		java.util.List<String> scores = new java.util.ArrayList<>();
 
 		// Leer el archivo scores.txt

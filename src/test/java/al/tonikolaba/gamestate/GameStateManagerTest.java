@@ -355,5 +355,36 @@ class GameStateManagerTest {
 				"El estado LEVEL2STATE no debe cargarse");
 	}
 
+	@Test
+	@DisplayName("Test getTopScores functionality")
+	void testGetTopScores() throws IOException {
+		// Arrange: Crear un archivo scores.txt con datos de prueba
+		File scoreFile = new File("scores.txt");
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+		try (FileWriter writer = new FileWriter(scoreFile)) {
+			writer.write("Player: Alice - Score: 150\n");
+			writer.write("Player: Bob - Score: 200\n");
+			writer.write("Player: Charlie - Score: 100\n");
+			writer.write("Player: Dave - Score: 250\n");
+		}
+
+		// Act: Llamar a getTopScores
+		String topScores = gameStateManager.getTopScores();
+
+		// Assert: Verificar que las tres mejores puntuaciones estén en el orden correcto
+		String expectedTopScores =
+				"1. Player: Dave - Score: 250\n" +
+						"2. Player: Bob - Score: 200\n" +
+						"3. Player: Alice - Score: 150\n";
+
+		assertEquals(expectedTopScores, topScores, "The top scores are not correctly calculated");
+
+		// Cleanup: Eliminar el archivo después de la prueba
+		if (scoreFile.exists()) {
+			scoreFile.delete();
+		}
+	}
 
 }
