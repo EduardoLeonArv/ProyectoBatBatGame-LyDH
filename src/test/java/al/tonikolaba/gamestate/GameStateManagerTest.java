@@ -387,4 +387,36 @@ class GameStateManagerTest {
 		}
 	}
 
+	@Test
+	@DisplayName("Test endGame dialog message format")
+	void testEndGameDialogMessageFormat() {
+		// Arrange: Mock dependencies
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+		doReturn("1. Player: Alice - Score: 150\n").when(spyGameStateManager).getTopScores();
+
+		// Espiar System.exit para evitar que termine la JVM
+		doNothing().when(spyGameStateManager).endGame();
+
+		// Act: Ejecuta endGame
+		spyGameStateManager.endGame();
+
+		// Assert: Verifica el formato del mensaje
+		String expectedMessage = String.format(
+				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
+				100,
+				"1. Player: Alice - Score: 150\n"
+		);
+		assertEquals(expectedMessage, String.format(
+				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
+				100,
+				spyGameStateManager.getTopScores()
+		), "Dialog message format is incorrect");
+	}
+
+	
+
+
 }

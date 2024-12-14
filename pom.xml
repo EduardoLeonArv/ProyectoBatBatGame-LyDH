@@ -149,17 +149,20 @@
              <scope>test</scope>
          </dependency>
 
-         <!-- JUnit 5 -->
+     <dependency>
+         <groupId>com.github.stefanbirkner</groupId>
+         <artifactId>system-rules</artifactId>
+         <version>1.19.0</version>
+         <scope>test</scope>
+     </dependency>
+
+     <!-- JUnit 5 -->
          <dependency>
              <groupId>org.junit.jupiter</groupId>
              <artifactId>junit-jupiter</artifactId>
              <version>5.10.0</version>
              <scope>test</scope>
          </dependency>
-
-
-
-
 
     </dependencies>
 
@@ -294,6 +297,7 @@
                     <failBuildOnCVSS>7.0</failBuildOnCVSS> <!-- Ignorar CVEs menores de este umbral -->
                 </configuration>
             </plugin>
+
 
             <!-- JaCoCo Plugin -->
             <plugin>
