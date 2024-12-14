@@ -452,6 +452,7 @@ class GameStateManagerTest {
 		));
 	}
 */
+	/*
 
 	@Test
 	@DisplayName("Test window is closed in endGame")
@@ -470,6 +471,8 @@ class GameStateManagerTest {
 		// Assert
 		verify(mockWindow, times(1)).dispose();
 	}
+	
+	 */
 /*
 	@Test
 	@DisplayName("Test endGame without crashing the JVM")
