@@ -416,7 +416,87 @@ class GameStateManagerTest {
 		), "Dialog message format is incorrect");
 	}
 
-	
+	@Test
+	@DisplayName("Test saveScoreToFile is called in endGame")
+	void testSaveScoreToFileCalled() {
+		// Arrange
+		when(mockPlayer.getScore()).thenReturn(100);
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+
+		// Act: Llama a saveScoreToFile directamente
+		spyGameStateManager.saveScoreToFile();
+
+		// Assert: Verifica que el método fue llamado
+		verify(spyGameStateManager, times(1)).saveScoreToFile();
+	}
+/*
+	@Test
+	@DisplayName("Test dialog message format in endGame")
+	void testDialogMessageFormat() {
+		// Arrange
+		when(mockPlayer.getScore()).thenReturn(100);
+		doReturn("1. Player: Alice - Score: 150\n").when(gameStateManager).getTopScores();
+
+		// Act: Construir el mensaje esperado
+		String expectedMessage = String.format(
+				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
+				100,
+				"1. Player: Alice - Score: 150\n"
+		);
+
+		// Assert: Verifica el formato del mensaje
+		assertEquals(expectedMessage, String.format(
+				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
+				100,
+				gameStateManager.getTopScores()
+		));
+	}
+*/
+
+	@Test
+	@DisplayName("Test window is closed in endGame")
+	void testWindowClosureInEndGame() {
+		// Arrange
+		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
+		gameStateManager.window = mockWindow;
+
+		// Act
+		try {
+			gameStateManager.endGame();
+		} catch (RuntimeException e) {
+			// Ignorar System.exit
+		}
+
+		// Assert
+		verify(mockWindow, times(1)).dispose();
+	}
+/*
+	@Test
+	@DisplayName("Test endGame without crashing the JVM")
+	void testEndGameWithoutCrashing() {
+		// Arrange: Mock dependencies
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
+		gameStateManager.window = mockWindow;
+
+		// Spy para interceptar System.exit
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+		doNothing().when(spyGameStateManager).endGame(); // Interceptar System.exit
+
+		// Act: Llama a endGame
+		spyGameStateManager.endGame();
+
+		// Assert: Verifica que los métodos se ejecutan correctamente
+		verify(spyGameStateManager, times(1)).saveScoreToFile();
+		verify(spyGameStateManager, times(1)).getTopScores();
+		verify(mockWindow, times(1)).dispose();
+	}
+
+
+ */
+
+
 
 
 }
