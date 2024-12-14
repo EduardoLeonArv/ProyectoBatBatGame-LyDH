@@ -32,7 +32,7 @@ public class GameStateManager {
 	public static final int LEVEL4STATE = 5;
 	public static final int HOWTOPLAY = 7;
 	public static final int ACIDSTATE = 15;
-	private javax.swing.JFrame window; // Referencia al JFrame principal
+	javax.swing.JFrame window; // Referencia al JFrame principal
 
 	public BasicState[] gameStates;
 	int currentState;
@@ -95,15 +95,15 @@ public class GameStateManager {
 		loadState(currentState);
 	}
 
+
+	protected void terminateProgram() {
+		System.exit(0);
+	}
+
 	public void endGame() {
-		// Guarda la puntuación antes de cualquier otra acción
 		saveScoreToFile();
-
-		// Leer y mostrar el Top 3 puntuaciones
 		String topScores = getTopScores();
-		int playerScore = player.getScore(); // Obtén la puntuación actual del jugador
-
-		// Mostrar un cuadro de diálogo con el Top 3 y la puntuación del jugador
+		int playerScore = player.getScore();
 		javax.swing.JOptionPane.showMessageDialog(
 				window,
 				String.format(
@@ -114,18 +114,14 @@ public class GameStateManager {
 				"Fin del Juego",
 				javax.swing.JOptionPane.INFORMATION_MESSAGE
 		);
-
-		// Cierra la ventana principal
 		if (window != null) {
-			window.dispose(); // Cierra el JFrame principal
+			window.dispose();
 		}
-
-		// Finaliza todos los procesos del programa
-		System.exit(0);
+		terminateProgram(); // Llamada extraída
 	}
 
 
-	private String getTopScores() {
+	String getTopScores() {
 		java.util.List<String> scores = new java.util.ArrayList<>();
 
 		// Leer el archivo scores.txt

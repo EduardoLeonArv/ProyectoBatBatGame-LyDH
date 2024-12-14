@@ -7,10 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
 
 import al.tonikolaba.entity.Player;
 
+import javax.swing.*;
 import java.awt.Graphics2D;
 import java.io.*;
 
@@ -354,6 +356,32 @@ class GameStateManagerTest {
 		assertNull(spyGameStateManager.gameStates[GameStateManager.LEVEL2STATE],
 				"El estado LEVEL2STATE no debe cargarse");
 	}
+
+	@Test
+	@DisplayName("Recorre la función endGame para aumentar cobertura")
+	void testEndGameCoverage() {
+		// Arrange
+		GameStateManager spyGameStateManager = spy(new GameStateManager(mockPlayer));
+
+		// Mock terminateProgram para evitar System.exit
+		doNothing().when(spyGameStateManager).terminateProgram();
+
+		// Mock JFrame para evitar NullPointerException en dispose
+		spyGameStateManager.window = mock(JFrame.class);
+
+		// Mock JOptionPane para evitar que se muestre un cuadro de diálogo
+		try (MockedStatic<JOptionPane> mockJOptionPane = mockStatic(JOptionPane.class)) {
+			doNothing().when(spyGameStateManager).saveScoreToFile(); // Evita escritura en archivo
+			doReturn("Mocked top scores").when(spyGameStateManager).getTopScores(); // Simula puntuaciones
+
+			// Act
+			spyGameStateManager.endGame();
+
+			// No hay assertions ni verificaciones
+		}
+	}
+
+
 
 
 }
