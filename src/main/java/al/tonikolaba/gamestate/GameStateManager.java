@@ -45,7 +45,6 @@ public class GameStateManager {
 	// Constructor modificado para recibir el jugador
 	public GameStateManager(Player player) {
 		this.player = player; // Asignar el jugador
-		this.window = window; // Asigna la referencia al JFrame principal
 		JukeBox.init();
 
 		gameStates = new BasicState[NUMGAMESTATES];
