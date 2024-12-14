@@ -3,14 +3,17 @@ package al.tonikolaba.gamestate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.MockitoAnnotations;
 
 import al.tonikolaba.entity.Player;
 
+import javax.swing.*;
 import java.awt.Graphics2D;
 import java.io.*;
 
@@ -429,75 +432,127 @@ class GameStateManagerTest {
 		// Assert: Verifica que el método fue llamado
 		verify(spyGameStateManager, times(1)).saveScoreToFile();
 	}
-/*
-	@Test
-	@DisplayName("Test dialog message format in endGame")
-	void testDialogMessageFormat() {
-		// Arrange
-		when(mockPlayer.getScore()).thenReturn(100);
-		doReturn("1. Player: Alice - Score: 150\n").when(gameStateManager).getTopScores();
-
-		// Act: Construir el mensaje esperado
-		String expectedMessage = String.format(
-				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
-				100,
-				"1. Player: Alice - Score: 150\n"
-		);
-
-		// Assert: Verifica el formato del mensaje
-		assertEquals(expectedMessage, String.format(
-				"Fin del Juego. Gracias por jugar!\n\nTu puntuación: %d\n\nTop 3 Puntuaciones:\n%s",
-				100,
-				gameStateManager.getTopScores()
-		));
-	}
-*/
 	/*
-
 	@Test
-	@DisplayName("Test window is closed in endGame")
-	void testWindowClosureInEndGame() {
-		// Arrange
+	@DisplayName("Test window is closed in endGame without System.exit")
+	void testWindowClosureWithoutSystemExit() {
+		// Arrange: Mock la ventana principal
 		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
 		gameStateManager.window = mockWindow;
 
-		// Act
+		// Mockear el jugador
+		when(mockPlayer.getScore()).thenReturn(100);
+		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		// Act: Ejecutar endGame
+		try {
+			gameStateManager.endGame();
+		} catch (RuntimeException e) {
+			// Ignorar cualquier excepción causada por System.exit
+		}
+
+		// Assert: Verificar que dispose fue llamado en la ventana
+		verify(mockWindow, times(1)).dispose();
+	}
+
+	@Test
+	@DisplayName("Test window is disposed")
+	void testWindowIsDisposed() {
+		// Arrange: Mockear la ventana principal
+		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
+		gameStateManager.window = mockWindow;
+
+		// Mockear dependencias
+		when(mockPlayer.getScore()).thenReturn(100);
+
+		// Act: Ejecutar el método
 		try {
 			gameStateManager.endGame();
 		} catch (RuntimeException e) {
 			// Ignorar System.exit
 		}
 
-		// Assert
+		// Assert: Verificar que dispose fue llamado
 		verify(mockWindow, times(1)).dispose();
 	}
-	
-	 */
-/*
-	@Test
-	@DisplayName("Test endGame without crashing the JVM")
-	void testEndGameWithoutCrashing() {
-		// Arrange: Mock dependencies
+
+@Test
+	@DisplayName("Spy endGame to ensure dispose is called")
+	void testEndGameWithSpy() {
+		// Arrange
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
+		spyGameStateManager.window = mockWindow;
+
 		when(mockPlayer.getScore()).thenReturn(100);
 		when(mockPlayer.getName()).thenReturn("TestPlayer");
+
+		// Act
+		try {
+			spyGameStateManager.endGame();
+		} catch (RuntimeException e) {
+			// Ignorar System.exit
+		}
+
+		// Assert
+		verify(mockWindow, times(1)).dispose();
+		verify(spyGameStateManager, times(1)).endGame();
+	}
+
+	@Test
+	@DisplayName("Test dialog message format")
+	void testDialogMessageFormat() {
+		// Arrange: Crear un spy para GameStateManager
+		GameStateManager spyGameStateManager = spy(gameStateManager);
+
+		// Mockear dependencias
+		when(mockPlayer.getScore()).thenReturn(150);
+		spyGameStateManager.window = mock(javax.swing.JFrame.class);
+		doReturn("1. Player: Alice - Score: 200\n2. Player: Bob - Score: 150\n").when(spyGameStateManager).getTopScores();
+
+		// Capturar el mensaje mostrado por JOptionPane
+		try (MockedStatic<JOptionPane> mockedJOptionPane = mockStatic(javax.swing.JOptionPane.class)) {
+			// Act: Ejecutar el método
+			try {
+				spyGameStateManager.endGame();
+			} catch (RuntimeException e) {
+				// Ignorar System.exit
+			}
+
+			// Assert: Verificar que el mensaje fue mostrado correctamente
+			mockedJOptionPane.verify(() -> javax.swing.JOptionPane.showMessageDialog(
+					any(),
+					eq("Fin del Juego. Gracias por jugar!\n\nTu puntuación: 150\n\nTop 3 Puntuaciones:\n1. Player: Alice - Score: 200\n2. Player: Bob - Score: 150\n"),
+					eq("Fin del Juego"),
+					eq(javax.swing.JOptionPane.INFORMATION_MESSAGE)
+			), times(1));
+		}
+	}
+
+	@Test
+	@DisplayName("Test window is disposed")
+	void testWindowIsDisposed() {
+		// Arrange: Mockear la ventana principal
 		javax.swing.JFrame mockWindow = mock(javax.swing.JFrame.class);
 		gameStateManager.window = mockWindow;
 
-		// Spy para interceptar System.exit
-		GameStateManager spyGameStateManager = spy(gameStateManager);
-		doNothing().when(spyGameStateManager).endGame(); // Interceptar System.exit
+		// Mockear dependencias
+		when(mockPlayer.getScore()).thenReturn(100);
 
-		// Act: Llama a endGame
-		spyGameStateManager.endGame();
+		// Act: Ejecutar el método
+		try {
+			gameStateManager.endGame();
+		} catch (RuntimeException e) {
+			// Ignorar System.exit
+		}
 
-		// Assert: Verifica que los métodos se ejecutan correctamente
-		verify(spyGameStateManager, times(1)).saveScoreToFile();
-		verify(spyGameStateManager, times(1)).getTopScores();
+		// Assert: Verificar que dispose fue llamado
 		verify(mockWindow, times(1)).dispose();
 	}
+*/
 
 
- */
+
 
 
 
