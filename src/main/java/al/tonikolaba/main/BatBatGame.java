@@ -26,16 +26,9 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 
 	@Override
 	public void run(String... arg0) throws Exception {
-		// Prompt for player name
-		Scanner scanner = new Scanner(System.in);
-		LoggingHelper.LOGGER.log(Level.INFO, "Enter your player name: ");
-		String playerName = scanner.nextLine();
-		LoggingHelper.LOGGER.log(Level.INFO, "Welcome, {0}!", playerName);
-
 		// Inicializa el mapa y el jugador
 		TileMap tileMap = new TileMap(30); // Configura según tu juego
 		player = new Player(tileMap); // Crea el jugador
-		player.setName(playerName); // Si tienes un método para guardar el nombre
 
 		// Configura la ventana actual (this)
 		setTitle("BatBat Game \u2122");
@@ -45,15 +38,18 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		pack();
 		setLocationRelativeTo(null);
 
-		// Agrega listener para guardar la puntuación al cerrar
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				saveScore(playerName, player.getScore());
-			}
-		});
+
+
+		// Mostrar la ventana del juego
+		setVisible(true);
 	}
 
+	/**
+	 * Método para guardar la puntuación del jugador en un archivo.
+	 *
+	 * @param playerName Nombre del jugador
+	 * @param score      Puntuación del jugador
+	 */
 	protected void saveScore(String playerName, int score) {
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
 			writer.write("Player: " + playerName + " - Score: " + score + "\n");
@@ -68,4 +64,3 @@ public class BatBatGame extends JFrame implements CommandLineRunner {
 		return player;
 	}
 }
-

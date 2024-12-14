@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.swing.*;
 import java.awt.Graphics2D;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,6 +27,60 @@ public class MenuStateTest {
         menuState = new MenuState(mockGsm, mockPlayer);
     }
 
+    @Test
+    public void testConstructorWithValidName() {
+        // Simular el comportamiento de JOptionPane para ingresar un nombre válido
+        String expectedName = "TestPlayer";
+        mockStatic(JOptionPane.class);
+        when(JOptionPane.showInputDialog(any(), eq("Enter your player name:"), eq("Welcome to BatBat Game!"), eq(JOptionPane.PLAIN_MESSAGE)))
+                .thenReturn(expectedName);
+
+        // Crear instancias simuladas
+        Player mockPlayer = new Player(null); // TileMap puede ser null si no es necesario para esta prueba
+        GameStateManager mockGsm = mock(GameStateManager.class);
+
+        // Crear instancia de MenuState
+        MenuState menuState = new MenuState(mockGsm, mockPlayer);
+
+        // Verificar que el nombre se asignó correctamente
+        assertEquals(expectedName, mockPlayer.getName());
+    }
+
+    @Test
+    public void testConstructorWithEmptyName() {
+        // Simular el comportamiento de JOptionPane cuando no se ingresa un nombre
+        mockStatic(JOptionPane.class);
+        when(JOptionPane.showInputDialog(any(), eq("Enter your player name:"), eq("Welcome to BatBat Game!"), eq(JOptionPane.PLAIN_MESSAGE)))
+                .thenReturn("");
+
+        // Crear instancias simuladas
+        Player mockPlayer = new Player(null);
+        GameStateManager mockGsm = mock(GameStateManager.class);
+
+        // Crear instancia de MenuState
+        MenuState menuState = new MenuState(mockGsm, mockPlayer);
+
+        // Verificar que el nombre predeterminado se asignó
+        assertEquals("Default Player", mockPlayer.getName());
+    }
+
+    @Test
+    public void testConstructorWithCancel() {
+        // Simular el comportamiento de JOptionPane cuando se presiona "Cancelar"
+        mockStatic(JOptionPane.class);
+        when(JOptionPane.showInputDialog(any(), eq("Enter your player name:"), eq("Welcome to BatBat Game!"), eq(JOptionPane.PLAIN_MESSAGE)))
+                .thenReturn(null);
+
+        // Crear instancias simuladas
+        Player mockPlayer = new Player(null);
+        GameStateManager mockGsm = mock(GameStateManager.class);
+
+        // Crear instancia de MenuState
+        MenuState menuState = new MenuState(mockGsm, mockPlayer);
+
+        // Verificar que el nombre predeterminado se asignó
+        assertEquals("Default Player", mockPlayer.getName());
+    }
 
     @Test
     void testNavigationBounds() {

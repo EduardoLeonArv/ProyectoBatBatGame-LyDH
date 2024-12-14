@@ -17,6 +17,8 @@ import al.tonikolaba.handlers.Keys;
  * 
  * @author tonikolaba
  */
+import javax.swing.JOptionPane;
+
 public class MenuState extends BasicState {
 
     private static final String PLAY_OPTION = "Play";
@@ -24,6 +26,7 @@ public class MenuState extends BasicState {
     private static final String QUIT_OPTION = "Quit";
 
     private Player player; // Referencia al jugador
+    private String playerName; // Nombre del jugador
 
     /**
      * Constructor para inicializar el estado del menú.
@@ -31,9 +34,26 @@ public class MenuState extends BasicState {
      * @param gsm   Gestor de estados del juego.
      * @param player Referencia al jugador.
      */
-    public MenuState(GameStateManager gsm, Player player) {
+    public MenuState(GameStateManager gsm, Player player) {   //DFD
         super(gsm);
-        this.player = player; // Asignar el jugador
+        this.player = player;
+
+        // Solicitar el nombre del usuario al iniciar el menú
+        this.playerName = JOptionPane.showInputDialog(
+                null,
+                "Enter your player name:",
+                "Welcome to BatBat Game!",
+                JOptionPane.PLAIN_MESSAGE
+        );
+
+        // Validar si el usuario ingresó un nombre
+        if (playerName == null || playerName.trim().isEmpty()) {
+            this.playerName = "Default Player"; // Asignar un nombre predeterminado si no se ingresó
+        }
+
+        // Asignar el nombre al jugador
+        this.player.setName(playerName);
+
         options = new String[] { PLAY_OPTION, OPTIONS_OPTION, QUIT_OPTION };
     }
 
@@ -48,6 +68,10 @@ public class MenuState extends BasicState {
         // títulos y fuentes
         g.setFont(fontMenu);
         g.setColor(Color.RED);
+
+        // Mostrar el nombre del jugador antes de las opciones del menú
+        g.drawString("Player: " + playerName, 300, 200);
+
         g.drawString(PLAY_OPTION, 300, 223);
         g.drawString(OPTIONS_OPTION, 300, 248);
         g.drawString(QUIT_OPTION, 300, 273);
@@ -120,3 +144,4 @@ public class MenuState extends BasicState {
         currentChoice += direction;
     }
 }
+
