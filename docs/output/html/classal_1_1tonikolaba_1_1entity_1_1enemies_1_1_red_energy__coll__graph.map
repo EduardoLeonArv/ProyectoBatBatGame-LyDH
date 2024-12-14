@@ -1,0 +1,11 @@
+<map id="al.tonikolaba.entity.enemies.RedEnergy" name="al.tonikolaba.entity.enemies.RedEnergy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="115,257,303,297"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_enemy.html" title="Enemy class representing an enemy in the game." alt="" coords="121,183,297,208"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,223,211,257,206,257,206,223"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="129,93,289,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="211,149,211,182,206,182,206,149"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html" title=" " alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="128,39,188,91,185,95,124,43"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html" title=" " alt="" coords="220,5,413,31"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="293,43,233,95,229,91,290,39"/>
+</map>

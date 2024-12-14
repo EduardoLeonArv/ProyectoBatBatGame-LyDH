@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.tilemap.TileMap.loadTiles" name="al.tonikolaba.tilemap.TileMap.loadTiles">
+<area shape="rect" id="Node000001" title=" " alt="" coords="664,5,829,45"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a7e2a6dd714580433d8edd3c1331034e3" title=" " alt="" coords="429,5,616,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="648,28,617,28,617,23,648,23"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#afc3f2d6de59085cb6b19b736de8ecb3d" title=" " alt="" coords="217,5,381,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="414,28,382,28,382,23,414,23"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#a784663876fee55497b945b2cde03e90d" title=" " alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="202,28,170,28,170,23,202,23"/>
+</map>

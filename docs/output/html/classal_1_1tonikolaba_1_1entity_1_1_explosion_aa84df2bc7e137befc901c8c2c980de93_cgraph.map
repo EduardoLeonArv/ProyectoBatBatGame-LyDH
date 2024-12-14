@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.Explosion.Explosion" name="al.tonikolaba.entity.Explosion.Explosion">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,201,109"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_content.html#a9260f0434e233bbc36b80a89b9513f32" title=" " alt="" coords="249,5,468,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,66,261,47,262,52,187,71"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="251,69,466,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="202,87,236,87,236,92,202,92"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="251,133,466,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="187,107,262,126,261,132,185,113"/>
+</map>

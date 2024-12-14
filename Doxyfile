@@ -1,0 +1,43 @@
+# Doxyfile configurado para un proyecto Java
+
+# Nombre del proyecto
+PROJECT_NAME           = "BatBat Game"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = docs/output
+
+# Fuentes y archivos de entrada
+INPUT                  = src/main/java
+FILE_PATTERNS          = *.java
+
+# Recursividad para incluir subdirectorios
+RECURSIVE              = YES
+
+# Archivos a excluir (si es necesario)
+EXCLUDE                = target
+
+# Salida HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+# Salida LaTeX (opcional, para PDF)
+GENERATE_LATEX         = NO
+
+# Extrae comentarios de Javadoc
+JAVADOC_AUTOBRIEF      = YES
+
+# Muestra todos los métodos y variables
+EXTRACT_ALL            = YES
+
+# Genera una tabla de contenido en la documentación
+FULL_PATH_NAMES        = YES
+INLINE_SOURCES         = YES
+
+# Genera diagramas de dependencias (requiere Graphviz)
+HAVE_DOT               = YES
+DOT_PATH               = /usr/bin/dot
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+
+# Documentación privada (opcional)
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO

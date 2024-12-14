@@ -1,0 +1,53 @@
+<map id="al.tonikolaba.gamestate.LevelTest" name="al.tonikolaba.gamestate.LevelTest">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1439,317,1603,357"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_abstract_level_state.html" title=" " alt="" coords="1156,317,1320,357"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1335,335,1438,335,1438,340,1335,340"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html" title=" " alt="" coords="943,375,1107,415"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1116,368,1160,355,1162,360,1117,373"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_pause_state.html" title=" " alt="" coords="1156,432,1320,472"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="1117,417,1162,429,1160,434,1116,422"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title="Created by tonikolaba on 03&#45;Jan&#45;18." alt="" coords="1725,409,1889,449"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1709,422,1701,421,1371,405,1107,398,1107,393,1372,400,1701,416,1710,417"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html" title=" " alt="" coords="1439,432,1603,472"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="1741,457,1702,467,1652,470,1603,468,1603,463,1652,465,1701,461,1739,452"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1618,442,1725,433,1725,438,1618,447"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="1335,449,1438,449,1438,455,1335,455"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html" title=" " alt="" coords="584,731,756,757"/>
+<area shape="poly" id="edge28_Node000003_Node000007" title=" " alt="" coords="740,757,784,762,831,760,876,750,898,741,917,729,950,695,976,655,994,611,1007,565,1020,479,1022,415,1027,415,1025,479,1013,566,1000,613,981,658,954,699,920,733,900,746,878,755,831,766,784,767,740,763"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="761,757,885,773,1023,781,1522,781,1553,778,1582,770,1609,757,1634,740,1678,697,1716,644,1746,588,1770,533,1798,449,1803,451,1775,535,1751,590,1720,647,1682,700,1637,745,1611,762,1584,775,1554,784,1522,787,1023,787,884,779,760,762"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="308,308,468,348"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="397,363,412,438,443,534,465,585,492,634,525,679,564,718,585,730,582,735,561,722,521,683,488,637,460,587,438,536,407,439,392,364"/>
+<area shape="rect" id="Node000018" href="$classal_1_1tonikolaba_1_1entity_1_1_teleport.html" title=" " alt="" coords="579,287,761,313"/>
+<area shape="poly" id="edge22_Node000018_Node000008" title=" " alt="" coords="484,316,579,306,579,312,484,321"/>
+<area shape="rect" id="Node000020" href="$classal_1_1tonikolaba_1_1entity_1_1_portal.html" title=" " alt="" coords="585,337,755,362"/>
+<area shape="poly" id="edge25_Node000020_Node000008" title=" " alt="" coords="484,333,585,340,585,346,484,338"/>
+<area shape="rect" id="Node000009" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html" title=" " alt="" coords="7,58,197,83"/>
+<area shape="poly" id="edge29_Node000003_Node000009" title=" " alt="" coords="213,68,404,69,625,76,816,91,882,103,920,118,948,146,971,179,988,215,1002,252,1018,322,1025,374,1020,375,1013,323,997,253,983,217,966,182,944,150,917,122,881,108,815,96,624,81,404,75,213,73"/>
+<area shape="poly" id="edge12_Node000004_Node000009" title=" " alt="" coords="163,51,267,29,327,21,387,17,1522,17,1557,21,1589,31,1619,47,1646,67,1671,92,1693,120,1730,182,1760,249,1781,313,1805,408,1800,410,1776,314,1755,251,1726,185,1688,123,1667,95,1643,71,1616,51,1587,36,1556,26,1522,23,387,23,327,26,268,34,164,56"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="131,92,366,305,362,309,127,96"/>
+<area shape="rect" id="Node000010" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html" title=" " alt="" coords="5,315,199,341"/>
+<area shape="poly" id="edge11_Node000008_Node000010" title=" " alt="" coords="214,325,308,325,308,331,214,331"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="618,173,722,198"/>
+<area shape="poly" id="edge19_Node000003_Node000011" title=" " alt="" coords="738,192,841,211,888,223,920,238,955,269,983,306,1004,343,1018,373,1013,376,999,345,978,309,951,272,917,242,886,228,840,216,737,197"/>
+<area shape="poly" id="edge13_Node000004_Node000011" title=" " alt="" coords="736,171,776,158,788,149,800,140,861,123,910,118,1023,121,1522,121,1551,124,1579,131,1629,157,1673,194,1711,239,1743,287,1769,334,1801,408,1796,410,1764,337,1739,290,1707,242,1669,198,1626,161,1577,136,1550,129,1522,127,1023,127,910,123,862,128,802,145,791,153,779,162,738,176"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1497,835,1545,861"/>
+<area shape="poly" id="edge14_Node000004_Node000012" title=" " alt="" coords="1560,857,1593,864,1630,866,1667,861,1700,845,1722,817,1741,773,1758,718,1771,658,1791,537,1801,449,1807,450,1797,537,1777,659,1763,720,1746,775,1726,820,1703,849,1669,866,1631,872,1593,869,1559,863"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="571,108,769,148"/>
+<area shape="poly" id="edge15_Node000003_Node000013" title=" " alt="" coords="785,132,855,151,889,166,920,186,942,207,961,231,991,283,1011,334,1022,374,1017,375,1005,336,986,285,957,234,938,210,917,190,887,170,853,156,784,137"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="571,223,769,263"/>
+<area shape="poly" id="edge16_Node000003_Node000014" title=" " alt="" coords="785,253,853,270,920,296,947,313,971,333,1009,372,1005,376,967,337,943,317,917,301,852,275,784,258"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="571,387,769,427"/>
+<area shape="poly" id="edge17_Node000003_Node000015" title=" " alt="" coords="785,400,942,395,942,400,785,405"/>
+<area shape="rect" id="Node000016" href="$classal_1_1tonikolaba_1_1entity_1_1_h_u_d.html" title=" " alt="" coords="589,501,751,526"/>
+<area shape="poly" id="edge18_Node000003_Node000016" title=" " alt="" coords="766,501,842,487,918,463,961,439,998,413,1001,417,964,444,920,468,843,492,767,507"/>
+<area shape="rect" id="Node000017" href="$classal_1_1tonikolaba_1_1entity_1_1_title.html" title=" " alt="" coords="591,682,749,707"/>
+<area shape="poly" id="edge20_Node000003_Node000017" title=" " alt="" coords="765,705,855,709,892,706,917,696,948,668,973,633,991,593,1004,552,1018,474,1021,415,1026,415,1023,474,1009,553,996,595,977,635,952,671,920,701,893,711,855,714,765,710"/>
+<area shape="poly" id="edge21_Node000003_Node000018" title=" " alt="" coords="776,310,847,324,920,343,987,372,985,377,918,348,846,329,775,316"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="592,451,748,477"/>
+<area shape="poly" id="edge23_Node000003_Node000019" title=" " alt="" coords="763,448,918,420,949,413,950,418,919,425,764,453"/>
+<area shape="poly" id="edge24_Node000003_Node000020" title=" " alt="" coords="770,358,919,376,943,379,942,385,918,381,770,363"/>
+<area shape="rect" id="Node000021" href="$enumal_1_1tonikolaba_1_1entity_1_1_enemy_1_1_enemy_type.html" title=" " alt="" coords="580,551,760,591"/>
+<area shape="poly" id="edge26_Node000003_Node000021" title=" " alt="" coords="775,561,848,545,884,532,917,515,947,493,973,465,1010,414,1014,417,977,469,951,497,920,520,886,537,849,550,776,566"/>
+<area shape="rect" id="Node000022" href="$classal_1_1tonikolaba_1_1tilemap_1_1_background.html" title=" " alt="" coords="563,622,777,647"/>
+<area shape="poly" id="edge27_Node000003_Node000022" title=" " alt="" coords="727,649,772,658,821,661,872,655,895,647,917,635,943,613,965,586,982,556,995,524,1012,462,1019,415,1024,415,1017,464,1000,526,987,558,969,589,947,617,920,640,897,652,873,660,822,666,771,663,726,654"/>
+</map>

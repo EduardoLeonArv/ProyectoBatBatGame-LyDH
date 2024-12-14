@@ -1,0 +1,14 @@
+<map id="al.tonikolaba.tilemap.TileMap.fixBounds" name="al.tonikolaba.tilemap.TileMap.fixBounds">
+<area shape="rect" id="Node000001" title=" " alt="" coords="877,41,1043,81"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#a1043e0ceadcc8c470b2c97856aa4fcf1" title=" " alt="" coords="664,12,829,52"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="862,51,830,46,830,41,862,45"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#ac99ae10cd9f866e60efa4023d1bdd0fb" title=" " alt="" coords="441,69,605,109"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="862,70,605,87,605,81,862,65"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a7e2a6dd714580433d8edd3c1331034e3" title=" " alt="" coords="429,5,616,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="648,32,617,31,617,25,648,26"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="652,59,604,71,603,66,651,54"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#afc3f2d6de59085cb6b19b736de8ecb3d" title=" " alt="" coords="217,5,381,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="414,28,382,28,382,23,414,23"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#a784663876fee55497b945b2cde03e90d" title=" " alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,28,170,28,170,23,202,23"/>
+</map>

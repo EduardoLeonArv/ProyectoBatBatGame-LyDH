@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.main.BatBatGame.run" name="al.tonikolaba.main.BatBatGame.run">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,176,109"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a014eb51f1254646be5270fd65a7579c0" title=" " alt="" coords="241,5,435,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,66,243,47,244,52,171,71"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1main_1_1_bat_bat_game.html#a12b3b0f1dd2f2dc2f06dcbc1835d3a04" title=" " alt="" coords="253,69,423,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,87,237,87,237,92,177,92"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_player.html#a81eddbb9f2191d0b8ec23f73801687af" title=" " alt="" coords="224,134,452,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="177,107,225,119,263,128,262,133,223,124,175,113"/>
+</map>

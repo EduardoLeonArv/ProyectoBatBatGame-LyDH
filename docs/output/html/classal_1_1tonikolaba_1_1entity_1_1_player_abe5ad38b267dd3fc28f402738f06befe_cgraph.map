@@ -1,0 +1,6 @@
+<map id="al.tonikolaba.entity.Player.setCharging" name="al.tonikolaba.entity.Player.setCharging">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,200,69"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a2838968e9a28b1a7b01a4c32ce2fdbe3" title=" " alt="" coords="248,29,409,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,47,232,47,232,52,201,52"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="286,30,284,20,291,10,306,5,329,3,353,5,368,11,366,16,352,10,329,8,307,10,294,15,289,21,292,28"/>
+</map>

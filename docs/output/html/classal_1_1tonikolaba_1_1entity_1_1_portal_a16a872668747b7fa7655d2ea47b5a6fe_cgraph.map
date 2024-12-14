@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.entity.Portal.Portal" name="al.tonikolaba.entity.Portal.Portal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,179,77"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="227,5,441,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,43,211,39,212,44,179,49"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="227,69,441,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,66,212,70,211,76,179,71"/>
+</map>

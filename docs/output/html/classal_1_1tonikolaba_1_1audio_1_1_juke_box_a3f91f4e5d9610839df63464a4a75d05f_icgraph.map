@@ -1,0 +1,14 @@
+<map id="al.tonikolaba.audio.JukeBox.loop" name="al.tonikolaba.audio.JukeBox.loop">
+<area shape="rect" id="Node000001" title=" " alt="" coords="641,69,803,109"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="756,56,744,50,722,48,702,50,690,55,685,61,688,68,682,70,680,60,686,50,701,45,722,43,745,45,759,51"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a718421995c83cf44e9204869d7bc4851" title=" " alt="" coords="431,5,592,45"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="639,67,579,48,580,43,640,62"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a06e03c368b5b6fbed04915ce6bf4a960" title=" " alt="" coords="431,69,592,109"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="626,92,593,92,593,87,626,87"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a16bf27ad3aa67fac733ac2b51e5b1cb2" title=" " alt="" coords="429,133,593,173"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="640,117,580,135,579,130,639,112"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#afc3f2d6de59085cb6b19b736de8ecb3d" title=" " alt="" coords="217,133,381,173"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="414,156,382,156,382,151,414,151"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#a784663876fee55497b945b2cde03e90d" title=" " alt="" coords="5,133,169,173"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="202,156,170,156,170,151,202,151"/>
+</map>

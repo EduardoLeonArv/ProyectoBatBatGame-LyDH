@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.gamestate.PauseState" name="al.tonikolaba.gamestate.PauseState">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,181,169,221"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html" title=" " alt="" coords="5,93,169,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,149,90,181,85,181,85,149"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title="Created by tonikolaba on 03&#45;Jan&#45;18." alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,61,90,93,85,93,85,61"/>
+</map>

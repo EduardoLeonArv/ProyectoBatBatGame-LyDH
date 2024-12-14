@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classal_1_1tonikolaba_1_1gamestate_1_1_basic_state.html" title="Created by tonikolaba on 03&#45;Jan&#45;18." alt="" coords="5,165,169,205"/>
+<area shape="rect" id="Node000001" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html" title=" " alt="" coords="217,69,381,109"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="140,156,216,119,243,107,245,112,218,124,142,161"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_howto_play.html" title=" " alt="" coords="217,133,381,173"/>
+<area shape="poly" id="edge19_Node000000_Node000006" title=" " alt="" coords="184,168,217,163,217,168,185,173"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_menu_state.html" title="Clase que representa el estado del menú principal." alt="" coords="217,197,381,237"/>
+<area shape="poly" id="edge20_Node000000_Node000007" title=" " alt="" coords="185,197,217,202,217,208,184,203"/>
+<area shape="rect" id="Node000008" href="$classal_1_1tonikolaba_1_1gamestate_1_1_options_state.html" title=" " alt="" coords="217,261,381,301"/>
+<area shape="poly" id="edge21_Node000000_Node000008" title=" " alt="" coords="142,210,218,247,245,258,243,263,216,252,140,215"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_abstract_level_state.html" title=" " alt="" coords="429,5,593,45"/>
+<area shape="poly" id="edge15_Node000001_Node000002" title=" " alt="" coords="382,62,442,43,444,48,383,67"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html" title=" " alt="" coords="429,69,593,109"/>
+<area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="397,87,429,87,429,92,397,92"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_pause_state.html" title=" " alt="" coords="429,133,593,173"/>
+<area shape="poly" id="edge18_Node000001_Node000005" title=" " alt="" coords="383,112,444,130,442,135,382,117"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level_test.html" title=" " alt="" coords="641,5,805,45"/>
+<area shape="poly" id="edge16_Node000002_Node000003" title=" " alt="" coords="609,23,641,23,641,28,609,28"/>
+</map>

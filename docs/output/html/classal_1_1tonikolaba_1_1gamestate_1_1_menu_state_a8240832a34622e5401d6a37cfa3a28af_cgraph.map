@@ -1,0 +1,12 @@
+<map id="al.tonikolaba.gamestate.MenuState.handleInput" name="al.tonikolaba.gamestate.MenuState.handleInput">
+<area shape="rect" id="Node000001" title="Maneja las entradas del teclado para navegar por el menú." alt="" coords="5,49,169,89"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_keys.html#ab25a912278a767003e9abaaa69f46016" title=" " alt="" coords="217,12,413,52"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,53,202,48,202,53,170,59"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_menu_state.html#ae39cc54399367517243ff7e236cc1be3" title="Maneja la selección de opciones del menú." alt="" coords="233,81,397,121"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="170,78,218,85,218,90,169,83"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1handlers_1_1_keys.html#aee3e3567bc96443a5dcbeb5679dbf3ca" title=" " alt="" coords="461,5,665,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="414,27,445,26,446,31,414,32"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a2838968e9a28b1a7b01a4c32ce2fdbe3" title=" " alt="" coords="483,93,644,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="398,103,468,106,467,111,398,108"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="517,94,514,84,522,74,538,69,563,67,590,69,606,75,604,80,589,74,563,72,539,74,525,79,520,85,522,92"/>
+</map>

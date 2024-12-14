@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.gamestate.OptionsState.select" name="al.tonikolaba.gamestate.OptionsState.select">
+<area shape="rect" id="Node000001" title="Maneja la selección de opciones del menú." alt="" coords="433,5,597,45"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_options_state.html#ad82f26fcbac8a4e44bc47b333fb8408c" title="Controla las entradas del jugador para navegar por el menú." alt="" coords="217,5,385,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="418,28,386,28,386,23,418,23"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_options_state.html#a8a31963b8b33925ba918ce72a8f968cc" title="Actualiza el estado del menú comprobando la entrada del jugador." alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,28,170,28,170,23,202,23"/>
+</map>

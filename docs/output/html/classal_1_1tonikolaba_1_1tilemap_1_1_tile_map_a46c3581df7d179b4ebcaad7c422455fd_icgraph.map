@@ -1,0 +1,16 @@
+<map id="al.tonikolaba.tilemap.TileMap.getTileSize" name="al.tonikolaba.tilemap.TileMap.getTileSize">
+<area shape="rect" id="Node000001" title=" " alt="" coords="889,48,1055,88"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a7e2a6dd714580433d8edd3c1331034e3" title=" " alt="" coords="438,5,625,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="884,47,841,39,729,29,625,26,625,21,729,23,842,33,885,41"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#a8910fc7bba0a56a580828e276adbcbaf" title=" " alt="" coords="681,48,841,88"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="874,71,842,71,842,65,874,65"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#af2982e7dcacd9f18f54ffc57f776c8e4" title=" " alt="" coords="681,112,841,152"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="890,96,830,114,829,109,889,90"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#afc3f2d6de59085cb6b19b736de8ecb3d" title=" " alt="" coords="217,52,381,92"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="423,50,382,58,381,53,422,45"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#a784663876fee55497b945b2cde03e90d" title=" " alt="" coords="5,52,169,92"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="202,75,170,75,170,69,202,69"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a101e0e74c0e659cd8133cc53ed733611" title=" " alt="" coords="429,84,633,124"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="666,123,633,119,634,114,667,118"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="413,90,381,86,382,81,414,85"/>
+</map>

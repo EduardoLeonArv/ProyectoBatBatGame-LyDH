@@ -1,0 +1,17 @@
+<map id="al.tonikolaba.entity.Player.getHealth" name="al.tonikolaba.entity.Player.getHealth">
+<area shape="rect" id="Node000001" title=" " alt="" coords="459,120,653,160"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_h_u_d.html#afb13cd60fcd464a932891f75f6894537" title=" " alt="" coords="217,13,411,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="513,113,465,82,410,53,375,41,377,36,412,48,468,77,516,109"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a8cb111d0607a862bac80c67652946275" title=" " alt="" coords="221,63,407,103"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="453,118,401,106,402,101,455,113"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#ac99ae10cd9f866e60efa4023d1bdd0fb" title=" " alt="" coords="5,120,169,160"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="443,143,170,143,170,137,443,137"/>
+<area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a9095c1f506c4c53597942ac171a6fe9a" title=" " alt="" coords="232,177,396,217"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="455,167,397,180,396,175,453,161"/>
+<area shape="rect" id="Node000007" href="$classal_1_1tonikolaba_1_1gamestate_1_1_level1_state.html#a50ec9d20e408994dcd98c29c01e4c8b8" title=" " alt="" coords="232,241,396,281"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="515,171,467,202,412,232,384,243,382,238,410,227,464,198,512,167"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a0d0c9b6022291e721f8fd3d0e07845b0" title=" " alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,28,170,28,170,23,202,23"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="218,110,170,122,168,117,217,104"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="217,176,168,163,170,158,218,170"/>
+</map>

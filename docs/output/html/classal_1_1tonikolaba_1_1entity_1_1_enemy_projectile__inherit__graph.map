@@ -1,0 +1,5 @@
+<map id="al.tonikolaba.entity.EnemyProjectile" name="al.tonikolaba.entity.EnemyProjectile">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,181,133"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html" title=" " alt="" coords="13,5,173,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,61,96,93,91,93,91,61"/>
+</map>

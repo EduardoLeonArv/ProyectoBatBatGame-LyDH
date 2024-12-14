@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.main.BatBatGame" name="al.tonikolaba.main.BatBatGame">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,212,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="11,5,76,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,40,100,76,96,80,62,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="101,5,247,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,44,122,80,118,76,151,40"/>
+</map>

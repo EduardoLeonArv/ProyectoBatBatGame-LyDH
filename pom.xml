@@ -264,6 +264,25 @@
             </plugin>
             <!-- Checkstyle Plugin -->
 
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>doxygen-maven-plugin</artifactId>
+                <version>1.8.3.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-docs</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>doxygen</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doxygenDirectory>${basedir}/docs</doxygenDirectory>
+                    <doxygenExecutable>doxygen</doxygenExecutable>
+                    <configurationDirectory>${basedir}/docs/config</configurationDirectory>
+                </configuration>
+            </plugin>
 
 
             <!-- OWASP Dependency-Check -->

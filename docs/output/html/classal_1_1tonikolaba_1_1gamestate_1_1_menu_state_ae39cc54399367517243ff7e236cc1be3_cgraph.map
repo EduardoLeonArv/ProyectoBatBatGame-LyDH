@@ -1,0 +1,6 @@
+<map id="al.tonikolaba.gamestate.MenuState.select" name="al.tonikolaba.gamestate.MenuState.select">
+<area shape="rect" id="Node000001" title="Maneja la selección de opciones del menú." alt="" coords="5,29,169,69"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1audio_1_1_juke_box.html#a2838968e9a28b1a7b01a4c32ce2fdbe3" title=" " alt="" coords="217,29,379,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,47,202,47,202,52,170,52"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="258,30,256,20,262,10,277,5,298,3,321,5,335,11,332,16,320,10,298,8,278,10,266,15,261,21,264,28"/>
+</map>

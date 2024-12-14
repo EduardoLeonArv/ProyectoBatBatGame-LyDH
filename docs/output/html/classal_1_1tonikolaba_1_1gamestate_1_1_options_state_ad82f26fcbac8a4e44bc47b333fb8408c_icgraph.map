@@ -1,0 +1,5 @@
+<map id="al.tonikolaba.gamestate.OptionsState.handleInput" name="al.tonikolaba.gamestate.OptionsState.handleInput">
+<area shape="rect" id="Node000001" title="Controla las entradas del jugador para navegar por el menú." alt="" coords="217,5,385,45"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_options_state.html#a8a31963b8b33925ba918ce72a8f968cc" title="Actualiza el estado del menú comprobando la entrada del jugador." alt="" coords="5,5,169,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,28,170,28,170,23,202,23"/>
+</map>

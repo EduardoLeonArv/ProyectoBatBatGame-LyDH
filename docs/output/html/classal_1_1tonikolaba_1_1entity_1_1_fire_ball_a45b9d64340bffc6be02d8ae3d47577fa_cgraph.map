@@ -1,0 +1,7 @@
+<map id="al.tonikolaba.entity.FireBall.setHit" name="al.tonikolaba.entity.FireBall.setHit">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,163,77"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="211,5,425,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,44,195,40,195,45,163,49"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="211,69,425,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,65,195,70,195,75,163,71"/>
+</map>

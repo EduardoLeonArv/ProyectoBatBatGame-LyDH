@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.MapObject.setMapPosition" name="al.tonikolaba.entity.MapObject.setMapPosition">
+<area shape="rect" id="Node000001" title=" " alt="" coords="488,27,648,67"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1entity_1_1_explosion.html#a959acd1a7f7c3c61d4ea908e6e28edbe" title=" " alt="" coords="217,5,440,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="473,38,437,34,438,29,473,33"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_map_object.html#add799ab8530217a0d39b9383669c5235" title=" " alt="" coords="249,55,409,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="473,61,410,69,409,63,472,56"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a0d0c9b6022291e721f8fd3d0e07845b0" title=" " alt="" coords="5,55,169,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="233,78,170,78,170,73,233,73"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="al.tonikolaba.entity.MapObject.calculateCorners" name="al.tonikolaba.entity.MapObject.calculateCorners">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,167,109"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#ab065d996cc2d71a24eed311c641f6e2b" title=" " alt="" coords="215,5,380,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,66,214,48,215,53,155,71"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#a914dcb81688833980eb8e7c136fcc947" title=" " alt="" coords="215,69,380,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,87,199,87,199,92,167,92"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile_map.html#ab4f80eeb9c8881b5b2ff1789b1da22db" title=" " alt="" coords="215,133,380,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="155,107,215,126,214,131,154,112"/>
+<area shape="rect" id="Node000005" href="$classal_1_1tonikolaba_1_1tilemap_1_1_tile.html#a2b523d10fa3e32f03b20b6719f7c626e" title=" " alt="" coords="428,141,643,166"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="380,151,412,151,412,156,380,156"/>
+</map>

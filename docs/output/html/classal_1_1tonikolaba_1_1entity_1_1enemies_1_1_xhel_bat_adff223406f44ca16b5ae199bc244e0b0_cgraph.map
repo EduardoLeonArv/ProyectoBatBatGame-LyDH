@@ -1,0 +1,9 @@
+<map id="al.tonikolaba.entity.enemies.XhelBat.XhelBat" name="al.tonikolaba.entity.enemies.XhelBat.XhelBat">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,193,109"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1handlers_1_1_content.html#a4d555cbe9c7f9d6c7b7000f8d1bb599b" title=" " alt="" coords="241,5,460,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,66,254,47,256,52,181,71"/>
+<area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#a90eadcad0756437642c17e47ea7c4324" title=" " alt="" coords="243,69,458,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,87,228,87,228,92,194,92"/>
+<area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1entity_1_1_animation.html#ac3cfe99f646ac39123c2ca107d9909f6" title=" " alt="" coords="243,133,458,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,107,256,126,254,132,180,113"/>
+</map>
