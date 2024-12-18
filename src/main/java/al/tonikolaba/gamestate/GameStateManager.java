@@ -156,7 +156,7 @@ public class GameStateManager {
 	}
 
 	// Método para extraer la puntuación de una línea en scores.txt
-	private int extractScore(String line) {
+    int extractScore(String line) {
 		try {
 			String[] parts = line.split(" - "); // Formato esperado: "Player: [Name] - Score: [Score]"
 			String scorePart = parts[1].replace("Score: ", "").trim();

@@ -1,12 +1,9 @@
-<map id="al.tonikolaba.gamestate.GameStateManager.saveScoreToFile" name="al.tonikolaba.gamestate.GameStateManager.saveScoreToFile">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1791,161,2028,201"/>
-<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#a1b9b74946a0cdd769b63e0059ccd5c60" title=" " alt="" coords="1514,104,1713,144"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1787,160,1712,146,1713,141,1788,155"/>
+<map id="al.tonikolaba.gamestate.GameStateManager.terminateProgram" name="al.tonikolaba.gamestate.GameStateManager.terminateProgram">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1731,133,1976,173"/>
+<area shape="rect" id="Node000002" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#a1b9b74946a0cdd769b63e0059ccd5c60" title=" " alt="" coords="1484,133,1683,173"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1715,156,1683,156,1683,151,1715,151"/>
 <area shape="rect" id="Node000003" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#ab4e19a769002b6645f4b3451347af412" title=" " alt="" coords="1245,133,1436,173"/>
-<area shape="poly" id="edge17_Node000001_Node000003" title=" " alt="" coords="1775,177,1436,161,1437,155,1775,172"/>
-<area shape="rect" id="Node000016" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state_manager.html#a12cf8596ec080be69e43ec845426eb74" title=" " alt="" coords="1484,219,1743,259"/>
-<area shape="poly" id="edge16_Node000001_Node000016" title=" " alt="" coords="1788,207,1721,221,1720,215,1787,202"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1499,139,1437,146,1436,140,1498,134"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1468,156,1436,156,1436,151,1468,151"/>
 <area shape="rect" id="Node000004" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#aca0b4b7436a8c805a71723c446e42da7" title=" " alt="" coords="1013,5,1195,45"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1300,126,1251,92,1196,60,1170,48,1172,43,1199,55,1254,87,1303,121"/>
 <area shape="rect" id="Node000006" href="$classal_1_1tonikolaba_1_1gamestate_1_1_game_state.html#a8cb111d0607a862bac80c67652946275" title=" " alt="" coords="1011,69,1197,109"/>

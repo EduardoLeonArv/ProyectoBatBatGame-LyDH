@@ -197,7 +197,7 @@
                     <archive>
                         <manifest>
                             <!-- Clase principal para ejecutar -->
-                            <mainClass>com.mi.proyecto.Main</mainClass>
+                            <mainClass>al.tonikolaba.main.BatBatSpring</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
