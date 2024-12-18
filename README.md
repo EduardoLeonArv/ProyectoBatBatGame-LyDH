@@ -17,6 +17,9 @@ Este es un repositorio donde se desarrollará una práctica de Laboratorio de De
 ## BatBat Game
 
 **BatBat** es un juego en Java con una misión muy simple: **sobrevivir y derrotar al mal**. El jugador toma el papel de BatBat, quien debe eliminar a cualquier enemigo en su camino, identificando y enfrentándose a las diversas formas del mal en cada nivel.
+ - El proyecto esta contruido sobre maven
+ - Pruebas realizadas (JUnit5, Jacoco)
+ - Documentacion (doxygen)
 
 ----------------------
 
