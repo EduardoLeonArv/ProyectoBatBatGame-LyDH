@@ -21,7 +21,7 @@ public class Content {
     private static final BufferedImage[][] XHELBAT = load("/Sprites/Enemies/XhelBat.gif", 25, 25);
     private static final BufferedImage[][] RED_ENERGY = load("/Sprites/Enemies/RedEnergy.gif", 20, 20);
 
-    
+
     public Content() {
         throw new IllegalStateException("Utility Class");
     }
