@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.0</version>
+        <version>2.7.16</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
@@ -52,8 +52,17 @@
                  <groupId>org.springframework.boot</groupId>
                  <artifactId>spring-boot-starter-logging</artifactId>
              </exclusion>
+             <exclusion>
+                 <groupId>com.fasterxml.jackson.core</groupId>
+                 <artifactId>jackson-core</artifactId>
+             </exclusion>
+             <exclusion>
+                 <groupId>com.fasterxml.jackson.core</groupId>
+                 <artifactId>jackson-databind</artifactId>
+             </exclusion>
          </exclusions>
      </dependency>
+
         <!-- Spring Boot dependencies 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -92,8 +101,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
-     -->
-        <dependency>
+
+     <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-core</artifactId>
+         <version>5.3.31</version>
+     </dependency>
+    -->
+     <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
@@ -125,14 +140,15 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.15.2</version> <!-- Última versión recomendada -->
+            <version>2.13.5</version> <!-- Compatible con Java 8 -->
         </dependency>
+     <!--
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
-            <version>9.4.52.v20230823</version> <!-- Reemplaza con la última versión -->
+            <version>9.4.52.v20230823</version>
         </dependency>
-
+ -->
      <!-- PUSE LAS SIGUIENTES 4 DEPENDENCIAS -->
          <!-- Mockito Core -->
          <dependency>
@@ -223,7 +239,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-			            <!-- Spring Boot Plugin -->
+			            <!--
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -239,7 +255,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> Spring Boot Plugin -->
 			            <!-- JUnit Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
