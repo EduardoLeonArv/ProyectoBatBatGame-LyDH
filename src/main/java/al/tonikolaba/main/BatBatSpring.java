@@ -13,16 +13,26 @@ import org.springframework.context.annotation.Configuration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
+/**
+ * Clase principal de configuración y ejecución de la aplicación Spring Boot.
+ * Configura componentes y beans necesarios para la ejecución segura y funcionalidad del juego.
+ */
 @Configuration
 @ComponentScan(basePackages = "al.tonikolaba.main")
 @EnableAutoConfiguration
 public class BatBatSpring {
 
+	/**
+	 * Método principal que inicia la aplicación Spring Boot y lanza la interfaz gráfica del juego.
+	 *
+	 * @param args Argumentos pasados desde la línea de comandos.
+	 */
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new SpringApplicationBuilder(BatBatSpring.class)
 				.headless(false)
 				.run(args);
 
+		// Ejecuta la interfaz gráfica del juego en el Event Dispatch Thread (EDT).
 		EventQueue.invokeLater(() -> {
 			@SuppressWarnings("unused")
 			BatBatGame window = context.getBean(BatBatGame.class);
@@ -31,8 +41,10 @@ public class BatBatSpring {
 	}
 
 	/**
-	 * Configura DocumentBuilderFactory con procesamiento seguro habilitado
-	 * para mitigar vulnerabilidades de XXE (XML External Entities).
+	 * Configura una instancia de {@link DocumentBuilderFactory} con características seguras
+	 * para mitigar vulnerabilidades relacionadas con XML External Entities (XXE).
+	 *
+	 * @return Una instancia segura de {@link DocumentBuilderFactory}.
 	 */
 	@Bean
 	public DocumentBuilderFactory documentBuilderFactory() {
@@ -49,6 +61,13 @@ public class BatBatSpring {
 			throw new IllegalStateException("Error al configurar DocumentBuilderFactory de forma segura", e);
 		}
 	}
+
+	/**
+	 * Configura un bean de {@link ObjectMapper} de Jackson para la deserialización de JSON.
+	 * Incluye características deshabilitadas para mayor seguridad.
+	 *
+	 * @return Una instancia de {@link ObjectMapper} configurada.
+	 */
 	@Bean
 	public ObjectMapper objectMapper() {
 		ObjectMapper mapper = new ObjectMapper();

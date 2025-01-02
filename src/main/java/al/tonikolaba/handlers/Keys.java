@@ -2,30 +2,64 @@ package al.tonikolaba.handlers;
 
 import java.awt.event.KeyEvent;
 
-// this class contains a boolean array of current and previous key states
-// for the 10 keys that are used for this game.
-// a key k is down when keyState[k] is true.
-
+/**
+ * Clase que administra los estados actuales y previos de las teclas utilizadas en el juego.
+ * Permite rastrear si una tecla está presionada, liberada o si cualquier tecla está en uso.
+ */
 public class Keys {
 
+	/** Número total de teclas rastreadas. */
 	public static final int NUM_KEYS = 16;
+
+	/** Representa la tecla de movimiento hacia arriba. */
 	public static final int UP = 0;
+
+	/** Representa la tecla de movimiento hacia la izquierda. */
 	public static final int LEFT = 1;
+
+	/** Representa la tecla de movimiento hacia abajo. */
 	public static final int DOWN = 2;
+
+	/** Representa la tecla de movimiento hacia la derecha. */
 	public static final int RIGHT = 3;
+
+	/** Representa el botón de acción 1 (por ejemplo, ataque). */
 	public static final int BUTTON1 = 4;
+
+	/** Representa el botón de acción 2 (por ejemplo, salto). */
 	public static final int BUTTON2 = 5;
+
+	/** Representa el botón de acción 3 (por ejemplo, usar un objeto). */
 	public static final int BUTTON3 = 6;
+
+	/** Representa el botón de acción 4 (por ejemplo, abrir un menú). */
 	public static final int BUTTON4 = 7;
+
+	/** Representa la tecla Enter, utilizada para confirmar o seleccionar. */
 	public static final int ENTER = 8;
+
+	/** Representa la tecla Escape, utilizada para retroceder o pausar. */
 	public static final int ESCAPE = 9;
+
+
+	/** Estado actual de cada tecla (true si está presionada). */
 	private static final boolean[] KEY_STATE = new boolean[NUM_KEYS];
+	/** Estado previo de cada tecla (true si estaba presionada en el último fotograma). */
 	public static boolean[] prevKeyState = new boolean[NUM_KEYS];
 
+	/**
+	 * Constructor vacío. La clase está diseñada como una clase de utilidad y no debería ser instanciada.
+	 */
 	public Keys() {
-		// throw new IllegalStateException("Utility Class");
+		// Constructor vacío intencionado
 	}
 
+	/**
+	 * Actualiza el estado de una tecla específica.
+	 *
+	 * @param i Código de la tecla presionada.
+	 * @param b {@code true} si la tecla está presionada, {@code false} si está liberada.
+	 */
 	public static void keySet(int i, boolean b) {
 		if (i == KeyEvent.VK_UP)
 			getKeyState()[UP] = b;
@@ -49,16 +83,32 @@ public class Keys {
 			getKeyState()[ESCAPE] = b;
 	}
 
+	/**
+	 * Actualiza el estado previo de todas las teclas al estado actual.
+	 * Debe ser llamado al final de cada ciclo de juego.
+	 */
 	public static void update() {
 		for (int i = 0; i < NUM_KEYS; i++) {
 			prevKeyState[i] = getKeyState()[i];
 		}
 	}
 
+	/**
+	 * Verifica si una tecla específica fue presionada (es decir, está activa en el estado actual,
+	 * pero no estaba activa en el estado previo).
+	 *
+	 * @param i Índice de la tecla en cuestión.
+	 * @return {@code true} si la tecla fue presionada, {@code false} en caso contrario.
+	 */
 	public static boolean isPressed(int i) {
 		return getKeyState()[i] && !prevKeyState[i];
 	}
 
+	/**
+	 * Verifica si cualquier tecla está presionada en el estado actual.
+	 *
+	 * @return {@code true} si al menos una tecla está presionada, {@code false} en caso contrario.
+	 */
 	public static boolean anyKeyPress() {
 		for (int i = 0; i < NUM_KEYS; i++) {
 			if (getKeyState()[i])
@@ -67,12 +117,22 @@ public class Keys {
 		return false;
 	}
 
+	/**
+	 * Obtiene el arreglo que representa el estado actual de las teclas.
+	 *
+	 * @return Arreglo de estados de teclas (true si está presionada, false si no).
+	 */
 	public static boolean[] getKeyState() {
 		return KEY_STATE;
 	}
 
+	/**
+	 * Establece manualmente el estado de una tecla específica.
+	 *
+	 * @param key Código de la tecla.
+	 * @param pressed {@code true} si la tecla está presionada, {@code false} si está liberada.
+	 */
 	public static void setPressed(int key, boolean pressed) {
-		keySet(key, pressed); // Usa keySet para actualizar el estado
+		keySet(key, pressed);
 	}
-
 }

@@ -1,9 +1,3 @@
-/**
- * Clase que representa el estado de opciones del menú.
- * Permite al jugador interactuar con submenús como "HowTo Play" y "Language".
- *
- * @author N.Kolaba
- */
 package al.tonikolaba.gamestate;
 
 import java.awt.Color;
@@ -13,20 +7,33 @@ import al.tonikolaba.audio.JukeBox;
 import al.tonikolaba.entity.Player;
 import al.tonikolaba.handlers.Keys;
 
+/**
+ * Clase que representa el estado de opciones del menú.
+ * Permite al jugador interactuar con submenús como "HowTo Play" y "Language".
+ * Proporciona funcionalidades para navegar por las opciones y realizar selecciones.
+ *
+ * @author Laboratorio y Desarrollo de herramientas-GrupoBatBat
+ */
 public class OptionsState extends BasicState {
 
-    // Constantes de texto
+    /** Constante de texto para la opción "HowTo Play". */
     private static final String HOW_TO_PLAY = "HowTo Play";
+    /** Constante de texto para la opción "Language". */
     private static final String LANGUAGE = "Language";
+    /** Constante de texto para la opción "Back". */
     private static final String BACK = "Back";
 
-    // Coordenadas para opciones del menú
+    /** Coordenada X para las opciones del menú. */
     private static final int MENU_X = 300;
+    /** Coordenada Y para la opción 1. */
     private static final int OPTION_1_Y = 223;
+    /** Coordenada Y para la opción 2. */
     private static final int OPTION_2_Y = 248;
+    /** Coordenada Y para la opción 3. */
     private static final int OPTION_3_Y = 273;
 
-    private Player player; // Referencia al jugador
+    /** Referencia al jugador actual. */
+    private Player player;
 
     /**
      * Constructor del estado de opciones.
@@ -65,7 +72,7 @@ public class OptionsState extends BasicState {
     }
 
     /**
-     * Maneja la selección de opciones del menú.
+     * Maneja la selección de opciones del menú y realiza las acciones correspondientes.
      */
     @Override
     protected void select() {
@@ -91,6 +98,7 @@ public class OptionsState extends BasicState {
 
     /**
      * Controla las entradas del jugador para navegar por el menú.
+     * Maneja teclas como ENTER, UP, y DOWN para realizar acciones.
      */
     @Override
     public void handleInput() {

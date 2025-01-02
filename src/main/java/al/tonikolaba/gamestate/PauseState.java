@@ -5,31 +5,44 @@ import java.awt.Graphics2D;
 
 import al.tonikolaba.handlers.Keys;
 import al.tonikolaba.main.GamePanel;
-
-/**
- * @author N. Kolaba
- */
-
 import al.tonikolaba.entity.Player;
 
 /**
- * @author N. Kolaba
+ * Clase que representa el estado de pausa del juego.
+ * Muestra un menú de pausa y permite al jugador reanudar el juego o regresar al menú principal.
+ *
+ * @author Laboratorio y Desarrollo de herramientas-GrupoBatBat
  */
-
 public class PauseState extends GameState {
 
-	private Player player; // Referencia al jugador
+	/** Referencia al jugador actual. */
+	private Player player;
 
+	/**
+	 * Constructor que inicializa el estado de pausa con el gestor de estados y el jugador.
+	 *
+	 * @param gsm Gestor de estados del juego.
+	 * @param player Referencia al jugador actual.
+	 */
 	public PauseState(GameStateManager gsm, Player player) {
 		super(gsm, player); // Llama al constructor de GameState con el jugador
 		this.player = player;
 	}
 
+	/**
+	 * Actualiza el estado de pausa. Llama al manejo de entradas para procesar la interacción del jugador.
+	 */
 	@Override
 	public void update() {
 		handleInput();
 	}
 
+	/**
+	 * Dibuja el menú de pausa en la pantalla.
+	 * Muestra información del jugador como vidas y puntuación.
+	 *
+	 * @param g Objeto {@link Graphics2D} utilizado para realizar el dibujo.
+	 */
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.YELLOW);
@@ -37,7 +50,7 @@ public class PauseState extends GameState {
 		g.setColor(Color.WHITE);
 		g.fillRoundRect(180, 130, 300, 220, 50, 50);
 		g.setColor(Color.YELLOW);
-		g.fillRect(190, 140, 280, 200); // Fills a square
+		g.fillRect(190, 140, 280, 200); // Llena un rectángulo
 		g.setColor(Color.RED);
 		g.setFont(fontMenu);
 		g.drawString("Game Paused", 280, 230);
@@ -49,6 +62,10 @@ public class PauseState extends GameState {
 		g.drawString("Score: " + player.getScore(), 250, 295);
 	}
 
+	/**
+	 * Maneja la entrada del jugador durante el estado de pausa.
+	 * Permite reanudar el juego o regresar al menú principal.
+	 */
 	@Override
 	public void handleInput() {
 		if (Keys.isPressed(Keys.ESCAPE))
@@ -59,4 +76,3 @@ public class PauseState extends GameState {
 		}
 	}
 }
-

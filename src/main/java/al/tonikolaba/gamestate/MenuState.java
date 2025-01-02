@@ -1,6 +1,3 @@
-/** Copyright to N.Kolaba
-All rights reserved ©.
-**/
 package al.tonikolaba.gamestate;
 
 import java.awt.Color;
@@ -13,22 +10,27 @@ import al.tonikolaba.handlers.Keys;
 
 /**
  * Clase que representa el estado del menú principal.
- * Permite al jugador navegar por las opciones del menú.
- * 
- * @author tonikolaba
+ * Permite al jugador navegar por las opciones del menú principal,
+ * como jugar, abrir el menú de opciones o salir del juego.
+ *
+ * @author Laboratorio y Desarrollo de herramientas-GrupoBatBat
  */
 public class MenuState extends BasicState {
 
+    /** Texto de la opción para iniciar el juego. */
     private static final String PLAY_OPTION = "Play";
+    /** Texto de la opción para abrir el menú de opciones. */
     private static final String OPTIONS_OPTION = "Options";
+    /** Texto de la opción para salir del juego. */
     private static final String QUIT_OPTION = "Quit";
 
-    private Player player; // Referencia al jugador
+    /** Referencia al jugador actual. */
+    private Player player;
 
     /**
-     * Constructor para inicializar el estado del menú.
+     * Constructor para inicializar el estado del menú principal.
      *
-     * @param gsm   Gestor de estados del juego.
+     * @param gsm    Gestor de estados del juego.
      * @param player Referencia al jugador.
      */
     public MenuState(GameStateManager gsm, Player player) {
@@ -45,7 +47,7 @@ public class MenuState extends BasicState {
     @Override
     public void draw(Graphics2D g) {
         super.draw(g);
-        // títulos y fuentes
+        // Títulos y fuentes
         g.setFont(fontMenu);
         g.setColor(Color.RED);
         g.drawString(PLAY_OPTION, 300, 223);
@@ -54,7 +56,7 @@ public class MenuState extends BasicState {
     }
 
     /**
-     * Maneja la selección de opciones del menú.
+     * Maneja la selección de opciones del menú y realiza las acciones correspondientes.
      */
     @Override
     protected void select() {
@@ -98,6 +100,8 @@ public class MenuState extends BasicState {
 
     /**
      * Maneja las entradas del teclado para navegar por el menú.
+     * Las teclas permitidas son Enter (para seleccionar),
+     * y las flechas hacia arriba y abajo para moverse entre las opciones.
      */
     @Override
     public void handleInput() {
@@ -111,7 +115,7 @@ public class MenuState extends BasicState {
     }
 
     /**
-     * Navega por las opciones del menú.
+     * Navega por las opciones del menú en la dirección especificada.
      *
      * @param direction Dirección de navegación (-1 para arriba, 1 para abajo).
      */
