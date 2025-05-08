@@ -6,64 +6,84 @@ import al.tonikolaba.main.GamePanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/**
- * @author tonikolaba
- */
-
-/**
- * @author tonikolaba
- */
 import al.tonikolaba.entity.PlayerSave;
 
 /**
- * @author tonikolaba
+ * Clase que gestiona los diferentes estados del juego, permitiendo cambiar entre niveles,
+ * menú principal, opciones, y otros. También maneja la pausa del juego y la gestión
+ * de la puntuación del jugador.
  */
-
 public class GameStateManager {
-
+	/** Logger para registrar eventos e información. */
 	private static final Logger LOGGER = Logger.getLogger(GameStateManager.class.getName());
-	public static final int NUMGAMESTATES = 16;
-	public static final int MENUSTATE = 0;
-	public static final int OPTIONSSTATE = 1;
-	public static final int LEVEL1STATE = 2;
-	public static final int LEVEL2STATE = 3;
-	public static final int LEVEL3STATE = 4;
-	public static final int LEVEL4STATE = 5;
-	public static final int HOWTOPLAY = 7;
-	public static final int ACIDSTATE = 15;
-	javax.swing.JFrame window; // Referencia al JFrame principal
 
+	/** Número total de estados posibles en el juego. */
+	public static final int NUMGAMESTATES = 16;
+	/** Identificador del estado del menú principal. */
+	public static final int MENUSTATE = 0;
+	/** Identificador del estado de opciones. */
+	public static final int OPTIONSSTATE = 1;
+	/** Identificador del nivel 1 del juego. */
+	public static final int LEVEL1STATE = 2;
+	/** Identificador del nivel 2 del juego. */
+	public static final int LEVEL2STATE = 3;
+	/** Identificador del nivel 3 del juego. */
+	public static final int LEVEL3STATE = 4;
+	/** Identificador del nivel 4 del juego. */
+	public static final int LEVEL4STATE = 5;
+	/** Identificador del estado "How to Play". */
+	public static final int HOWTOPLAY = 7;
+	/** Identificador del estado especial "Acid State". */
+	public static final int ACIDSTATE = 15;
+
+	/** Referencia al JFrame principal de la aplicación. */
+	javax.swing.JFrame window;
+
+	/** Array que contiene los estados actuales del juego. */
 	public BasicState[] gameStates;
+	/** Identificador del estado actual del juego. */
 	int currentState;
+	/** Estado de pausa del juego. */
 	PauseState pauseState;
+	/** Indica si el juego está pausado. */
 	boolean paused;
 
-	private Player player; // Referencia al jugador
-	private boolean scoreSaved = false; // Bandera para verificar si el puntaje ya se guardó
+	/** Referencia al jugador actual. */
+	private Player player;
+	/** Bandera para verificar si la puntuación ya se ha guardado. */
+	private boolean scoreSaved = false;
 
-	// Constructor modificado para recibir el jugador
+	/**
+	 * Constructor que inicializa el gestor de estados del juego.
+	 *
+	 * @param player Referencia al jugador actual.
+	 */
 	public GameStateManager(Player player) {
-		this.player = player; // Asignar el jugador
-		JukeBox.init();
+		this.player = player; // Asigna el jugador actual
+		JukeBox.init(); // Inicializa el sistema de audio
 
 		gameStates = new BasicState[NUMGAMESTATES];
 
-		// Pasa el jugador al constructor de PauseState
+		// Inicializa el estado de pausa
 		pauseState = new PauseState(this, player);
 
 		paused = false;
 
+		// Establece el estado inicial como el menú principal
 		currentState = MENUSTATE;
 		loadState(currentState);
 
-		// Añade un hook de cierre para guardar la puntuación al salir del juego
+		// Hook para guardar puntuación al cerrar la aplicación
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-			saveScoreToFile(); // Guarda la puntuación al cerrar
+			saveScoreToFile(); // Guarda la puntuación al salir
 		}));
 	}
 
-	// Método para cargar un estado del juego
+	/**
+	 * Carga un estado específico del juego en memoria.
+	 *
+	 * @param state Identificador del estado que se desea cargar.
+	 */
 	public void loadState(int state) {
 		if (state == MENUSTATE)
 			gameStates[state] = new MenuState(this, player);
@@ -75,35 +95,50 @@ public class GameStateManager {
 			gameStates[state] = new Level1State(this, player);
 	}
 
-	// Método para descargar un estado del juego
+	/**
+	 * Descarga un estado del juego de la memoria.
+	 *
+	 * @param state Identificador del estado que se desea descargar.
+	 */
 	void unloadState(int state) {
 		gameStates[state] = null;
 	}
 
-	// Cambiar el estado del juego
+	/**
+	 * Cambia el estado actual del juego a otro especificado.
+	 *
+	 * @param state Identificador del nuevo estado al que se desea cambiar.
+	 */
 	public void setState(int state) {
-		// Verifica si se está intentando pasar de LEVEL1STATE a LEVEL2STATE
+		// Guarda la puntuación antes de cambiar del nivel 1 al nivel 2
 		if (currentState == LEVEL1STATE && state == LEVEL2STATE) {
-			saveScoreToFile(); // Guarda la puntuación antes de finalizar
+			saveScoreToFile();
 			endGame();
-			return; // Evita cargar el nuevo estado
+			return; // Evita cargar el nuevo estado después de finalizar
 		}
 
-		// Cambiar el estado del juego
+		// Descarga el estado actual y carga el nuevo estado
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
 	}
 
-
+	/**
+	 * Termina el programa cerrando la aplicación.
+	 */
 	protected void terminateProgram() {
 		System.exit(0);
 	}
 
+	/**
+	 * Finaliza el juego mostrando las puntuaciones y cerrando la aplicación.
+	 */
 	public void endGame() {
-		saveScoreToFile();
-		String topScores = getTopScores();
-		int playerScore = player.getScore();
+		saveScoreToFile(); // Guarda la puntuación actual del jugador
+		String topScores = getTopScores(); // Obtiene las mejores puntuaciones
+		int playerScore = player.getScore(); // Obtiene la puntuación del jugador
+
+		// Muestra un mensaje con la puntuación del jugador y las mejores puntuaciones
 		javax.swing.JOptionPane.showMessageDialog(
 				window,
 				String.format(
@@ -114,13 +149,20 @@ public class GameStateManager {
 				"Fin del Juego",
 				javax.swing.JOptionPane.INFORMATION_MESSAGE
 		);
+
+		// Cierra la ventana principal si está abierta
 		if (window != null) {
 			window.dispose();
 		}
-		terminateProgram(); // Llamada extraída
+		terminateProgram(); // Finaliza el programa
 	}
 
 
+	/**
+	 * Obtiene las puntuaciones más altas de los jugadores desde el archivo de puntuaciones.
+	 *
+	 * @return Una cadena que contiene las tres mejores puntuaciones formateadas.
+	 */
 	String getTopScores() {
 		java.util.List<String> scores = new java.util.ArrayList<>();
 
@@ -155,8 +197,13 @@ public class GameStateManager {
 		return topScores.toString();
 	}
 
-	// Método para extraer la puntuación de una línea en scores.txt
-    int extractScore(String line) {
+	/**
+	 * Extrae la puntuación de una línea en el archivo de puntuaciones.
+	 *
+	 * @param line Una línea del archivo que contiene el formato "Player: [Name] - Score: [Score]".
+	 * @return La puntuación como un entero. Devuelve 0 si no se puede parsear.
+	 */
+	int extractScore(String line) {
 		try {
 			String[] parts = line.split(" - "); // Formato esperado: "Player: [Name] - Score: [Score]"
 			String scorePart = parts[1].replace("Score: ", "").trim();
@@ -167,10 +214,10 @@ public class GameStateManager {
 		}
 	}
 
-
-
-
-	// Método para guardar el puntaje en un archivo
+	/**
+	 * Guarda el puntaje actual del jugador en el archivo de puntuaciones.
+	 * Verifica si ya ha sido guardado previamente para evitar duplicados.
+	 */
 	public void saveScoreToFile() {
 		if (scoreSaved) return; // Evita guardar múltiples veces
 
@@ -195,15 +242,19 @@ public class GameStateManager {
 		}
 	}
 
-
-
-
-	// Pausar el juego
+	/**
+	 * Pausa o reanuda el juego.
+	 *
+	 * @param b {@code true} para pausar el juego, {@code false} para reanudarlo.
+	 */
 	public void setPaused(boolean b) {
 		paused = b;
 	}
 
-	// Actualizar el estado actual
+	/**
+	 * Actualiza el estado actual del juego.
+	 * Si el juego está pausado, actualiza el estado de pausa.
+	 */
 	public void update() {
 		if (paused) {
 			pauseState.update();
@@ -213,7 +264,12 @@ public class GameStateManager {
 			gameStates[currentState].update();
 	}
 
-	// Dibujar el estado actual
+	/**
+	 * Dibuja el estado actual del juego en la pantalla.
+	 * Si el juego está pausado, dibuja el estado de pausa.
+	 *
+	 * @param g Contexto gráfico utilizado para renderizar.
+	 */
 	public void draw(java.awt.Graphics2D g) {
 		if (paused) {
 			pauseState.draw(g);
@@ -227,8 +283,15 @@ public class GameStateManager {
 		}
 	}
 
+	/**
+	 * Verifica si un estado del juego está cargado en memoria.
+	 *
+	 * @param state Identificador del estado a verificar.
+	 * @return {@code true} si el estado está cargado, {@code false} en caso contrario.
+	 */
 	public boolean isStateLoaded(int state) {
 		return state >= 0 && state < NUMGAMESTATES && gameStates[state] != null;
 	}
+
 
 }

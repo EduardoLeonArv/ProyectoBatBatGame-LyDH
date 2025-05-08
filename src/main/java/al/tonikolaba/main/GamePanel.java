@@ -11,46 +11,70 @@ import java.util.logging.Level;
 import javax.swing.JPanel;
 
 import al.tonikolaba.gamestate.GameStateManager;
-//import al.tonikolaba.gamestate.GameStateManager;
 import al.tonikolaba.handlers.Keys;
 import al.tonikolaba.handlers.LoggingHelper;
 
-import al.tonikolaba.entity.Player; // Importar la clase Player
+import al.tonikolaba.entity.Player;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Clase que representa el panel principal del juego.
+ * Administra el ciclo de vida del juego, los estados, el dibujo y las interacciones del teclado.
+ *
+ * @author ArtOfSoul
+ * @version 1.0
+ */
 public class GamePanel extends JPanel implements Runnable, KeyListener {
 
-	// dimensions
+	/** Ancho de la ventana del juego en píxeles. */
 	public static final int WIDTH = 640;
+	/** Altura de la ventana del juego en píxeles. */
 	public static final int HEIGHT = 480;
+	/** Escala del juego. */
 	public static final int SCALE = 1;
 	private static final long serialVersionUID = 1275876853084636658L;
 
-	// game thread
+	// Game thread
+	/** Hilo principal del juego. */
 	private transient Thread thread;
+	/** Indica si el juego está en ejecución. */
 	boolean running;
+	/** Fotogramas por segundo objetivo del juego. */
 	private int fps = 60;
+	/** Tiempo objetivo entre fotogramas en milisegundos. */
 	private long targetTime = 1000 / fps;
 
-	// image
+	// Image
+	/** Imagen utilizada como buffer para el dibujo en pantalla. */
 	transient BufferedImage image;
+	/** Gráficos asociados a la imagen del buffer. */
 	transient Graphics2D g;
 
-	// game state manager
+	// Game state manager
+	/** Administrador de estados del juego. */
 	transient GameStateManager gsm;
 
-	// player reference
-	private Player player; // Referencia al jugador
+	// Player reference
+	/** Referencia al jugador actual. */
+	private Player player;
 
-	// other
+	// Other
+	/** Indica si se está grabando la sesión de juego. */
 	private boolean recording = false;
+	/** Contador de fotogramas grabados. */
 	private int recordingCount = 0;
+	/** Indica si se está capturando una captura de pantalla. */
 	boolean screenshot;
-	private boolean scoreSaved = false; // Nueva bandera para evitar guardar múltiples veces
+	/** Indica si la puntuación ya fue guardada. */
+	private boolean scoreSaved = false;
 
-	// Constructor modificado para aceptar el jugador
+	/**
+	 * Constructor de la clase GamePanel.
+	 *
+	 * @param player Referencia al jugador actual.
+	 */
 	public GamePanel(Player player) {
 		super();
 		this.player = player; // Asignar el jugador
@@ -59,6 +83,10 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		requestFocus();
 	}
 
+	/**
+	 * Método invocado automáticamente cuando el panel se añade al contenedor.
+	 * Inicia el hilo principal del juego si no ha sido iniciado.
+	 */
 	@Override
 	public void addNotify() {
 		super.addNotify();
@@ -69,15 +97,21 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	/**
+	 * Inicializa el juego, creando el buffer de imagen y configurando el administrador de estados.
+	 */
 	void init() {
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		g = (Graphics2D) image.getGraphics();
 
 		running = true;
 
-		gsm = new GameStateManager(player); // Asegúrate de que GameStateManager reciba el mismo jugador
+		gsm = new GameStateManager(player);
 	}
 
+	/**
+	 * Método principal del juego. Controla el ciclo de vida del juego y los tiempos de actualización.
+	 */
 	@Override
 	public void run() {
 		init();
@@ -86,7 +120,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		long elapsed;
 		long wait;
 
-		// game loop
+		// Ciclo principal del juego
 		while (running) {
 
 			start = System.nanoTime();
@@ -104,24 +138,33 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 			try {
 				Thread.sleep(wait);
 			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt(); // Reestablece el estado de interrupción del hilo
+				Thread.currentThread().interrupt(); // Restablecer el estado de interrupción del hilo
 				LoggingHelper.LOGGER.log(Level.SEVERE, "Thread interrupted: {0}", e.getMessage());
 			}
 		}
 
-		// Guardar la puntuación solo si el juego termina
+		// Guardar la puntuación cuando el juego termine
 		saveScore();
 	}
 
+	/**
+	 * Actualiza el estado del juego.
+	 */
 	protected void update() {
-		gsm.update(); // Se asegura de actualizar el estado del juego
+		gsm.update();
 		Keys.update();
 	}
 
+	/**
+	 * Dibuja el estado actual del juego en el buffer de imagen.
+	 */
 	private void draw() {
-		gsm.draw(g); // Dibuja el estado actual del juego
+		gsm.draw(g);
 	}
 
+	/**
+	 * Dibuja el contenido del buffer de imagen en la pantalla.
+	 */
 	void drawToScreen() {
 		Graphics g2 = getGraphics();
 		g2.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
@@ -146,9 +189,13 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	/**
+	 * Guarda la puntuación del jugador en un archivo.
+	 * Evita guardar múltiples veces utilizando una bandera.
+	 */
 	public void saveScore() {
-		if (scoreSaved) return; // Evita guardar más de una vez
-		scoreSaved = true; // Marca que la puntuación ya se guardó
+		if (scoreSaved) return;
+		scoreSaved = true;
 
 		try (FileWriter writer = new FileWriter("scores.txt", true)) {
 			writer.write("Player: " + player.getName() + " - Score: " + player.getScore() + "\n");
@@ -159,6 +206,11 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		}
 	}
 
+	/**
+	 * Maneja los eventos de teclado cuando se presionan las teclas.
+	 *
+	 * @param key Evento de teclado presionado.
+	 */
 	@Override
 	public void keyPressed(KeyEvent key) {
 		if (key.isControlDown()) {
@@ -174,24 +226,50 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
 		Keys.keySet(key.getKeyCode(), true);
 	}
 
+	/**
+	 * Maneja los eventos de teclado cuando se sueltan las teclas.
+	 *
+	 * @param key Evento de teclado liberado.
+	 */
 	@Override
 	public void keyReleased(KeyEvent key) {
 		Keys.keySet(key.getKeyCode(), false);
 	}
 
+	/**
+	 * Maneja los eventos de teclado cuando se escriben caracteres.
+	 * (No se utiliza en este caso).
+	 *
+	 * @param e Evento de teclado tipeado.
+	 */
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Not necessary
 	}
 
+	/**
+	 * Verifica si se está grabando la sesión de juego.
+	 *
+	 * @return {@code true} si se está grabando, {@code false} en caso contrario.
+	 */
 	public boolean isRecording() {
 		return recording;
 	}
 
+	/**
+	 * Verifica si se está capturando una captura de pantalla.
+	 *
+	 * @return {@code true} si se está capturando una captura de pantalla, {@code false} en caso contrario.
+	 */
 	public boolean isScreenshot() {
 		return screenshot;
 	}
 
+	/**
+	 * Verifica si la puntuación ya ha sido guardada.
+	 *
+	 * @return {@code true} si la puntuación ya se guardó, {@code false} en caso contrario.
+	 */
 	public boolean isScoreSaved() {
 		return scoreSaved;
 	}
