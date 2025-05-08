@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.1.6</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>al.tonikolaba</groupId>
-	<artifactId>BatBat-Game</artifactId>
-	<version>1.0</version>
-	<packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>al.tonikolaba</groupId>
+    <artifactId>BatBat-Game</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
 
-	<name>BatBat-Game</name>
-	<url>http://www.github.com/tonikolaba/BatBat-Game</url>
-	<description>BatBat Game is Java Maven project game run on Spring Boot</description>
+    <name>BatBat-Game</name>
+    <url>http://www.github.com/tonikolaba/BatBat-Game</url>
+    <description>BatBat Game is Java Maven project game run on Spring Boot</description>
 
-	<developers>
-		<developer>
-			<name>tonikolaba</name>
-			<email>batbatgame@outlook.com</email>
-			<roles>
-				<role>Author</role>
-			</roles>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>tonikolaba</name>
+            <email>batbatgame@outlook.com</email>
+            <roles>
+                <role>Author</role>
+            </roles>
+        </developer>
+    </developers>
 
     <properties>
         <java.version>17</java.version>
@@ -36,42 +36,35 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mainClass>al.tonikolaba.main.BatBatSpring</mainClass>
         <log4j2.version>2.17.1</log4j2.version>
-        <spring.version>5.3.39</spring.version>
-        <jackson.version>2.15.0</jackson.version>
     </properties>
 
- <dependencies>
-     <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-core</artifactId>
-         <version>${spring.version}</version>
-     </dependency>
-     <dependency>
-         <groupId>org.yaml</groupId>
-         <artifactId>snakeyaml</artifactId>
-         <version>2.0</version> <!-- Última versión -->
-     </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.0</version> <!-- Última versión -->
+        </dependency>
 
-     <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter</artifactId>
-         <exclusions>
-             <exclusion>
-                 <groupId>org.springframework.boot</groupId>
-                 <artifactId>spring-boot-starter-logging</artifactId>
-             </exclusion>
-             <exclusion>
-                 <groupId>com.fasterxml.jackson.core</groupId>
-                 <artifactId>jackson-core</artifactId>
-             </exclusion>
-             <exclusion>
-                 <groupId>com.fasterxml.jackson.core</groupId>
-                 <artifactId>jackson-databind</artifactId>
-             </exclusion>
-         </exclusions>
-     </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-        <!-- Spring Boot dependencies 
+        <!-- Spring Boot dependencies
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -110,9 +103,13 @@
             </exclusions>
         </dependency>
 
-
-    -->
      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-core</artifactId>
+         <version>5.3.31</version>
+     </dependency>
+    -->
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
@@ -124,7 +121,14 @@
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
+            <version>2.20.0</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
@@ -141,55 +145,50 @@
             <artifactId>tritonus-share</artifactId>
             <version>0.3.7-3</version>
         </dependency>
-     <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-core</artifactId>
-         <version>2.15.2</version>
-     </dependency>
-     <dependency>
-         <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-databind</artifactId>
-         <version>2.15.2</version>
-     </dependency>
-     <!--
         <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <version>9.4.52.v20230823</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.5</version> <!-- Compatible con Java 8 -->
         </dependency>
- -->
-     <!-- PUSE LAS SIGUIENTES 4 DEPENDENCIAS -->
-         <!-- Mockito Core -->
-         <dependency>
-             <groupId>org.mockito</groupId>
-             <artifactId>mockito-core</artifactId>
-             <version>5.5.0</version>
-             <scope>test</scope>
-         </dependency>
+        <!--
+           <dependency>
+               <groupId>org.eclipse.jetty</groupId>
+               <artifactId>jetty-server</artifactId>
+               <version>9.4.52.v20230823</version>
+           </dependency>
+    -->
+        <!-- PUSE LAS SIGUIENTES 4 DEPENDENCIAS -->
+        <!-- Mockito Core -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
 
-     <!-- Byte Buddy (para MockMaker) -->
-         <dependency>
-             <groupId>net.bytebuddy</groupId>
-             <artifactId>byte-buddy</artifactId>
-             <version>1.14.4</version>
-             <scope>test</scope>
-         </dependency>
+        <!-- Byte Buddy (para MockMaker) -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.14.4</version>
+            <scope>test</scope>
+        </dependency>
 
-         <!-- Byte Buddy Agent (opcional para inline mock maker) -->
-         <dependency>
-             <groupId>net.bytebuddy</groupId>
-             <artifactId>byte-buddy-agent</artifactId>
-             <version>1.14.4</version>
-             <scope>test</scope>
-         </dependency>
+        <!-- Byte Buddy Agent (opcional para inline mock maker) -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>1.14.4</version>
+            <scope>test</scope>
+        </dependency>
 
-         <!-- JUnit 5 -->
-         <dependency>
-             <groupId>org.junit.jupiter</groupId>
-             <artifactId>junit-jupiter</artifactId>
-             <version>5.10.0</version>
-             <scope>test</scope>
-         </dependency>
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
 
 
 
@@ -197,19 +196,19 @@
 
     </dependencies>
 
-	<build>
+    <build>
 
 
 
 
 
-		<finalName>batbatgame</finalName>
-		<defaultGoal>clean install package</defaultGoal>
+        <finalName>batbatgame</finalName>
+        <defaultGoal>clean install package</defaultGoal>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
 
             <!--NUEVA DEPENDENCIA-->
             <resource>
@@ -218,9 +217,9 @@
                     <include>**/*</include>
                 </includes>
             </resource>
-		</resources>
+        </resources>
 
-		<plugins>
+        <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -257,24 +256,24 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
-			            <!--
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>${mainClass}</mainClass>
-                    <addResources>true</addResources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>build-info</goal>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin> Spring Boot Plugin -->
-			            <!-- JUnit Tests -->
+            <!--
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <mainClass>${mainClass}</mainClass>
+        <addResources>true</addResources>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>build-info</goal>
+                <goal>repackage</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin> Spring Boot Plugin -->
+            <!-- JUnit Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -349,9 +348,9 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
+        </plugins>
 
-	</build>
+    </build>
     <reporting>
         <plugins>
             <plugin>
@@ -390,9 +389,9 @@
             </plugin>
         </plugins>
     </reporting>
-	<ciManagement>
-		<system>travis-ci</system>
-		<url>https://travis-ci.org/tonikolaba/BatBat-Game</url>
-	</ciManagement>
+    <ciManagement>
+        <system>travis-ci</system>
+        <url>https://travis-ci.org/tonikolaba/BatBat-Game</url>
+    </ciManagement>
 
 </project>
